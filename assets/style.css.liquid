@@ -5,7 +5,11 @@
 	src: url("https://assets.codepen.io/4999959/ChlaraTypeface-Regular.otf");
 }
 
-/* COLLAGE SPA DEFAULTS*/
+/* 
+ROOTS
+*/
+
+/* COLLAGE SPA DEFAULTS */
 
 :root {
 	/* Collage Spa Prime Palette */
@@ -96,16 +100,9 @@
 	--md-sys-color-inverse-primary: #aec6ffff;
 }
 
-/* TYPOGRAPHY */
+/* SPACING */
 
 :root {
-	/* Default Font Variables */
-	--md-ref-typeface-brand: var(--my-brand-font);
-	--md-ref-typeface-plain: var(--my-plain-font);
-	--md-ref-weight-bold: 700;
-	--md-ref-weight-medium: 500;
-	--md-ref-weight-regular: 400;
-
 	/* Utopia Scale Minor to Major Second */
 	--step--5: clamp(0.6938rem, 0.8555rem + -0.2087vw, 0.8138rem);
 	--step--4: clamp(0.7806rem, 0.8986rem + -0.1522vw, 0.8681rem);
@@ -123,6 +120,17 @@
 	--step-8: clamp(1.89rem, 1.4317rem + 2.2913vw, 3.2075rem);
 	--step-9: clamp(2.0169rem, 1.4634rem + 2.7674vw, 3.6081rem);
 	--step-10: clamp(2.1519rem, 1.4884rem + 3.3174vw, 4.0594rem);
+}
+
+/* TYPOGRAPHY */
+
+:root {
+	/* Default Font Variables */
+	--md-ref-typeface-brand: var(--my-brand-font);
+	--md-ref-typeface-plain: var(--my-plain-font);
+	--md-ref-weight-bold: 700;
+	--md-ref-weight-medium: 500;
+	--md-ref-weight-regular: 400;
 
 	--md-sys-typescale-body-font: var(--my-plain-font);
 	--md-sys-typescale-display-font: var(--my-brand-font);
@@ -357,6 +365,23 @@ img {
 	aspect-ratio: 1 / 1;
 }
 
+/* Material Elements Defaults */
+
+md-filled-button,
+md-filled-tonal-button,
+md-outlined-button,
+md-text-button {
+	font: var(--md-sys-typescale-label-medium);
+}
+
+md-menu-item {
+	white-space: nowrap;
+}
+
+md-chip-set {
+	padding: 0 var(--spacing-padding-medium);
+}
+
 /*
  BASIC HELPER CLASSES 
 */
@@ -421,17 +446,7 @@ img {
 	font: var(--md-sys-typescale-label-small);
 }
 
-md-filled-button,
-md-filled-tonal-button,
-md-outlined-button,
-md-text-button {
-	font: var(--md-sys-typescale-label-medium);
-}
-
-md-menu-item {
-	white-space: nowrap;
-}
-
+/* TODO: Move to Tile Component */
 .product-highlight__options {
 	& md-filled-tonal-button,
 	md-outlined-button {
@@ -585,11 +600,13 @@ md-menu-item {
 	}
 }
 
+/* TODO: Move to Tile Component */
 .card-container__sort,
 .card-container__pagination {
 	grid-column: 1 / -1;
 }
 
+/* TODO: Move to Tile Component */
 .card-container__pagination {
 	display: flex;
 	justify-content: center;
@@ -687,6 +704,8 @@ md-menu-item {
 	}
 }
 
+/* TODO: Move Sticky Track to the Tile Component */
+
 .sticky-track {
 	position: relative;
 	height: 100%;
@@ -694,9 +713,11 @@ md-menu-item {
 	grid-row: 1 / 3;
 }
 
+/* Custom Scrollbar for Filters 
+	TODO: Move into Filter Component
+	TODO: Add support for Firefox if needed
+*/
 div {
-	scrollbar-color: orange;
-
 	::-webkit-scrollbar {
 		width: 0.5rem;
 		background-color: transparent;
@@ -712,14 +733,12 @@ div {
 	}
 }
 
-/* .filter-group-display__option-grid {
-  scrollbar-color: rebeccapurple green;
-} */
-
+/* TODO: Move into Tile component */
 .card-container__sort {
 	width: 100%;
 }
 
+/* TODO: Move into CS specific group */
 #cs-logo {
 	min-height: 1rem;
 	height: 100%;
@@ -745,6 +764,7 @@ div {
 	}
 }
 
+/* TODO: Consider for refactor (only on contact form) */
 .option-wrapper {
 	display: grid;
 	grid-template-columns: auto 1fr;
@@ -756,20 +776,7 @@ div {
 	}
 }
 
-.solid {
-	border-top: 0.1rem solid var(--md-sys-color-outline-variant);
-	width: 88%;
-	margin: 0 auto;
-}
-
-.product-highlight__price-container {
-	padding-top: var(--spacing-padding-medium);
-
-	& md-outlined-text-field {
-		max-width: 10ch;
-	}
-}
-
+/* TODO: Move to Tile Component */
 md-list-item {
 	&.yes-stock {
 		--md-list-item-leading-icon-color: var(--md-sys-color-success);
@@ -787,10 +794,16 @@ md-list-item {
 	}
 }
 
-md-chip-set {
-	padding: 0 var(--spacing-padding-medium);
+/* TODO: Move to Tile Component */
+.product-highlight__price-container {
+	padding-top: var(--spacing-padding-medium);
+
+	& md-outlined-text-field {
+		max-width: 10ch;
+	}
 }
 
+/* TODO: Move to Tile Component */
 .product-highlight__price-container,
 .product-highlight__button-container {
 	display: flex;
