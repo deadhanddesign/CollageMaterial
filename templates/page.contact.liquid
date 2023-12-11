@@ -14,8 +14,8 @@
 >
 
 {% form 'contact', class: 'tile tile--highlight' %}
-  <md-outlined-text-field label="Name" required></md-outlined-text-field>
-  <md-outlined-select label="Pronouns">
+  <md-outlined-text-field id="name" label="Name" required></md-outlined-text-field>
+  <md-outlined-select id="pronouns" label="Pronouns">
     <md-select-option value="">Select one...</md-select-option>
     <md-select-option value="Ae/Aer"><div slot="headline">Ae/Aer</div></md-select-option>
     <md-select-option value="Ey/Em"><div slot="headline">Ey/Em</div></md-select-option>
@@ -27,9 +27,9 @@
     <md-select-option value="Xe/Xem"><div slot="headline">Xe/Xem</div></md-select-option>
     <md-select-option value="Ze/Hir"><div slot="headline">Ze/Hir</div></md-select-option>
   </md-outlined-select>
-  <md-outlined-text-field label="Email" type="email"></md-outlined-text-field>
-  <md-outlined-text-field label="Phone" type="tel"></md-outlined-text-field>
-  <md-outlined-text-field label="Message" type="textarea" required></md-outlined-text-field>
+  <md-outlined-text-field id="email" label="Email" type="email"></md-outlined-text-field>
+  <md-outlined-text-field id="phone" label="Phone" type="tel"></md-outlined-text-field>
+  <md-outlined-text-field id="message" label="Message" type="textarea" required></md-outlined-text-field>
   <div>Opt In</div>
   <div class="option-wrapper">
     <md-checkbox
