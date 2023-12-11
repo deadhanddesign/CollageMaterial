@@ -1,0 +1,18 @@
+{% render 'component-header', title: page.title %}
+
+<div class="tile tile--highlight tile--wide">
+  <div class="button-container">
+    <md-outlined-button
+      href="/collections/all"
+    >
+      All
+    </md-outlined-button>
+    {% for vendor in shop.vendors %}
+      <md-outlined-button
+        href="/collections/vendors?q={{- vendor -}}"
+      >
+        {{- vendor -}}
+      </md-outlined-button>
+    {% endfor %}
+  </div>
+</div>

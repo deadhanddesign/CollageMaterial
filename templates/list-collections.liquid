@@ -1,0 +1,18 @@
+{% render 'component-header', title: 'Collections' %}
+
+<div class="tile tile--highlight tile--wide">
+  <div class="button-container">
+    <md-outlined-button
+      href="/collections/all"
+    >
+      All
+    </md-outlined-button>
+    {% for collection in collections %}
+      <md-outlined-button
+        href="{{ collection.url }}"
+      >
+        {{- collection.title -}}
+      </md-outlined-button>
+    {% endfor %}
+  </div>
+</div>

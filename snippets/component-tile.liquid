@@ -1,0 +1,38 @@
+<div class="tile">
+  <div class="tile__track">
+    {{ tile-content }}
+  </div>
+</div>
+
+{% style %}
+  .tile {
+    /* width: 100%; */
+    /* width: clamp(20ch, 100%, 1900px); */
+    width: minmax(20ch, 1900px);
+  }
+
+  .tile--large {
+    /* width: min(100%, 1900px); */
+    min-width: calc(100% - (var(--spacing-padding-large) * 2));
+    max-width: 1900px;
+  }
+
+  .tile--medium {
+    /* width: min(100%, 1900px); */
+    min-width: calc(66% - (var(--spacing-padding-large) * 2));
+    max-width: 1900px;
+  }
+
+  .tile--small {
+    /* width: min(100%, 1900px); */
+    min-width: calc(100% - (var(--spacing-padding-large) * 2));
+    max-width: 1900px;
+  }
+
+  .tile__track {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    margin: 0 auto;
+  }
+{% endstyle %}

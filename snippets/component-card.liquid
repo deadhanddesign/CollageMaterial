@@ -1,0 +1,88 @@
+{% comment %}
+  Requires:
+      -product: {Object} product object.
+
+  Usage:
+      {% for foo in collection.products %}
+        {% render 'product-card', product: foo %}
+      {% endfor %}
+{% endcomment %}
+
+{% form 'product', product, id: {{product.id}}, class: 'card' %}
+  <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1">
+  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+  {{ product | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+  <div class="card__content">
+    <h3 class="display--small">{{ product.title }}</h3>
+    <h4 class="title--small">{{ product.vendor }}</h4>
+    <md-divider></md-divider>
+    <div class="card__navigation">
+      <div class="price display--small">{{ product.price | money }}</div>
+      <md-filled-icon-button
+        aria-label="add to cart"
+        type="submit"
+        name="add"
+        id="add-to-cart-button-{{ product.id }}"
+      >
+        <md-icon>add_shopping_cart</md-icon>
+      </md-filled-icon-button>
+      <md-filled-button href="{{ product.url }}">View</md-filled-button>
+    </div>
+  </div>
+{% endform %}
+
+{% style %}
+  .card {
+    flex: 1;
+    display: grid;
+    grid-template-rows: minmax(30ch, 100%) auto;
+    gap: var(--spacing-gap-medium);
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    padding: var(--spacing-padding-medium);
+    border-radius: var(--border-radius-medium);
+
+    & * {
+      margin-block-start: var(--spacing-margin-xsmall);
+    }
+
+    & img {
+      border-radius: 0.5rem;
+      aspect-ratio: 1 / 1;
+      width: calc(100% - var(--spacing-padding-xsmall));
+      outline: var(--md-sys-color-surface) solid 0.2rem;
+      outline-offset: -0.4rem;
+    }
+
+    & h4 {
+      font-size: var(--md-sys-typescale-title-small-size);
+      font-family: var(--md-sys-typescale-title-small-font);
+      font-weight: var(--md-sys-typescale-title-small-weight);
+    }
+
+    & .card__content {
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+    }
+
+    & .card__navigation {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-gap-small);
+
+      & .price {
+        flex: 1;
+      }
+    }
+
+    &:is(h2) {
+      display: block;
+      background: inherit;
+      color: inherit;
+      border: inherit;
+      /* min-width: 10ch; */
+      grid-column: 1 / -1;
+    }
+  }
+{% endstyle %}

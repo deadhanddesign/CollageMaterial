@@ -1,0 +1,34 @@
+<header class="tile">
+  <div class="tile__track">
+    {% if overline %}
+      <div class="hero__overline label--large">— {{ overline | capitalize }}</div>
+    {% endif %}
+    {% if title-caps %}
+      <h1 class="display--large">{{ title | capitalize }}</h1>
+    {% else %}
+      <h1 class="display--large">{{ title }}</h1>
+    {% endif %}
+    {% if subheader-vendor %}
+      <div class="hero__subheader">by {{ subheader-vendor | link_to_vendor }}</div>
+    {% endif %}
+  </div>
+</header>
+
+{% style %}
+  header {
+    min-width: 40ch;
+  }
+
+  .hero__overline {
+    height: 300px;
+  }
+
+  .hero__subheader {
+    font: var(--md-sys-typescale-headline-small);
+    & a {
+      font: var(--md-sys-typescale-headline-large);
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+{% endstyle %}

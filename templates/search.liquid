@@ -1,0 +1,88 @@
+<header class="tile">
+  <div class="hero__overline"></div>
+  <h1>Search</h1>
+  <div class="hero__subheader"></div>
+</header>
+
+{%- if search.description != blank -%}
+  <p>{{ search.description }}</p>
+{%- endif -%}
+
+<div class="tile tile--highlight tile--wide tile--filter-grid">
+  {% render 'filters-search' %}
+  {% render 'filters-search-chips' %}
+
+  {% if search.performed and search.results_count > 0 %}
+    {% paginate search.results by 20 %}
+      <div class="card-container__grid">
+        <div class="card-container__sort">
+          <md-outlined-select id="sort-by">
+            {% assign sort_by = search.sort_by | default: search.default_sort_by %}
+            {% for option in search.sort_options %}
+              <md-select-option
+                value="{{ option.value }}"
+                {% if option.value == sort_by %}
+                  selected="selected"
+                {% endif %}
+              >
+                <div slot="headline">
+                  {{ option.name }}
+                </div>
+              </md-select-option>
+            {% endfor %}
+          </md-outlined-select>
+
+          <script type="module">
+            Shopify.queryParams = {};
+
+            // Preserve existing query parameters
+            if (location.search.length) {
+              var params = location.search.substr(1).split('&');
+
+              for (var i = 0; i < params.length; i++) {
+                var keyValue = params[i].split('=');
+
+                if (keyValue.length) {
+                  Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+                }
+              }
+            }
+
+            // Update sort_by query parameter on select change
+            document.querySelector('#sort-by').addEventListener('change', function (e) {
+              var value = e.target.value;
+
+              Shopify.queryParams.sort_by = value;
+              location.search = new URLSearchParams(Shopify.queryParams).toString();
+            });
+          </script>
+        </div>
+        {%- for product in search.results -%}
+          {% render 'component-card', product: product %}
+        {% endfor %}
+      </div>
+
+      <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
+    {% endpaginate %}
+  {% elsif search.performed and search.results_count == 0 %}
+    <div class="card-container__grid">
+      <div class="card-container__sort">
+        <p style="margin: auto">
+          🔍 No results found. But don't worry, your perfect match might just be a search away! Try different keywords
+          for more spa delights. Let's find what you're looking for! 💆‍♀️🌟
+        </p>
+      </div>
+    </div>
+
+  {% else %}
+    <div class="card-container__grid">
+      <div class="card-container__sort">
+        <p style="margin: auto">
+          🌟 Ready to find your perfect product? 🔍 Simply type in what your heart desires, then use our filters for a
+          tailored search. From blissful treatments to rejuvenating products, your journey to relaxation starts here.
+          Let's begin!
+        </p>
+      </div>
+    </div>
+  {% endif %}
+</div>

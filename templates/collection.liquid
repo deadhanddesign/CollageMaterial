@@ -1,0 +1,79 @@
+{% render 'component-header', title: collection.title %}
+
+{%- if collection.description != blank -%}
+  <p>{{ collection.description }}</p>
+{%- endif -%}
+
+<div class="tile tile--highlight tile--wide tile--filter-grid">
+  {% render 'filters-collection' %}
+  {% render 'filters-collection-chips' %}
+
+  {% if collection.products_count != 0 %}
+    {% paginate collection.products by 20 %}
+      <div class="card-container__grid">
+        <div class="card-container__sort">
+          <md-outlined-select id="sort-by">
+            {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+            {% for option in collection.sort_options %}
+              <md-select-option
+                value="{{ option.value }}"
+                {% if option.value == sort_by %}
+                  selected="selected"
+                {% endif %}
+              >
+                <div slot="headline">
+                  {{ option.name }}
+                </div>
+              </md-select-option>
+            {% endfor %}
+          </md-outlined-select>
+
+          <script type="module">
+            Shopify.queryParams = {};
+
+            // Preserve existing query parameters
+            if (location.search.length) {
+              var params = location.search.substr(1).split('&');
+
+              for (var i = 0; i < params.length; i++) {
+                var keyValue = params[i].split('=');
+
+                if (keyValue.length) {
+                  Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+                }
+              }
+            }
+
+            // Update sort_by query parameter on select change
+            document.querySelector('#sort-by').addEventListener('change', function (e) {
+              var value = e.target.value;
+
+              Shopify.queryParams.sort_by = value;
+              location.search = new URLSearchParams(Shopify.queryParams).toString();
+            });
+          </script>
+        </div>
+
+        {%- for product in collection.products -%}
+          {% render 'component-card', product: product %}
+        {% endfor %}
+        <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
+      </div>
+    {% endpaginate %}
+  {% else %}
+    <div class="card-container__grid">
+      <div class="card-container__sort">
+        <p style="margin: auto">
+          🔍 Looks like your filters have led to a hidden oasis with no results. Let's adjust your search to uncover
+          more spa treasures! Clear some filters by clicking on them above or
+          <span
+            ><a style="color: var(--md-sys-color-primary)" href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
+              >clear them all</a
+            ></span
+          >
+          to explore a world of relaxation and pampering. Your perfect match is waiting!
+        </p>
+      </div>
+    </div>
+  {% endif %}
+</div>

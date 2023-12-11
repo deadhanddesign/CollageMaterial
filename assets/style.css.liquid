@@ -1,0 +1,950 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@font-face {
+	font-family: "ChlaraTypeface";
+	src: url("https://assets.codepen.io/4999959/ChlaraTypeface-Regular.otf");
+}
+
+/* COLLAGE SPA DEFAULTS*/
+
+:root {
+	/* Collage Spa Prime Palette */
+	--prime-green: #8fb765;
+	--prime-yellow: #e6b63b;
+	--prime-coral: #ed7079;
+	--prime-teal: #17baab;
+	--prime-blue: #2f3d5a;
+
+	/* Collage Spa Palette */
+	--cs-green: var(--prime-green);
+	--cs-yellow: var(--prime-yellow);
+	--cs-coral: var(--prime-coral);
+	--cs-teal: var(--prime-teal);
+	--cs-blue: var(--prime-blue);
+
+	/* Collage Spa Fonts */
+	--my-brand-font: "ChlaraTypeface";
+	--my-headline-font: "Montserrat";
+	--my-title-font: "Montserrat";
+	--my-plain-font: "Montserrat";
+}
+
+/* COLOR */
+
+:root {
+	/* Material Design Color Presets */
+	--md-sys-color-primary: #225bb7ff;
+	--md-sys-color-on-primary: #ffffffff;
+	--md-sys-color-primary-container: #d8e2ffff;
+	--md-sys-color-on-primary-container: #001a43ff;
+	--md-sys-color-primary-fixed: #d8e2ffff;
+	--md-sys-color-primary-fixed-dim: #aec6ffff;
+	--md-sys-color-on-primary-fixed: #001a43ff;
+	--md-sys-color-on-primary-fixed-variant: #004397ff;
+	--md-sys-color-secondary: #575e71ff;
+	--md-sys-color-on-secondary: #ffffffff;
+	--md-sys-color-secondary-container: #dbe2f9ff;
+	--md-sys-color-on-secondary-container: #141b2cff;
+	--md-sys-color-secondary-fixed: #dbe2f9ff;
+	--md-sys-color-secondary-fixed-dim: #bfc6dcff;
+	--md-sys-color-on-secondary-fixed: #141b2cff;
+	--md-sys-color-on-secondary-fixed-variant: #3f4759ff;
+	--md-sys-color-tertiary: #715573ff;
+	--md-sys-color-on-tertiary: #ffffffff;
+	--md-sys-color-tertiary-container: #fcd7fbff;
+	--md-sys-color-on-tertiary-container: #2a132dff;
+	--md-sys-color-tertiary-fixed: #fcd7fbff;
+	--md-sys-color-tertiary-fixed-dim: #dfbbdeff;
+	--md-sys-color-on-tertiary-fixed: #2a132dff;
+	--md-sys-color-on-tertiary-fixed-variant: #583e5aff;
+	--md-sys-color-error: #ba1a1aff;
+	--md-sys-color-on-error: #ffffffff;
+	--md-sys-color-error-container: #ffdad6ff;
+	--md-sys-color-on-error-container: #410002ff;
+	--md-sys-color-success: #4caf50ff;
+	--md-sys-color-on-success: #ffffffff;
+	--md-sys-color-success-container: #d7f3d9ff;
+	--md-sys-color-on-success-container: #0a2a0aff;
+	--md-sys-color-warning: #ff9800ff;
+	--md-sys-color-on-warning: #ffffffff;
+	--md-sys-color-warning-container: #ffe8d6ff;
+	--md-sys-color-on-warning-container: #3f1a00ff;
+	--md-sys-color-info: #2196f3ff;
+	--md-sys-color-on-info: #ffffffff;
+	--md-sys-color-info-container: #d6e8ffff;
+	--md-sys-color-on-info-container: #001a43ff;
+	--md-sys-color-background: #faf8fdff;
+	--md-sys-color-on-background: #1b1b1fff;
+	--md-sys-color-surface: #faf8fdff;
+	--md-sys-color-on-surface: #1b1b1fff;
+	--md-sys-color-surface-variant: #e1e2ecff;
+	--md-sys-color-on-surface-variant: #44474fff;
+	--md-sys-color-surface-dim: #dbd9ddff;
+	--md-sys-color-surface-bright: #faf8fdff;
+	--md-sys-color-surface-container-lowest: #ffffffff;
+	--md-sys-color-surface-container-low: #f5f3f7ff;
+	--md-sys-color-surface-container: #efedf1ff;
+	--md-sys-color-surface-container-high: #e9e7ecff;
+	--md-sys-color-surface-container-highest: #e3e2e6ff;
+	--md-sys-color-surface-tint: #225bb7ff;
+	--md-sys-color-outline: #757780ff;
+	--md-sys-color-outline-variant: #c5c6d0ff;
+	--md-sys-color-shadow: #000000ff;
+	--md-sys-color-scrim: #000000ff;
+	--md-sys-color-inverse-surface: #303034ff;
+	--md-sys-color-inverse-on-surface: #f2f0f4ff;
+	--md-sys-color-inverse-primary: #aec6ffff;
+}
+
+/* TYPOGRAPHY */
+
+:root {
+	/* Default Font Variables */
+	--md-ref-typeface-brand: var(--my-brand-font);
+	--md-ref-typeface-plain: var(--my-plain-font);
+	--md-ref-weight-bold: 700;
+	--md-ref-weight-medium: 500;
+	--md-ref-weight-regular: 400;
+
+	/* Utopia Scale Minor to Major Second */
+	--step--5: clamp(0.6938rem, 0.8555rem + -0.2087vw, 0.8138rem);
+	--step--4: clamp(0.7806rem, 0.8986rem + -0.1522vw, 0.8681rem);
+	--step--3: clamp(0.8781rem, 0.943rem + -0.0837vw, 0.9263rem);
+	--step--2: clamp(0.9875rem, 0.9883rem + -0.0011vw, 0.9881rem);
+	--step--1: clamp(1.0544rem, 1.0346rem + 0.0989vw, 1.1113rem);
+	--step-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+	--step-1: clamp(1.2006rem, 1.1291rem + 0.3576vw, 1.4063rem);
+	--step-2: clamp(1.2806rem, 1.1758rem + 0.5239vw, 1.5819rem);
+	--step-3: clamp(1.3669rem, 1.2232rem + 0.7185vw, 1.78rem);
+	--step-4: clamp(1.4581rem, 1.2688rem + 0.9467vw, 2.0025rem);
+	--step-5: clamp(1.5556rem, 1.3132rem + 1.212vw, 2.2525rem);
+	--step-6: clamp(1.66rem, 1.3559rem + 1.5207vw, 2.5344rem);
+	--step-7: clamp(1.7713rem, 1.3958rem + 1.8772vw, 2.8506rem);
+	--step-8: clamp(1.89rem, 1.4317rem + 2.2913vw, 3.2075rem);
+	--step-9: clamp(2.0169rem, 1.4634rem + 2.7674vw, 3.6081rem);
+	--step-10: clamp(2.1519rem, 1.4884rem + 3.3174vw, 4.0594rem);
+
+	--md-sys-typescale-body-font: var(--my-plain-font);
+	--md-sys-typescale-display-font: var(--my-brand-font);
+	--md-sys-typescale-headline-font: var(--my-headline-font);
+	--my-sys-typescale-label-font: var(--my-plain-font);
+	--md-sys-typescale-title-font: var(--my-title-font);
+
+	/* Material Design Default Typescale */
+
+	/* Display 
+    Used for Page Titles and other High Priority Text
+  */
+	--md-sys-typescale-display-large-font: var(--md-sys-typescale-display-font);
+	--md-sys-typescale-display-large-line-height: 1.2;
+	--md-sys-typescale-display-large-size: var(--step-10);
+	--md-sys-typescale-display-large-weight: 400;
+	--md-sys-typescale-display-medium-font: var(--md-sys-typescale-display-font);
+	--md-sys-typescale-display-medium-line-height: 1.2;
+	--md-sys-typescale-display-medium-size: var(--step-6);
+	--md-sys-typescale-display-medium-weight: 400;
+	--md-sys-typescale-display-small-font: var(--md-sys-typescale-display-font);
+	--md-sys-typescale-display-small-line-height: 1.2;
+	--md-sys-typescale-display-small-size: var(--step-4);
+	--md-sys-typescale-display-small-weight: 400;
+	--md-sys-typescale-display-large: var(--md-sys-typescale-display-large-weight)
+		var(--md-sys-typescale-display-large-size) / var(--md-sys-typescale-display-large-line-height)
+		var(--md-sys-typescale-display-large-font);
+	--md-sys-typescale-display-medium: var(--md-sys-typescale-display-medium-weight)
+		var(--md-sys-typescale-display-medium-size) / var(--md-sys-typescale-display-medium-line-height)
+		var(--md-sys-typescale-display-medium-font);
+	--md-sys-typescale-display-small: var(--md-sys-typescale-display-small-weight)
+		var(--md-sys-typescale-display-small-size) / var(--md-sys-typescale-display-small-line-height)
+		var(--md-sys-typescale-display-small-font);
+
+	/* Headline 
+    Used for headlines that aren't the Page Title
+  */
+	--md-sys-typescale-headline-large-font: var(--md-sys-typescale-headline-font);
+	--md-sys-typescale-headline-large-line-height: 1.2;
+	--md-sys-typescale-headline-large-size: var(--step-4);
+	--md-sys-typescale-headline-large-weight: 500;
+	--md-sys-typescale-headline-medium-font: var(--md-sys-typescale-headline-font);
+	--md-sys-typescale-headline-medium-line-height: 1.2;
+	--md-sys-typescale-headline-medium-size: var(--step-3);
+	--md-sys-typescale-headline-medium-weight: 500;
+	--md-sys-typescale-headline-small-font: var(--md-sys-typescale-headline-font);
+	--md-sys-typescale-headline-small-line-height: 1.2;
+	--md-sys-typescale-headline-small-size: var(--step-2);
+	--md-sys-typescale-headline-small-weight: 500;
+	--md-sys-typescale-headline-large: var(--md-sys-typescale-headline-large-weight)
+		var(--md-sys-typescale-headline-large-size) / var(--md-sys-typescale-headline-large-line-height)
+		var(--md-sys-typescale-headline-large-font);
+	--md-sys-typescale-headline-medium: var(--md-sys-typescale-headline-medium-weight)
+		var(--md-sys-typescale-headline-medium-size) /
+		var(--md-sys-typescale-headline-medium-line-height) var(--md-sys-typescale-headline-medium-font);
+	--md-sys-typescale-headline-small: var(--md-sys-typescale-headline-small-weight)
+		var(--md-sys-typescale-headline-small-size) / var(--md-sys-typescale-headline-small-line-height)
+		var(--md-sys-typescale-headline-small-font);
+
+	/* Title
+    Generally for Subtitles and other Text that needs to stand out
+  */
+	--md-sys-typescale-title-large-font: var(--md-sys-typescale-title-font);
+	--md-sys-typescale-title-large-line-height: 1.2;
+	--md-sys-typescale-title-large-size: var(--step-5);
+	--md-sys-typescale-title-large-weight: 500;
+	--md-sys-typescale-title-medium-font: var(--md-sys-typescale-title-font);
+	--md-sys-typescale-title-medium-line-height: 1.2;
+	--md-sys-typescale-title-medium-size: var(--step-2);
+	--md-sys-typescale-title-medium-weight: 500;
+	--md-sys-typescale-title-small-font: var(--md-sys-typescale-title-font);
+	--md-sys-typescale-title-small-line-height: 1.2;
+	--md-sys-typescale-title-small-size: var(--step--1);
+	--md-sys-typescale-title-small-weight: 500;
+	--md-sys-typescale-title-large: var(--md-sys-typescale-title-large-weight)
+		var(--md-sys-typescale-title-large-size) / var(--md-sys-typescale-title-large-line-height)
+		var(--md-sys-typescale-title-large-font);
+	--md-sys-typescale-title-medium: var(--md-sys-typescale-title-medium-weight)
+		var(--md-sys-typescale-title-medium-size) / var(--md-sys-typescale-title-medium-line-height)
+		var(--md-sys-typescale-title-medium-font);
+	--md-sys-typescale-title-small: var(--md-sys-typescale-title-small-weight)
+		var(--md-sys-typescale-title-small-size) / var(--md-sys-typescale-title-small-line-height)
+		var(--md-sys-typescale-title-small-font);
+
+	/* Body 
+    The Main Text, as well as things like Lists, Text Fields, and Select Options
+  */
+	--md-sys-typescale-body-large-font: var(--md-sys-typescale-body-font);
+	--md-sys-typescale-body-large-line-height: 1.5;
+	--md-sys-typescale-body-large-size: var(--step-1);
+	--md-sys-typescale-body-large-weight: 400;
+	--md-sys-typescale-body-medium-font: var(--md-sys-typescale-body-font);
+	--md-sys-typescale-body-medium-line-height: 1.5;
+	--md-sys-typescale-body-medium-size: var(--step-0);
+	--md-sys-typescale-body-medium-weight: 400;
+	--md-sys-typescale-body-small-font: var(--md-sys-typescale-body-font);
+	--md-sys-typescale-body-small-line-height: 1.5;
+	--md-sys-typescale-body-small-size: var(--step--1);
+	--md-sys-typescale-body-small-weight: 400;
+	--md-sys-typescale-body-large: var(--md-sys-typescale-body-large-weight)
+		var(--md-sys-typescale-body-large-size) / var(--md-sys-typescale-body-large-line-height)
+		var(--md-sys-typescale-body-large-font);
+	--md-sys-typescale-body-medium: var(--md-sys-typescale-body-medium-weight)
+		var(--md-sys-typescale-body-medium-size) / var(--md-sys-typescale-body-medium-line-height)
+		var(--md-sys-typescale-body-medium-font);
+	--md-sys-typescale-body-small: var(--md-sys-typescale-body-small-weight)
+		var(--md-sys-typescale-body-small-size) / var(--md-sys-typescale-body-small-line-height)
+		var(--md-sys-typescale-body-small-font);
+
+	/* Label 
+    Used for things like Form Labels, Buttons, Tags, and other small text
+  */
+	--md-sys-typescale-label-large-font: var(--my-sys-typescale-label-font);
+	--md-sys-typescale-label-large-line-height: 1.5;
+	--md-sys-typescale-label-large-size: var(--step-0);
+	--md-sys-typescale-label-large-weight: 500;
+	--md-sys-typescale-label-large-weight-prominent: 700;
+	--md-sys-typescale-label-medium-font: var(--my-sys-typescale-label-font);
+	--md-sys-typescale-label-medium-line-height: 1.5;
+	--md-sys-typescale-label-medium-size: var(--step--1);
+	--md-sys-typescale-label-medium-weight: 500;
+	--md-sys-typescale-label-medium-weight-prominent: 700;
+	--md-sys-typescale-label-small-font: var(--my-sys-typescale-label-font);
+	--md-sys-typescale-label-small-line-height: 1.5;
+	--md-sys-typescale-label-small-size: var(--step--2);
+	--md-sys-typescale-label-small-weight: 500;
+	--md-sys-typescale-label-large: var(--md-sys-typescale-label-large-weight)
+		var(--md-sys-typescale-label-large-size) / var(--md-sys-typescale-label-large-line-height)
+		var(--md-sys-typescale-label-large-font);
+	--md-sys-typescale-label-medium: var(--md-sys-typescale-label-medium-weight)
+		var(--md-sys-typescale-label-medium-size) / var(--md-sys-typescale-label-medium-line-height)
+		var(--md-sys-typescale-label-medium-font);
+	--md-sys-typescale-label-small: var(--md-sys-typescale-label-small-weight)
+		var(--md-sys-typescale-label-small-size) / var(--md-sys-typescale-label-small-line-height)
+		var(--md-sys-typescale-label-small-font);
+}
+
+/* GLOBAL */
+
+:root {
+	/* Border Radius */
+	--border-radius-xlarge: calc(var(--border-radius-large) * 2);
+	--border-radius-large: var(--step-8);
+	--border-radius-medium: calc(var(--border-radius-large) / 2);
+	--border-radius-small: calc(var(--border-radius-medium) / 2);
+	--border-radius-xsmall: calc(var(--border-radius-small) / 2);
+
+	/* Spacing */
+	--spacing-padding-large: var(--step-4);
+	--spacing-padding-medium: calc(var(--spacing-padding-large) / 2);
+	--spacing-padding-small: calc(var(--spacing-padding-medium) / 2);
+	--spacing-padding-xsmall: calc(var(--spacing-padding-small) / 2);
+	--spacing-padding-none: 0;
+	--spacing-margin-large: clamp(1.4581em, 1.2688em + 0.9467vw, 2.0025em);
+	--spacing-margin-medium: calc(var(--spacing-margin-large) / 2);
+	--spacing-margin-small: calc(var(--spacing-margin-medium) / 2);
+	--spacing-margin-xsmall: calc(var(--spacing-margin-small) / 2);
+	--spacing-margin-none: 0;
+	--spacing-gap-large: var(--step-4);
+	--spacing-gap-medium: calc(var(--spacing-gap-large) / 2);
+	--spacing-gap-small: calc(var(--spacing-gap-medium) / 2);
+	--spacing-gap-xsmall: calc(var(--spacing-gap-small) / 2);
+	--spacing-gap-none: 0;
+
+	/* MATERIAL ELEMENTS DEFAULTS */
+
+	/* Typography */
+	--md-menu-item-label-text-size: var(--md-sys-typescale-label-medium-size);
+	--md-outlined-select-text-field-input-text-size: var(--md-sys-typescale-label-medium-size);
+
+	/* Border Radius */
+	--md-filled-button-container-shape: 999px;
+	--md-filled-tonal-button-container-shape: var(--md-filled-button-container-shape);
+	--md-outlined-button-container-shape: var(--md-filled-button-container-shape);
+	--md-text-button-container-shape: var(--md-filled-button-container-shape);
+	--md-menu-container-shape: var(--border-radius-xsmall);
+	--md-fab-container-shape: var(--border-radius-small);
+	--md-outlined-text-field-container-shape: var(--border-radius-xsmall);
+
+	/* Backgrounds */
+	--md-list-container-color: none;
+}
+
+/* 
+DEFAULT STYLES & RESETS
+*/
+
+body {
+	background-color: var(--md-sys-color-surface-container);
+	font: var(--md-sys-typescale-body-medium);
+	color: var(--md-sys-color-on-background);
+	transition: all 200ms ease;
+	padding: var(--spacing-padding-large);
+	gap: var(--spacing-gap-large);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	opacity: 0;
+	margin: 0;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	margin-block-start: var(--spacing-margin-medium);
+	font: var(--md-sys-typescale-headline-large);
+}
+
+h2 {
+	font: var(--md-sys-typescale-headline-medium);
+}
+
+h3 {
+	font: var(--md-sys-typescale-headline-small);
+}
+
+p {
+	min-width: 40ch;
+	max-width: 60ch;
+}
+
+img {
+	font-style: italic;
+	background-repeat: no-repeat;
+	background-size: cover;
+	shape-margin: 1rem;
+	height: auto;
+	width: min(66%, 600px);
+	vertical-align: middle;
+	object-fit: cover;
+	aspect-ratio: 1 / 1;
+}
+
+/*
+ BASIC HELPER CLASSES 
+*/
+
+/* TYPOGRAPHY & TYPESCALE */
+
+.display--large {
+	font: var(--md-sys-typescale-display-large);
+	font-variant-ligatures: discretionary-ligatures;
+	text-transform: uppercase;
+	max-width: 40ch;
+	-webkit-text-stroke-width: 0.01em;
+}
+.display--medium {
+	font: var(--md-sys-typescale-display-medium);
+	max-width: 40ch;
+	-webkit-text-stroke-width: 0.02em;
+}
+.display--small {
+	font: var(--md-sys-typescale-display-small);
+	max-width: 40ch;
+	-webkit-text-stroke-width: 0.04em;
+}
+
+.headline--large {
+	font: var(--md-sys-typescale-headline-large);
+}
+.headline--medium {
+	font: var(--md-sys-typescale-headline-medium);
+}
+.headline--small {
+	font: var(--md-sys-typescale-headline-small);
+}
+
+.title--large {
+	font: var(--md-sys-typescale-title-large);
+}
+.title--medium {
+	font: var(--md-sys-typescale-title-medium);
+}
+.title--small {
+	font: var(--md-sys-typescale-title-small);
+}
+
+.body--large {
+	font: var(--md-sys-typescale-body-large);
+}
+.body--medium {
+	font: var(--md-sys-typescale-body-medium);
+}
+.body--small {
+	font: var(--md-sys-typescale-body-small);
+}
+
+.label--large {
+	font: var(--md-sys-typescale-label-large);
+}
+.label--medium {
+	font: var(--md-sys-typescale-label-medium);
+}
+.label--small {
+	font: var(--md-sys-typescale-label-small);
+}
+
+md-filled-button,
+md-filled-tonal-button,
+md-outlined-button,
+md-text-button {
+	font: var(--md-sys-typescale-label-medium);
+}
+
+md-menu-item {
+	white-space: nowrap;
+}
+
+.product-highlight__options {
+	& md-filled-tonal-button,
+	md-outlined-button {
+		height: auto;
+	}
+}
+
+/* TODO: Refactor Tiles into reusable component */
+.tile {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-gap-medium);
+	flex: 1;
+	color: var(--md-sys-color-on-primary-container);
+	background-color: var(--md-sys-color-primary-container);
+	padding: var(--spacing-padding-large);
+	border-radius: var(--border-radius-large);
+	position: relative;
+	outline: var(--md-sys-color-surface-container) solid 0.2rem;
+	outline-offset: -0.4rem;
+
+	&.tile--highlight {
+		background: var(--md-sys-color-surface);
+		color: var(--md-sys-color-on-background);
+		font: var(--md-sys-typescale-body-medium);
+
+		& form:not(.card) {
+			display: flex;
+			flex-direction: inherit;
+			gap: inherit;
+		}
+
+		& md-list {
+			padding: var(--spacing-padding-small);
+			background: var(--md-sys-color-surface-container-low);
+			color: var(--md-sys-color-on-surface);
+			border-radius: var(--border-radius-medium);
+		}
+
+		& a {
+			text-decoration: none;
+			color: inherit;
+		}
+	}
+
+	&.tile--secondary {
+		--md-sys-color-primary: var(--md-sys-color-secondary);
+		background: var(--md-sys-color-secondary-container);
+		color: var(--md-sys-color-on-secondary-container);
+	}
+
+	&.tile--tertiary {
+		--md-sys-color-primary: var(--md-sys-color-tertiary);
+		background: var(--md-sys-color-tertiary-container);
+		color: var(--md-sys-color-on-tertiary-container);
+	}
+
+	&.tile--wide,
+	.tile--wide {
+		width: min(1920px, 100% - (var(--spacing-padding-large) * 2));
+		flex: none;
+	}
+
+	&.tile--grid,
+	.tile--grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
+		align-content: center;
+		align-items: center;
+
+		& form {
+			display: flex;
+			align-items: stretch;
+			flex-wrap: wrap;
+			gap: var(--spacing-gap-medium);
+
+			& md-outlined-text-field {
+				flex-grow: 1;
+			}
+
+			& md-filled-button {
+				height: auto;
+			}
+		}
+	}
+
+	&.tile--filter-grid,
+	.tile--filter-grid {
+		display: grid;
+		grid-template-columns: 320px 1fr;
+		justify-items: stretch;
+		align-items: start;
+	}
+
+	&:is(img) {
+		padding: 0;
+		flex: 1;
+		max-height: 90dvh;
+	}
+
+	&#contact_form {
+		width: 100%;
+	}
+}
+
+/* TODO: Refactor Card-Containers et al into variant of the Tile component
+ * -Possibly as a "sub-component" 
+ */
+.card-container__grid {
+	padding: var(--spacing-padding-medium);
+	background: var(--md-sys-color-surface-variant);
+	color: var(--md-sys-color-on-surface);
+	border-radius: var(--border-radius-medium);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+	gap: var(--spacing-gap-medium);
+
+	&.card-container__grid--solo {
+		background: var(--md-sys-color-secondary-fixed-dim);
+		color: var(--md-sys-color-on-secondary-fixed);
+		border-radius: var(--border-radius-large);
+		padding: var(--spacing-padding-large);
+		/* min-width: 40%;
+		max-width: 1920px; */
+
+		& .card {
+			background: var(--md-sys-color-secondary-container);
+			color: var(--md-sys-color-on-secondary-container);
+
+			& img {
+				outline: var(--md-sys-color-secondary-container) solid 0.2rem;
+			}
+
+			&:is(h2) {
+				display: block;
+				background: inherit;
+				color: inherit;
+				border: inherit;
+				min-width: 10ch;
+			}
+
+			& md-filled-button {
+				--md-filled-button-container-color: var(--md-sys-color-secondary);
+				--md-filled-button-label-text-color: var(--md-sys-color-on-secondary);
+			}
+			& md-filled-icon-button {
+				--md-filled-icon-button-container-color: var(--md-sys-color-secondary);
+				--md-filled-icon-button-label-text-color: var(--md-sys-color-on-secondary);
+			}
+		}
+	}
+}
+
+.card-container__sort,
+.card-container__pagination {
+	grid-column: 1 / -1;
+}
+
+.card-container__pagination {
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-gap-medium);
+	font-family: var(--md-sys-typescale-body-font);
+	font-size: var(--md-sys-typescale-body-medium-size);
+	font-weight: var(--md-sys-typescale-body-medium-weight);
+
+	& span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 40px;
+		min-height: 40px;
+		border-radius: var(--border-radius-medium);
+		transition: all 200ms ease;
+
+		& a {
+			padding: var(--spacing-padding-xsmall);
+			text-decoration: none;
+			color: var(--md-sys-color-on-primary-container);
+		}
+
+		&:is(.current) {
+			color: var(--md-sys-color-on-primary);
+			background: var(--md-sys-color-primary);
+		}
+
+		&:hover {
+			background: var(--md-sys-color-on-primary);
+			color: var(--md-sys-color-primary);
+		}
+	}
+}
+
+#card-container__filter {
+	display: grid;
+	gap: var(--spacing-gap-medium);
+	position: sticky;
+	top: var(--spacing-padding-large);
+
+	& p {
+		min-width: auto;
+	}
+
+	& details {
+		/* min-width: 320px; */
+
+		& summary {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: var(--spacing-padding-medium);
+			/* font: var(--md-sys-typescale-label-small); */
+			cursor: pointer;
+			user-select: none;
+
+			& span::after {
+				font-family: "Material Symbols Outlined";
+				content: "add";
+				font-size: calc(var(--md-sys-typescale-label-small-size) * 1.5);
+			}
+		}
+
+		.filter-group-display__option-grid {
+			display: grid;
+			grid-auto-rows: 1fr;
+			grid-auto-columns: 1fr;
+			grid-auto-flow: row;
+			gap: var(--spacing-gap-medium);
+			align-items: center;
+			justify-items: stretch;
+			padding: var(--spacing-padding-medium);
+			overflow-y: scroll;
+			max-height: 10rem;
+
+			& md-slider {
+				grid-column: 1 / 3;
+				--md-slider-label-container-height: 0.5rem;
+				--md-slider-label-text-size: 0.75rem;
+				--md-slider-label-text-line-height: 1;
+			}
+
+			& label {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				gap: var(--spacing-gap-small);
+			}
+		}
+
+		&:is([open]) > summary > span::after {
+			content: "remove";
+		}
+	}
+}
+
+.sticky-track {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	grid-row: 1 / 3;
+}
+
+div {
+	scrollbar-color: orange;
+
+	::-webkit-scrollbar {
+		width: 0.5rem;
+		background-color: transparent;
+	}
+
+	::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+
+	::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: var(--md-sys-color-on-surface-variant);
+	}
+}
+
+/* .filter-group-display__option-grid {
+  scrollbar-color: rebeccapurple green;
+} */
+
+.card-container__sort {
+	width: 100%;
+}
+
+#cs-logo {
+	min-height: 1rem;
+	height: 100%;
+
+	& .cs-logo__mask {
+		fill: none;
+	}
+
+	& .cs-logo__green {
+		fill: var(--cs-green);
+	}
+
+	& .cs-logo__yellow {
+		fill: var(--cs-yellow);
+	}
+
+	& .cs-logo__coral {
+		fill: var(--cs-coral);
+	}
+
+	& .cs-logo__teal {
+		fill: var(--cs-teal);
+	}
+}
+
+.option-wrapper {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 1rem;
+
+	&.option-wrapper--space {
+		justify-content: space-between;
+	}
+}
+
+.solid {
+	border-top: 0.1rem solid var(--md-sys-color-outline-variant);
+	width: 88%;
+	margin: 0 auto;
+}
+
+.product-highlight__price-container {
+	padding-top: var(--spacing-padding-medium);
+
+	& md-outlined-text-field {
+		max-width: 10ch;
+	}
+}
+
+md-list-item {
+	&.yes-stock {
+		--md-list-item-leading-icon-color: var(--md-sys-color-success);
+		--md-list-item-supporting-text-color: var(--md-sys-color-success);
+	}
+
+	&.low-stock {
+		--md-list-item-leading-icon-color: var(--md-sys-color-warning);
+		--md-list-item-supporting-text-color: var(--md-sys-color-warning);
+	}
+
+	&.no-stock {
+		--md-list-item-leading-icon-color: var(--md-sys-color-error);
+		--md-list-item-supporting-text-color: var(--md-sys-color-error);
+	}
+}
+
+md-chip-set {
+	padding: 0 var(--spacing-padding-medium);
+}
+
+.product-highlight__price-container,
+.product-highlight__button-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.product-highlight__button-container {
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1rem;
+}
+
+.button-wrapper,
+.button-container {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--spacing-gap-small);
+}
+
+.button-container {
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+footer.tile {
+	background: var(--md-sys-color-surface-variant);
+	color: var(--md-sys-color-on-surface-variant);
+	align-content: center;
+	flex-wrap: wrap;
+	width: min(60ch, 100%);
+
+	& .footer__section {
+		display: grid;
+		align-self: start;
+
+		& .footer__list {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: var(--spacing-gap-medium);
+		}
+	}
+
+	& #footer-nav {
+		--md-list-item-label-text-size: var(--md-sys-typescale-body-medium-size);
+
+		& md-list-item:first-child {
+			--md-list-item-label-text-size: var(--md-sys-typescale-body-large-size);
+		}
+	}
+
+	& .footer__fine-print {
+		--md-list-item-label-text-size: var(--md-sys-typescale-body-small-size);
+		padding-bottom: 2rem;
+	}
+}
+
+#cta .tile--grid {
+	position: sticky;
+	top: 0;
+	align-self: flex-start;
+}
+
+#WebPixelsManagerSandboxContainer {
+	display: none;
+}
+
+#cart,
+#cart-nav {
+	min-width: 60ch;
+	--md-list-item-trailing-supporting-text-size: var(--md-sys-typescale-display-small-size);
+	--md-list-item-trailing-supporting-text-font: var(--md-sys-typescale-display-small-font);
+	--md-list-item-trailing-supporting-text-weight: var(--md-sys-typescale-display-small-weight);
+	--md-list-item-label-text-font: var(--md-sys-typescale-display-medium-font);
+	--md-list-item-label-text-size: var(--md-sys-typescale-display-medium-size);
+	--md-list-item-label-text-weight: var(--md-sys-typescale-display-medium-weight);
+	--md-list-item-label-text-line-height: var(--md-sys-typescale-display-large-line-height);
+	--md-list-item-label-text-color: var(--md-sys-color-on-surface);
+
+	& img {
+		aspect-ratio: 1/1;
+		object-fit: cover;
+		max-width: 100px;
+		border-radius: var(--border-radius-small);
+	}
+
+	& a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	& md-list {
+		padding: var(--spacing-padding-medium);
+	}
+
+	& md-list-item {
+		& div:nth-child(3) {
+			font-size: var(--md-sys-typescale-display-small-size);
+		}
+
+		& div:last-child {
+			min-width: 6ch;
+		}
+	}
+
+	& md-outlined-text-field {
+		max-width: 4ch;
+	}
+
+	& #cart-subtotal {
+		--md-list-item-label-text-font: var(--md-sys-typescale-body-large-font);
+		--md-list-item-label-text-size: var(--md-sys-typescale-body-large-size);
+		--md-list-item-label-text-weight: var(--md-sys-typescale-body-large-weight);
+		--md-list-item-label-text-line-height: var(--md-sys-typescale-body-large-line-height);
+		border-radius: 0 0 var(--border-radius-small) var(--border-radius-small);
+
+		& div:first-child {
+			align-self: flex-end;
+		}
+	}
+
+	& md-list-item:first-child {
+		border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
+	}
+
+	& div:last-child {
+		display: flex;
+		justify-content: flex-end;
+		gap: var(--spacing-gap-medium);
+		flex-wrap: wrap;
+	}
+}
+
+#cart-nav {
+	min-width: auto;
+	--md-list-item-trailing-supporting-text-size: var(--md-sys-typescale-body-large-size);
+
+	& img {
+		max-width: 60px;
+	}
+
+	& md-list-item {
+		& div:nth-child(3) {
+			font-size: var(--md-sys-typescale-body-large-size);
+		}
+
+		& div:last-child {
+			min-width: auto;
+		}
+	}
+
+	& div:last-child {
+		padding-right: var(--spacing-padding-medium);
+	}
+}

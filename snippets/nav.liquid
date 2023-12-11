@@ -1,0 +1,219 @@
+<nav>
+  <div class="nav__container">
+    {%- for link in linklists['main-menu'].links limit: 2 -%}
+      <span>
+        <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon>
+          {{ link.title }}
+          <md-icon slot="icon">arrow_drop_down</md-icon>
+        </md-text-button>
+        <md-menu id="nav-{{ link.title | downcase }}-menu" anchor="nav-{{ link.title | downcase }}-button">
+          {%- if link.links != blank -%}
+            {%- for child_link in link.links -%}
+              <md-menu-item
+                role="button"
+                href="{{ child_link.url }}"
+                {% if link.active %}
+                  aria-current="page"
+                {% endif %}
+              >
+                <div slot="headline">{{ child_link.title }}</div>
+              </md-menu-item>
+
+              {%- if child_link.links != blank -%}
+                {%- for grandchild_link in child_link.links -%}
+                  <md-menu-item
+                    role="button"
+                    href="{{ grandchild_link.url }}"
+                    {% if link.active %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    <div slot="headline">{{ grandchild_link.title }}</div>
+                  </md-menu-item>
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </md-menu>
+      </span>
+    {%- endfor -%}
+
+    <md-icon-button href="/" id="cs-logo-button">
+      <svg id="cs-logo" viewBox="0 0 332.6 214.37" role="img">
+        <title>Collage Logo</title>
+        <g>
+          <path
+            class="cs-logo__teal"
+            d="m237.92,75.35l19.42-44.3,19.3,44.3h-38.71Zm50.22,26.39h10.81l-35.58-81.38h-4.53l-35.69,81.38h3.26l10.58-24.07h40.69l10.46,24.07Z" />
+          <polygon
+            class="cs-logo__yellow"
+            points="201.36 109.45 201.36 30.39 191.02 30.39 191.02 111.78 236.88 111.78 236.88 109.45 201.36 109.45" />
+          <polygon
+            class="cs-logo__coral"
+            points="178.59 99.4 178.59 20.34 168.24 20.34 168.24 101.72 217.37 101.72 217.37 99.4 178.59 99.4" />
+          <path
+            class="cs-logo__yellow"
+            d="m119,158.23c-14.93,0-24.64-13.48-24.64-34.79s9.71-34.79,24.64-34.79,24.79,13.48,24.79,34.79-9.71,34.79-24.79,34.79Zm0,2.9c21.89,0,38.27-16.24,38.27-37.69s-16.38-37.69-38.27-37.69-38.13,16.24-38.13,37.69,16.38,37.69,38.13,37.69Z" />
+          <polygon
+            class="cs-logo__coral"
+            points="253.32 189.77 253.32 151.37 290.41 151.37 290.41 149.01 253.32 149.01 253.32 111.8 299.86 111.8 299.86 109.44 242.81 109.44 242.81 192.13 301.04 192.13 301.04 189.77 253.32 189.77" />
+          <path
+            class="cs-logo__green"
+            d="m151,159.62c-10.04,12.21-25.94,19.72-45.29,19.72-36.97,0-61.76-27.73-61.76-70.79s24.58-70.37,62.81-70.37c21.43,0,37.18,8.82,43.06,21.64-.63-.21-1.26-.21-1.89-.21-6.51,0-11.34,4.62-11.34,11.13s4.83,11.13,11.34,11.13,10.92-4.83,10.92-10.92v-.21c0-19.96-24.37-37.6-56.93-37.6-44.74,0-77.51,33.19-77.51,75.62s33.82,75.62,77.72,75.62c22.7,0,42.16-8.7,53.06-21.29l-4.2-3.47Z" />
+          <path
+            class="cs-logo__teal"
+            d="m223.94,164.73v20.68c-2.94,6.53-10.67,10.45-21.01,10.45-19.16,0-31.46-14.59-31.46-36.69s12.63-36.91,33.31-36.91c10.67,0,18.83,3.81,21.77,10.34-.33-.11-.54-.11-.87-.11-3.48,0-5.99,2.4-5.99,5.77s2.5,5.77,5.99,5.77c3.16,0,5.55-2.4,5.55-5.77,0-10.67-12.52-18.62-28.85-18.62-23.73,0-41.04,16.87-41.04,39.19s17.53,39.19,40.5,39.19c10.67,0,19.81-3.48,24.28-8.82l6.21,7.73h1.09v-32.22h-9.47Z" />
+        </g>
+        <rect class="cs-logo__mask" width="332.6" height="214.37" />
+      </svg>
+    </md-icon-button>
+
+    {%- for link in linklists['main-menu'].links offset: 2 -%}
+      <span>
+        <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon>
+          {{ link.title }}
+          <md-icon slot="icon">arrow_drop_down</md-icon>
+        </md-text-button>
+        <md-menu id="nav-{{ link.title | downcase }}-menu" anchor="nav-{{ link.title | downcase }}-button">
+          {%- if link.links != blank -%}
+            {%- for child_link in link.links -%}
+              <md-menu-item
+                role="button"
+                href="{{ child_link.url }}"
+                {% if link.active %}
+                  aria-current="page"
+                {% endif %}
+              >
+                <div slot="headline">{{ child_link.title }}</div>
+              </md-menu-item>
+
+              {%- if child_link.links != blank -%}
+                {%- for grandchild_link in child_link.links -%}
+                  <md-menu-item
+                    role="button"
+                    href="{{ grandchild_link.url }}"
+                    {% if link.active %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    <div slot="headline">{{ grandchild_link.title }}</div>
+                  </md-menu-item>
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </md-menu>
+      </span>
+    {%- endfor -%}
+
+    <span>
+      <md-text-button id="nav-cart-button" has-icon>
+        <md-icon slot="icon">shopping_cart</md-icon>
+        Cart
+      </md-text-button>
+      <md-menu id="nav-cart-menu" anchor="nav-cart-button">
+        {%- if cart.item_count > 0 -%}
+          {% form 'cart', cart, id: 'cart-nav' %}
+            {% for item in cart.items %}
+              <md-menu-item type="button">
+                <md-icon-button slot="start" href="{{ item.url_to_remove }}"><md-icon>close</md-icon></md-icon-button>
+                {{ item | image_url: height: '100%' | image_tag: class: 'tile', loading: 'lazy', slot: 'start' }}
+                <div slot="headline">
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                </div>
+                <div slot="supporting-text">
+                  {%- for option in item.options_with_values -%}
+                    {{ option.name -}}
+                  {%- endfor -%}
+                  : {{ item.variant.title }}
+                </div>
+                <div slot="trailing-supporting-text">{{ item.final_line_price | money }}</div>
+              </md-menu-item>
+            {% endfor %}
+            <md-divider></md-divider>
+            <md-menu-item id="cart-subtotal">
+              <div slot="headline">Subtotal:</div>
+              <div slot="trailing-supporting-text">{{ cart.total_price | money }}</div>
+            </md-menu-item>
+
+            <div>
+              <md-filled-tonal-button href="../cart">View Cart</md-filled-tonal-button>
+              <md-filled-button type="submit" name="checkout">Checkout</md-filled-button>
+            </div>
+          {% endform %}
+        {%- else -%}
+          <md-menu-item type="button" href="/collections/all">
+            <div slot="headline">The cart is empty.</div>
+          </md-menu-item>
+        {%- endif -%}
+      </md-menu>
+    </span>
+    <md-elevation aria-hidden="true"></md-elevation>
+  </div>
+</nav>
+
+{% style %}
+  nav {
+    position: fixed;
+    bottom: var(--spacing-margin-medium);
+    width: 100%;
+    z-index: 9000;
+    pointer-events: none;
+
+    --md-menu-item-hover-state-layer-color: var(--md-sys-color-primary);
+    --md-menu-item-label-text-color: var(--md-sys-color-primary);
+    --md-list-item-hover-state-layer-color: var(--md-sys-color-primary);
+    --md-list-item-label-text-color: var(--md-sys-color-primary);
+
+    & .nav__container {
+      margin: auto;
+      display: flex;
+      align-items: stretch;
+      width: fit-content;
+      position: relative;
+      gap: var(--spacing-gap-medium);
+      border-radius: var(--border-radius-xlarge);
+      padding: var(--spacing-padding-small);
+      background: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+      --md-elevation-level: 2;
+      pointer-events: auto;
+
+      & span {
+        position: relative;
+      }
+
+      & .nav-hero-logo-wrapper {
+        height: 100%;
+      }
+
+      & md-text-button,
+      #cs-logo-button {
+        height: 100%;
+        border-radius: var(--border-radius-xlarge);
+      }
+
+      & #cs-logo-button {
+        --md-icon-button-icon-size: calc(var(--md-sys-typescale-display-medium-size) * 1.8);
+        --md-icon-button-state-layer-width: auto;
+        --md-icon-button-icon-color: var(--md-sys-color-primary);
+        --md-icon-button-hover-state-layer-color: var(--md-sys-color-primary);
+
+        & #cs-logo {
+          height: var(--md-sys-typescale-display-medium-size);
+          margin-left: calc(var(--spacing-padding-small) * -0.5);
+        }
+      }
+
+      & md-list-item {
+        min-width: max-content;
+
+        & img {
+          aspect-ratio: 1/1;
+          object-fit: cover;
+          max-width: 60px;
+        }
+      }
+    }
+  }
+{% endstyle %}

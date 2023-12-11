@@ -1,0 +1,60 @@
+{% render 'component-header', title: 'cart' %}
+
+{%- if cart.item_count > 0 -%}
+  {% form 'cart', cart, class: 'tile tile--highlight', id: 'cart' %}
+    <md-list>
+      {% for item in cart.items %}
+        <md-list-item type="button">
+          <md-icon-button slot="start" href="{{ item.url_to_remove }}"><md-icon>close</md-icon></md-icon-button>
+          {{ item | image_url: height: '90dvh' | image_tag: class: 'tile', loading: 'lazy', slot: 'start' }}
+          <div slot="headline">
+            <a href="{{ item.url }}">{{ item.product.title }}</a>
+          </div>
+          <div slot="supporting-text">from {{ item.vendor }}</div>
+          <div slot="supporting-text">
+            {%- for option in item.options_with_values -%}
+              {{ option.name -}}
+            {%- endfor -%}
+            : {{ item.variant.title }}
+          </div>
+          <div slot="supporting-text">Price: {{ item.price | money }}</div>
+          <div slot="trailing-supporting-text">
+            <md-outlined-text-field
+              label="Qty"
+              aria-label="Quantity"
+              type="number"
+              value="{{ item.quantity }}"
+              name="updates[]"
+            ></md-outlined-text-field>
+          </div>
+          <div slot="trailing-supporting-text">{{ item.final_line_price | money }}</div>
+        </md-list-item>
+      {% endfor %}
+      <md-divider></md-divider>
+      <md-list-item id="cart-subtotal">
+        <div slot="headline">Subtotal:</div>
+        <div slot="trailing-supporting-text">{{ cart.total_price | money }}</div>
+      </md-list-item>
+    </md-list>
+
+    <div>
+      {% comment %}
+        {% if settings.shipping_calc == true %}
+          <div class="cart__shippingCalculator">
+            {% render 'cart-shipping-calculator' %}
+          </div>
+        {% else %}
+          <p>Shipping is calculated at checkout.</p>
+        {% endif %}
+      {% endcomment %}
+
+      <md-filled-tonal-button type="submit" name="update">Update</md-filled-tonal-button>
+      <md-filled-button type="submit" name="checkout">Checkout</md-filled-button>
+    </div>
+  {% endform %}
+
+{%- else -%}
+  <div class="tile tile--highlight">
+    <p>The cart is empty. <a href="/collections/all">Continue shopping!</a></p>
+  </div>
+{%- endif -%}
