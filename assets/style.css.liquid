@@ -747,7 +747,7 @@ md-chip-set {
 	}
 }
 
-/* TODO: Move Sticky Track to the Tile Component */
+/* TODO: Remove Sticky Track after Tile Component Refactoring */
 
 .sticky-track {
 	position: relative;
@@ -819,7 +819,7 @@ div {
 	}
 }
 
-/* TODO: Move to Tile Component */
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
 md-list-item {
 	&.yes-stock {
 		--md-list-item-leading-icon-color: var(--md-sys-color-success);
@@ -837,7 +837,7 @@ md-list-item {
 	}
 }
 
-/* TODO: Move to Tile Component */
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
 .product-highlight__price-container {
 	padding-top: var(--spacing-padding-medium);
 
@@ -846,7 +846,7 @@ md-list-item {
 	}
 }
 
-/* TODO: Move to Tile Component */
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
 .product-highlight__price-container,
 .product-highlight__button-container {
 	display: flex;
@@ -855,12 +855,14 @@ md-list-item {
 	align-items: center;
 }
 
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
 .product-highlight__button-container {
 	flex-direction: column;
 	align-items: stretch;
 	gap: 1rem;
 }
 
+/* TODO: Combine into one class or define reason for difference */
 .button-wrapper,
 .button-container {
 	display: flex;
@@ -873,6 +875,7 @@ md-list-item {
 	flex-wrap: wrap;
 }
 
+/* TODO: Refactor into new Tile Component */
 footer.tile {
 	background: var(--md-sys-color-surface-variant);
 	color: var(--md-sys-color-on-surface-variant);
@@ -906,6 +909,7 @@ footer.tile {
 	}
 }
 
+/* TODO: Refactor into new Tile Component */
 #cta .tile--grid {
 	position: sticky;
 	top: 0;
@@ -916,6 +920,7 @@ footer.tile {
 	display: none;
 }
 
+/* TODO: Refactor into new Tile Component or Cart Sub-Component */
 #cart,
 #cart-nav {
 	min-width: 60ch;
@@ -982,6 +987,7 @@ footer.tile {
 	}
 }
 
+/* TODO: Refactor into new Tile Component or Cart Sub-Component */
 #cart-nav {
 	min-width: auto;
 	--md-list-item-trailing-supporting-text-size: var(--md-sys-typescale-body-large-size);
