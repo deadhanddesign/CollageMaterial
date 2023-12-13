@@ -5,7 +5,11 @@
 	src: url("https://assets.codepen.io/4999959/ChlaraTypeface-Regular.otf");
 }
 
-/* COLLAGE SPA DEFAULTS*/
+/* 
+ROOTS
+*/
+
+/* COLLAGE SPA DEFAULTS */
 
 :root {
 	/* Collage Spa Prime Palette */
@@ -96,16 +100,9 @@
 	--md-sys-color-inverse-primary: #aec6ffff;
 }
 
-/* TYPOGRAPHY */
+/* SPACING */
 
 :root {
-	/* Default Font Variables */
-	--md-ref-typeface-brand: var(--my-brand-font);
-	--md-ref-typeface-plain: var(--my-plain-font);
-	--md-ref-weight-bold: 700;
-	--md-ref-weight-medium: 500;
-	--md-ref-weight-regular: 400;
-
 	/* Utopia Scale Minor to Major Second */
 	--step--5: clamp(0.6938rem, 0.8555rem + -0.2087vw, 0.8138rem);
 	--step--4: clamp(0.7806rem, 0.8986rem + -0.1522vw, 0.8681rem);
@@ -123,6 +120,17 @@
 	--step-8: clamp(1.89rem, 1.4317rem + 2.2913vw, 3.2075rem);
 	--step-9: clamp(2.0169rem, 1.4634rem + 2.7674vw, 3.6081rem);
 	--step-10: clamp(2.1519rem, 1.4884rem + 3.3174vw, 4.0594rem);
+}
+
+/* TYPOGRAPHY */
+
+:root {
+	/* Default Font Variables */
+	--md-ref-typeface-brand: var(--my-brand-font);
+	--md-ref-typeface-plain: var(--my-plain-font);
+	--md-ref-weight-bold: 700;
+	--md-ref-weight-medium: 500;
+	--md-ref-weight-regular: 400;
 
 	--md-sys-typescale-body-font: var(--my-plain-font);
 	--md-sys-typescale-display-font: var(--my-brand-font);
@@ -147,6 +155,7 @@
 	--md-sys-typescale-display-small-line-height: 1.2;
 	--md-sys-typescale-display-small-size: var(--step-4);
 	--md-sys-typescale-display-small-weight: 400;
+
 	--md-sys-typescale-display-large: var(--md-sys-typescale-display-large-weight)
 		var(--md-sys-typescale-display-large-size) / var(--md-sys-typescale-display-large-line-height)
 		var(--md-sys-typescale-display-large-font);
@@ -172,6 +181,7 @@
 	--md-sys-typescale-headline-small-line-height: 1.2;
 	--md-sys-typescale-headline-small-size: var(--step-2);
 	--md-sys-typescale-headline-small-weight: 500;
+
 	--md-sys-typescale-headline-large: var(--md-sys-typescale-headline-large-weight)
 		var(--md-sys-typescale-headline-large-size) / var(--md-sys-typescale-headline-large-line-height)
 		var(--md-sys-typescale-headline-large-font);
@@ -197,6 +207,7 @@
 	--md-sys-typescale-title-small-line-height: 1.2;
 	--md-sys-typescale-title-small-size: var(--step--1);
 	--md-sys-typescale-title-small-weight: 500;
+
 	--md-sys-typescale-title-large: var(--md-sys-typescale-title-large-weight)
 		var(--md-sys-typescale-title-large-size) / var(--md-sys-typescale-title-large-line-height)
 		var(--md-sys-typescale-title-large-font);
@@ -210,18 +221,26 @@
 	/* Body 
     The Main Text, as well as things like Lists, Text Fields, and Select Options
   */
+	--md-sys-typescale-body-xlarge-font: var(--md-sys-typescale-body-font);
+	--md-sys-typescale-body-xlarge-line-height: 1.5;
+	--md-sys-typescale-body-xlarge-size: var(--step-1);
+	--md-sys-typescale-body-xlarge-weight: 400;
 	--md-sys-typescale-body-large-font: var(--md-sys-typescale-body-font);
 	--md-sys-typescale-body-large-line-height: 1.5;
-	--md-sys-typescale-body-large-size: var(--step-1);
+	--md-sys-typescale-body-large-size: var(--step--1);
 	--md-sys-typescale-body-large-weight: 400;
 	--md-sys-typescale-body-medium-font: var(--md-sys-typescale-body-font);
 	--md-sys-typescale-body-medium-line-height: 1.5;
-	--md-sys-typescale-body-medium-size: var(--step-0);
+	--md-sys-typescale-body-medium-size: var(--step--2);
 	--md-sys-typescale-body-medium-weight: 400;
 	--md-sys-typescale-body-small-font: var(--md-sys-typescale-body-font);
 	--md-sys-typescale-body-small-line-height: 1.5;
-	--md-sys-typescale-body-small-size: var(--step--1);
+	--md-sys-typescale-body-small-size: var(--step--3);
 	--md-sys-typescale-body-small-weight: 400;
+
+	--md-sys-typescale-body-xlarge: var(--md-sys-typescale-body-xlarge-weight)
+		var(--md-sys-typescale-body-xlarge-size) / var(--md-sys-typescale-body-xlarge-line-height)
+		var(--md-sys-typescale-body-xlarge-font);
 	--md-sys-typescale-body-large: var(--md-sys-typescale-body-large-weight)
 		var(--md-sys-typescale-body-large-size) / var(--md-sys-typescale-body-large-line-height)
 		var(--md-sys-typescale-body-large-font);
@@ -249,6 +268,7 @@
 	--md-sys-typescale-label-small-line-height: 1.5;
 	--md-sys-typescale-label-small-size: var(--step--2);
 	--md-sys-typescale-label-small-weight: 500;
+
 	--md-sys-typescale-label-large: var(--md-sys-typescale-label-large-weight)
 		var(--md-sys-typescale-label-large-size) / var(--md-sys-typescale-label-large-line-height)
 		var(--md-sys-typescale-label-large-font);
@@ -264,34 +284,50 @@
 
 :root {
 	/* Border Radius */
-	--border-radius-xlarge: calc(var(--border-radius-large) * 2);
+	--border-radius-xlarge: var(--step-9);
 	--border-radius-large: var(--step-8);
-	--border-radius-medium: calc(var(--border-radius-large) / 2);
-	--border-radius-small: calc(var(--border-radius-medium) / 2);
-	--border-radius-xsmall: calc(var(--border-radius-small) / 2);
+	--border-radius-medium: var(--step-2);
+	--border-radius-small: var(--step--4);
+	--border-radius-xsmall: var(--step--5);
+	--border-radius-none: 0;
 
 	/* Spacing */
-	--spacing-padding-large: var(--step-4);
-	--spacing-padding-medium: calc(var(--spacing-padding-large) / 2);
-	--spacing-padding-small: calc(var(--spacing-padding-medium) / 2);
-	--spacing-padding-xsmall: calc(var(--spacing-padding-small) / 2);
+	/* --spacing-padding-large: var(--step-4); */
+	/* --spacing-padding-medium: calc(var(--spacing-padding-large) / 2); */
+	/* --spacing-padding-small: calc(var(--spacing-padding-medium) / 2); */
+	/* --spacing-padding-xsmall: calc(var(--spacing-padding-small) / 2); */
+	/* --spacing-padding-none: 0; */
+	--spacing-padding-xlarge: var(--step-4);
+	--spacing-padding-large: var(--step-2);
+	--spacing-padding-medium: var(--step-0);
+	--spacing-padding-small: var(--step--2);
+	--spacing-padding-xsmall: var(--step--4);
 	--spacing-padding-none: 0;
+
+	--spacing-margin-xlarge: calc(var(--spacing-margin-large) * 2);
 	--spacing-margin-large: clamp(1.4581em, 1.2688em + 0.9467vw, 2.0025em);
 	--spacing-margin-medium: calc(var(--spacing-margin-large) / 2);
 	--spacing-margin-small: calc(var(--spacing-margin-medium) / 2);
 	--spacing-margin-xsmall: calc(var(--spacing-margin-small) / 2);
 	--spacing-margin-none: 0;
-	--spacing-gap-large: var(--step-4);
-	--spacing-gap-medium: calc(var(--spacing-gap-large) / 2);
-	--spacing-gap-small: calc(var(--spacing-gap-medium) / 2);
-	--spacing-gap-xsmall: calc(var(--spacing-gap-small) / 2);
+
+	/* --spacing-gap-large: var(--step-4); */
+	/* --spacing-gap-medium: calc(var(--spacing-gap-large) / 2); */
+	/* --spacing-gap-small: calc(var(--spacing-gap-medium) / 2); */
+	/* --spacing-gap-xsmall: calc(var(--spacing-gap-small) / 2); */
+	/* --spacing-gap-none: 0; */
+
+	--spacing-gap-xlarge: var(--step-4);
+	--spacing-gap-large: var(--step-2);
+	--spacing-gap-medium: var(--step-0);
+	--spacing-gap-small: var(--step--2);
+	--spacing-gap-xsmall: var(--step--5);
 	--spacing-gap-none: 0;
 
 	/* MATERIAL ELEMENTS DEFAULTS */
 
 	/* Typography */
-	--md-menu-item-label-text-size: var(--md-sys-typescale-label-medium-size);
-	--md-outlined-select-text-field-input-text-size: var(--md-sys-typescale-label-medium-size);
+	--md-input-chip-label-text-size: var(--md-sys-typescale-label-small-size);
 
 	/* Border Radius */
 	--md-filled-button-container-shape: 999px;
@@ -315,8 +351,8 @@ body {
 	font: var(--md-sys-typescale-body-medium);
 	color: var(--md-sys-color-on-background);
 	transition: all 200ms ease;
-	padding: var(--spacing-padding-large);
-	gap: var(--spacing-gap-large);
+	padding: var(--spacing-padding-medium);
+	gap: var(--spacing-gap-medium);
 	display: flex;
 	flex-wrap: wrap;
 	align-items: stretch;
@@ -355,6 +391,23 @@ img {
 	vertical-align: middle;
 	object-fit: cover;
 	aspect-ratio: 1 / 1;
+}
+
+/* Material Elements Defaults */
+
+md-filled-button,
+md-filled-tonal-button,
+md-outlined-button,
+md-text-button {
+	font: var(--md-sys-typescale-label-medium);
+}
+
+md-menu-item {
+	white-space: nowrap;
+}
+
+md-chip-set {
+	padding: 0 var(--spacing-padding-medium);
 }
 
 /*
@@ -401,6 +454,9 @@ img {
 	font: var(--md-sys-typescale-title-small);
 }
 
+.body--xlarge {
+	font: var(--md-sys-typescale-body-xlarge);
+}
 .body--large {
 	font: var(--md-sys-typescale-body-large);
 }
@@ -421,17 +477,7 @@ img {
 	font: var(--md-sys-typescale-label-small);
 }
 
-md-filled-button,
-md-filled-tonal-button,
-md-outlined-button,
-md-text-button {
-	font: var(--md-sys-typescale-label-medium);
-}
-
-md-menu-item {
-	white-space: nowrap;
-}
-
+/* TODO: Move to Tile Component */
 .product-highlight__options {
 	& md-filled-tonal-button,
 	md-outlined-button {
@@ -443,12 +489,12 @@ md-menu-item {
 .tile {
 	display: flex;
 	flex-direction: column;
-	gap: var(--spacing-gap-medium);
+	/* gap: var(--spacing-gap-medium); */
 	flex: 1;
 	color: var(--md-sys-color-on-primary-container);
 	background-color: var(--md-sys-color-primary-container);
-	padding: var(--spacing-padding-large);
-	border-radius: var(--border-radius-large);
+	padding: var(--spacing-padding-xlarge);
+	border-radius: var(--border-radius-xlarge);
 	position: relative;
 	outline: var(--md-sys-color-surface-container) solid 0.2rem;
 	outline-offset: -0.4rem;
@@ -524,6 +570,7 @@ md-menu-item {
 		grid-template-columns: 320px 1fr;
 		justify-items: stretch;
 		align-items: start;
+		gap: var(--spacing-gap-medium);
 	}
 
 	&:is(img) {
@@ -544,7 +591,7 @@ md-menu-item {
 	padding: var(--spacing-padding-medium);
 	background: var(--md-sys-color-surface-variant);
 	color: var(--md-sys-color-on-surface);
-	border-radius: var(--border-radius-medium);
+	border-radius: var(--border-radius-large);
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
 	gap: var(--spacing-gap-medium);
@@ -585,11 +632,13 @@ md-menu-item {
 	}
 }
 
+/* TODO: Move to Tile Component */
 .card-container__sort,
 .card-container__pagination {
 	grid-column: 1 / -1;
 }
 
+/* TODO: Move to Tile Component */
 .card-container__pagination {
 	display: flex;
 	justify-content: center;
@@ -625,32 +674,38 @@ md-menu-item {
 	}
 }
 
+/* TODO: Move to Tile Component */
 #card-container__filter {
 	display: grid;
-	gap: var(--spacing-gap-medium);
+	/* gap: var(--spacing-gap-medium); */
 	position: sticky;
 	top: var(--spacing-padding-large);
 
 	& p {
 		min-width: auto;
+		margin-block-start: var(--spacing-margin-xsmall);
+	}
+
+	& .button-wrapper {
+		margin-block-start: var(--spacing-padding-medium);
 	}
 
 	& details {
-		/* min-width: 320px; */
+		font: var(--md-sys-typescale-label-small);
 
 		& summary {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			padding: var(--spacing-padding-medium);
-			/* font: var(--md-sys-typescale-label-small); */
+			font: var(--md-sys-typescale-body-xlarge);
 			cursor: pointer;
 			user-select: none;
 
 			& span::after {
 				font-family: "Material Symbols Outlined";
 				content: "add";
-				font-size: calc(var(--md-sys-typescale-label-small-size) * 1.5);
+				font-size: var(--md-sys-typescale-body-xlarge-size);
 			}
 		}
 
@@ -659,12 +714,17 @@ md-menu-item {
 			grid-auto-rows: 1fr;
 			grid-auto-columns: 1fr;
 			grid-auto-flow: row;
-			gap: var(--spacing-gap-medium);
+			gap: var(--spacing-gap-xsmall);
 			align-items: center;
 			justify-items: stretch;
-			padding: var(--spacing-padding-medium);
+			padding: 0 var(--spacing-padding-medium);
 			overflow-y: scroll;
 			max-height: 10rem;
+			margin-bottom: var(--spacing-margin-medium);
+
+			&:is([data-type="price_range"]) {
+				overflow: visible;
+			}
 
 			& md-slider {
 				grid-column: 1 / 3;
@@ -677,7 +737,7 @@ md-menu-item {
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
-				gap: var(--spacing-gap-small);
+				gap: var(--spacing-gap-xsmall);
 			}
 		}
 
@@ -687,6 +747,8 @@ md-menu-item {
 	}
 }
 
+/* TODO: Remove Sticky Track after Tile Component Refactoring */
+
 .sticky-track {
 	position: relative;
 	height: 100%;
@@ -694,9 +756,11 @@ md-menu-item {
 	grid-row: 1 / 3;
 }
 
+/* Custom Scrollbar for Filters 
+	TODO: Move into Filter Component
+	TODO: Add support for Firefox if needed
+*/
 div {
-	scrollbar-color: orange;
-
 	::-webkit-scrollbar {
 		width: 0.5rem;
 		background-color: transparent;
@@ -712,14 +776,12 @@ div {
 	}
 }
 
-/* .filter-group-display__option-grid {
-  scrollbar-color: rebeccapurple green;
-} */
-
+/* TODO: Move into Tile component */
 .card-container__sort {
 	width: 100%;
 }
 
+/* TODO: Move into CS specific group */
 #cs-logo {
 	min-height: 1rem;
 	height: 100%;
@@ -745,6 +807,7 @@ div {
 	}
 }
 
+/* TODO: Consider for refactor (only on contact form) */
 .option-wrapper {
 	display: grid;
 	grid-template-columns: auto 1fr;
@@ -756,20 +819,7 @@ div {
 	}
 }
 
-.solid {
-	border-top: 0.1rem solid var(--md-sys-color-outline-variant);
-	width: 88%;
-	margin: 0 auto;
-}
-
-.product-highlight__price-container {
-	padding-top: var(--spacing-padding-medium);
-
-	& md-outlined-text-field {
-		max-width: 10ch;
-	}
-}
-
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
 md-list-item {
 	&.yes-stock {
 		--md-list-item-leading-icon-color: var(--md-sys-color-success);
@@ -787,10 +837,16 @@ md-list-item {
 	}
 }
 
-md-chip-set {
-	padding: 0 var(--spacing-padding-medium);
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
+.product-highlight__price-container {
+	padding-top: var(--spacing-padding-medium);
+
+	& md-outlined-text-field {
+		max-width: 10ch;
+	}
 }
 
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
 .product-highlight__price-container,
 .product-highlight__button-container {
 	display: flex;
@@ -799,12 +855,14 @@ md-chip-set {
 	align-items: center;
 }
 
+/* TODO: Move to Tile Component or Product Highlight Sub-Component */
 .product-highlight__button-container {
 	flex-direction: column;
 	align-items: stretch;
 	gap: 1rem;
 }
 
+/* TODO: Combine into one class or define reason for difference */
 .button-wrapper,
 .button-container {
 	display: flex;
@@ -817,6 +875,7 @@ md-chip-set {
 	flex-wrap: wrap;
 }
 
+/* TODO: Refactor into new Tile Component */
 footer.tile {
 	background: var(--md-sys-color-surface-variant);
 	color: var(--md-sys-color-on-surface-variant);
@@ -850,6 +909,7 @@ footer.tile {
 	}
 }
 
+/* TODO: Refactor into new Tile Component */
 #cta .tile--grid {
 	position: sticky;
 	top: 0;
@@ -860,6 +920,7 @@ footer.tile {
 	display: none;
 }
 
+/* TODO: Refactor into new Tile Component or Cart Sub-Component */
 #cart,
 #cart-nav {
 	min-width: 60ch;
@@ -926,6 +987,7 @@ footer.tile {
 	}
 }
 
+/* TODO: Refactor into new Tile Component or Cart Sub-Component */
 #cart-nav {
 	min-width: auto;
 	--md-list-item-trailing-supporting-text-size: var(--md-sys-typescale-body-large-size);
