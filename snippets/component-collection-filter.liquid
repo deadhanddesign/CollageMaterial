@@ -1,0 +1,268 @@
+{% comment %}
+  Requires:
+      -pagetype: {Object} - 'collection', 'search', or `blog`.
+
+  Usage:
+      {% render 'component-collection-filter', type: foo %}
+{% endcomment %}
+
+<div class="filter">
+  <div class="filter__track">
+    <form class="filter__container">
+      {% if type == search %}
+        <md-outlined-text-field id="search" label="Search" name="q" value="{{ search.terms | escape }}">
+          <input type="hidden" name="type" value="product">
+          <md-icon slot="leading-icon">search</md-icon>
+        </md-outlined-text-field>
+
+        <script type="module">
+          document.getElementById('search').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent the default action (if any)
+              this.form.submit(); // Submit the form
+            }
+          });
+        </script>
+        <div class="label--medium">Showing {{ search.results_count }} results</div>
+      {% else %}
+        <div class="label--medium">
+          Showing {{ collection.products_count }} out of {{ collection.all_products_count }} products
+        </div>
+      {% endif %}
+
+      {% for filter in type.filters %}
+        {% capture dropdown-summary %}
+        {{- filter.label -}}
+        {% endcapture %}
+
+        {% capture dropdown-contents %}
+        <div class="filter__options" data-type="{{- filter.type -}}">
+            {% case filter.type %}
+              {% when 'list' %}
+                {%- for filter_value in filter.values -%}
+                  <label
+                    for="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                    aria-label="{{ filter_value.param_name }}"
+                  >
+                    <md-checkbox
+                      name="{{ filter_value.param_name }}"
+                      value="{{ filter_value.value }}"
+                      id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                      {% if filter_value.active -%}
+                        checked
+                      {%- endif %}
+                      {% if filter_value.count == 0 and filter_value.active == false -%}
+                        disabled
+                      {%- endif %}
+                    ></md-checkbox>
+                    <span>
+                      {%- case filter_value.display.type -%}
+                        {%- when 'colors' -%}
+                          {% liquid
+                            assign size_limit = filter_value.display.value.size | at_most: 4
+                            assign rotation = '0deg'
+                            if size_limit == 2
+                              assign rotation = '45deg'
+                            endif
+                            assign angle_increment = 360 | divided_by: size_limit
+                            assign angle = 0
+                          %}
+                          {%- capture conic_gradient -%}
+                                                    {%- for color in filter_value.display.value limit: size_limit -%}
+                                                      {{ color }} {{ angle }}deg{%- assign angle = angle | plus: angle_increment %} {{ angle }}deg{%- unless forloop.last %}, {%- endunless -%}
+                                                    {%- endfor -%}
+                                                  {%- endcapture -%}
+                          <span
+                            style="
+                              width: 25px;
+                              height: 25px;
+                              border-radius: 50%;
+                              display: flex;
+                              justify-content: center;
+                              align-items: center;
+                              background: conic-gradient({{ conic_gradient }}); transform: rotateZ({{ rotation }});
+                            "
+                          >
+                          </span>
+                        {%- when 'image' -%}
+                          {{
+                            filter_value.display.value
+                            | image_url: width: 25
+                            | image_tag: alt: filter_value.display.value.alt
+                          }}
+                        {%- else -%}
+                      {%- endcase -%}
+                    </span>
+                    {% if filter.label == 'Product type' %}
+                      {{ filter_value.label }}
+                    {% else %}
+                      {{ filter_value.label }}
+                    {% endif %}
+                  </label>
+                {%- endfor -%}
+
+              {% when 'price_range' %}
+                <md-slider
+                  id="price-range-slider"
+                  range
+                  min="{{ filter.range_min | money_without_currency | replace: ',', '' }}"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  {% if filter.min_value.value -%}
+                    value-start="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                  {% else %}
+                    value-start="0"
+                  {%- endif %}
+                  {% if filter.max_value.value -%}
+                    value-end="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                  {% else %}
+                    value-end="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  {%- endif %}
+                  labeled
+                  step="5"
+                ></md-slider>
+
+                <md-outlined-text-field
+                  name="{{ filter.min_value.param_name }}"
+                  id="Filter-{{ filter.min_value.param_name }}"
+                  label="Min"
+                  {% if filter.min_value.value -%}
+                    value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+
+                  {%- endif %}
+                  type="number"
+                  placeholder="0"
+                  min="0"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  step="5"
+                  prefix-text="$"
+                ></md-outlined-text-field>
+
+                <md-outlined-text-field
+                  name="{{ filter.max_value.param_name }}"
+                  id="Filter-{{ filter.max_value.param_name }}"
+                  label="Max"
+                  {% if filter.max_value.value -%}
+                    value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+             
+                  {%- endif %}
+                  type="number"
+                  placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  min="5"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  step="5"
+                  prefix-text="$"
+                ></md-outlined-text-field>
+            {% endcase %}
+          </div>
+      {% endcapture %}
+
+        {% render 'component-dropdown', summary: {{dropdown-summary}}, contents: {{dropdown-contents}} %}
+      {% endfor %}
+      <div class="button-wrapper">
+        <md-text-button href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear Filters</md-text-button>
+        <md-filled-tonal-button type="submit">Apply Filters</md-filled-tonal-button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% style %}
+  .filter {
+    min-width: 330px;
+    max-width: 100%;
+    padding: var(--spacing-padding-medium);
+
+    & .filter__track {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .filter__container {
+    display: grid;
+  }
+
+  .label--medium {
+    margin-block-start: var(--spacing-margin-medium);
+  }
+
+  .filter__options {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: row;
+    gap: var(--spacing-gap-xsmall);
+    padding: 0 var(--spacing-padding-medium);
+    overflow-y: auto;
+    max-height: 10rem;
+    margin-bottom: var(--spacing-margin-medium);
+
+    &:is([data-type='price_range']) {
+      overflow: visible;
+    }
+
+    & md-slider {
+      grid-column: 1 / 3;
+      --md-slider-label-container-height: 0.5rem;
+      --md-slider-label-text-size: 0.75rem;
+      --md-slider-label-text-line-height: 1;
+    }
+
+    & label {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--spacing-gap-xxsmall);
+      font: var(--md-sys-typescale-label-small);
+    }
+  }
+
+  .button-wrapper {
+    margin-block-start: var(--spacing-margin-medium);
+  }
+
+  div {
+    ::-webkit-scrollbar {
+      width: 0.5rem;
+      background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--md-sys-color-on-surface-variant);
+    }
+  }
+{% endstyle %}
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.getElementById(`price-range-slider`);
+    let inputMin = document.getElementById(`Filter-filter.v.price.gte`);
+    let inputMax = document.getElementById(`Filter-filter.v.price.lte`);
+
+    slider.addEventListener('change', (event) => {
+      let sliderStart = slider.valueStart;
+      let sliderEnd = slider.valueEnd;
+
+      inputMin.value = sliderStart;
+      inputMax.value = sliderEnd;
+    });
+
+    inputMin.addEventListener('change', (event) => {
+      let inputMinValue = inputMin.value;
+
+      slider.valueStart = inputMinValue;
+    });
+
+    inputMax.addEventListener('change', (event) => {
+      let inputMaxValue = inputMax.value;
+
+      slider.valueEnd = inputMaxValue;
+    });
+  });
+</script>

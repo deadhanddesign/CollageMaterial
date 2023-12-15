@@ -322,6 +322,7 @@ ROOTS
 	--spacing-gap-medium: var(--step-0);
 	--spacing-gap-small: var(--step--2);
 	--spacing-gap-xsmall: var(--step--5);
+	--spacing-gap-xxsmall: calc(var(--step--5) / 2);
 	--spacing-gap-none: 0;
 
 	/* MATERIAL ELEMENTS DEFAULTS */
@@ -422,16 +423,19 @@ md-chip-set {
 	text-transform: uppercase;
 	max-width: 40ch;
 	-webkit-text-stroke-width: 0.01em;
+	text-wrap: balance;
 }
 .display--medium {
 	font: var(--md-sys-typescale-display-medium);
 	max-width: 40ch;
 	-webkit-text-stroke-width: 0.02em;
+	text-wrap: balance;
 }
 .display--small {
 	font: var(--md-sys-typescale-display-small);
 	max-width: 40ch;
 	-webkit-text-stroke-width: 0.04em;
+	text-wrap: balance;
 }
 
 .headline--large {
@@ -496,8 +500,8 @@ md-chip-set {
 	padding: var(--spacing-padding-xlarge);
 	border-radius: var(--border-radius-xlarge);
 	position: relative;
-	outline: var(--md-sys-color-surface-container) solid 0.2rem;
-	outline-offset: -0.4rem;
+	/* outline: var(--md-sys-color-surface-container) solid 0.2rem;
+	outline-offset: -0.4rem; */
 
 	&.tile--highlight {
 		background: var(--md-sys-color-surface);
@@ -587,7 +591,7 @@ md-chip-set {
 /* TODO: Refactor Card-Containers et al into variant of the Tile component
  * -Possibly as a "sub-component" 
  */
-.card-container__grid {
+/* .card-container__grid {
 	padding: var(--spacing-padding-medium);
 	background: var(--md-sys-color-surface-variant);
 	color: var(--md-sys-color-on-surface);
@@ -602,7 +606,7 @@ md-chip-set {
 		border-radius: var(--border-radius-large);
 		padding: var(--spacing-padding-large);
 		/* min-width: 40%;
-		max-width: 1920px; */
+		max-width: 1920px; 
 
 		& .card {
 			background: var(--md-sys-color-secondary-container);
@@ -630,16 +634,16 @@ md-chip-set {
 			}
 		}
 	}
-}
+} */
 
 /* TODO: Move to Tile Component */
-.card-container__sort,
+/* .card-container__sort,
 .card-container__pagination {
 	grid-column: 1 / -1;
-}
+} */
 
 /* TODO: Move to Tile Component */
-.card-container__pagination {
+/* .card-container__pagination {
 	display: flex;
 	justify-content: center;
 	gap: var(--spacing-gap-medium);
@@ -672,12 +676,12 @@ md-chip-set {
 			color: var(--md-sys-color-primary);
 		}
 	}
-}
+} */
 
 /* TODO: Move to Tile Component */
-#card-container__filter {
+/* #card-container__filter {
 	display: grid;
-	/* gap: var(--spacing-gap-medium); */
+	 gap: var(--spacing-gap-medium); 
 	position: sticky;
 	top: var(--spacing-padding-large);
 
@@ -745,22 +749,22 @@ md-chip-set {
 			content: "remove";
 		}
 	}
-}
+} */
 
 /* TODO: Remove Sticky Track after Tile Component Refactoring */
 
-.sticky-track {
+/* .sticky-track {
 	position: relative;
 	height: 100%;
 	width: 100%;
 	grid-row: 1 / 3;
-}
+} */
 
 /* Custom Scrollbar for Filters 
 	TODO: Move into Filter Component
 	TODO: Add support for Firefox if needed
 */
-div {
+/* div {
 	::-webkit-scrollbar {
 		width: 0.5rem;
 		background-color: transparent;
@@ -774,12 +778,12 @@ div {
 		border-radius: 10px;
 		background-color: var(--md-sys-color-on-surface-variant);
 	}
-}
+} */
 
 /* TODO: Move into Tile component */
-.card-container__sort {
+/* .card-container__sort {
 	width: 100%;
-}
+} */
 
 /* TODO: Move into CS specific group */
 #cs-logo {

@@ -1,15 +1,12 @@
-<header class="tile">
-  <div class="hero__overline"></div>
-  <h1>Search</h1>
-  <div class="hero__subheader"></div>
-</header>
+{% render 'component-header', title: 'search' %}
+
+{% render 'component-collection', type: search %}
 
 {%- if search.description != blank -%}
   <p>{{ search.description }}</p>
 {%- endif -%}
 
 <div class="tile tile--highlight tile--wide tile--filter-grid">
-  {% render 'filters-search' %}
   {% render 'filters-search-chips' %}
 
   {% if search.performed and search.results_count > 0 %}

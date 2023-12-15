@@ -1,0 +1,20 @@
+{% comment %}
+  Requires:
+      -type: {Object} - 'collection', 'search', or `blog`. Determines which filter to render.
+
+  Usage:
+      {% render 'component-collection', type: foo %}
+{% endcomment %}
+{% capture nested-content %}
+
+    {% render 'component-collection-filter', type: type %}
+    {% render 'component-collection-list', type: type %}
+
+{% endcapture %}
+
+{% render 'component-tile', tile-content: {{nested-content}}, tile-type: 'featured' %}
+
+{% style %}
+  .tile--collection {
+  }
+{% endstyle %}

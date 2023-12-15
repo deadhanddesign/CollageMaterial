@@ -1,0 +1,66 @@
+{% comment %}
+  Requires:
+    -summary: {Object} Capture of the header text for the Dropdown.
+    -contents: {Object} Capture of the contents inside the Dropdown.
+
+    Usage:
+    {%  capture foo %}
+      <h3>What is a foo?</h3>
+    {% endcapture %}
+    {%  capture bar %}
+      <p>A delicious kind of bar</p>
+    {% endcapture %}
+    {% render 'component-dropdown', summary=foo, contents=bar %}
+{% endcomment %}
+
+<details>
+  <summary>
+    {{ summary }}
+    <span></span>
+  </summary>
+</details>
+<div class="summary">
+  <div class="summary__inner">{{ contents }}</div>
+</div>
+<md-divider></md-divider>
+
+{% style %}
+  details {
+    & summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      padding: var(--spacing-padding-medium);
+      font: var(--md-sys-typescale-body-xlarge);
+
+      & span::after {
+        font-family: 'Material Symbols Outlined';
+        content: 'add';
+        font-size: var(--md-sys-typescale-body-xlarge-size);
+      }
+    }
+
+    &:is([open]) > summary > span::after {
+      content: 'remove';
+    }
+
+    &:is([open]) + .summary {
+      grid-template-rows: 1fr;
+      & .summary__inner {
+        overflow: visible;
+      }
+    }
+  }
+
+  .summary {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.2s ease-out;
+
+    & .summary__inner {
+      overflow: hidden;
+    }
+  }
+{% endstyle %}
