@@ -163,6 +163,9 @@
         <md-filled-tonal-button type="submit">Apply Filters</md-filled-tonal-button>
       </div>
     </form>
+    {% comment %} TODO: Refactor the chips into one {% endcomment %}
+    {% render 'filters-search-chips' %}
+    {% render 'filters-collection-chips' %}
   </div>
 </div>
 

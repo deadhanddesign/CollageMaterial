@@ -1,15 +1,17 @@
 {% if type == collection %}
   {% assign stuff = collection.products_count %}
-{% else %}
+  {% assign stuffs = collection.products %}
+{% elsif type == search %}
   {% assign stuff = search.results_count %}
+  {% assign stuffs = search.results %}
 {% endif %}
 
 <div class="card-container__grid">
   {% if stuff > 0 %}
     <div class="card-container__sort">
       <md-outlined-select id="sort-by">
-        {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
-        {% for option in collection.sort_options %}
+        {% assign sort_by = type.sort_by | default: type.default_sort_by %}
+        {% for option in type.sort_options %}
           <md-select-option
             value="{{ option.value }}"
             {% if option.value == sort_by %}
@@ -23,12 +25,23 @@
         {% endfor %}
       </md-outlined-select>
     </div>
-    {% paginate collection.products by 12 %}
-      {% for product in collection.products %}
-        {% render 'component-card', product: product %}
-      {% endfor %}
-      <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
-    {% endpaginate %}
+    {% comment %} TODO: Refactor collection.products and search.results {% endcomment %}
+    {% if type == collection %}
+      {% paginate collection.products by 12 %}
+        {% for product in collection.products %}
+          {% render 'component-card', product: product %}
+        {% endfor %}
+        <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
+      {% endpaginate %}
+
+    {% elsif type == search %}
+      {% paginate search.results by 12 %}
+        {% for product in search.results %}
+          {% render 'component-card', product: product %}
+        {% endfor %}
+        <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
+      {% endpaginate %}
+    {% endif %}
 
   {% elsif type == collection and stuff == 0 %}
     <p style="margin: auto">
