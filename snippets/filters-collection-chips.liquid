@@ -27,6 +27,13 @@
   {%- endfor -%}
 </md-chip-set>
 
+{% style %}
+  md-chip-set {
+    padding-inline: var(--spacing-padding-medium);
+    max-width: min-content;
+  }
+{% endstyle %}
+
 <script type="module">
   const chip = document.querySelectorAll('.chip');
   chip.length > 0 &&
