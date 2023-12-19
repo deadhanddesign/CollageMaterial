@@ -31,6 +31,8 @@
   const chip = document.querySelectorAll('.chip');
   chip.length > 0 &&
     chip.forEach((e) => {
-      e.addEventListener('remove', (e) => e.preventDefault());
+      e.addEventListener('remove', (e) => {
+        window.location.href = e.target.getAttribute('href');
+      });
     });
 </script>
