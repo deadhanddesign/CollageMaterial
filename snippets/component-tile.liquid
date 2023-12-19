@@ -11,30 +11,20 @@
     class="tile"
   {% endif %}
 >
-  <div
-    {% if tile-type == 'featured' %}
-      class="tile__track--featured"
-    {% else %}
-      class="tile__track"
-    {% endif %}
-  >
+  <div class="tile__track">
     {{ tile-content }}
   </div>
 </div>
 
 {% style %}
   .tile {
-    /* width: 100%; */
-    /* width: clamp(20ch, 100%, 1900px); */
-    /* width: minmax(20ch, 1900px); */
     padding: var(--spacing-padding-xlarge);
+    border-radius: var(--border-radius-xlarge);
     overflow: clip;
   }
 
   .tile--large {
-    /* width: min(100%, 1900px); */
-    min-width: calc(100% - (var(--spacing-padding-large) * 2));
-    max-width: 1900px;
+    width: min(100%, 1920px);
   }
 
   .tile--medium {
@@ -56,16 +46,16 @@
     padding: 0;
   }
 
+  .tile--secondary {
+  }
+
+  .tile--tertiary {
+  }
+
   .tile__track {
     position: sticky;
     top: 0;
     align-self: flex-start;
     margin: 0 auto;
-  }
-
-  .tile__track--featured {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-gap-small);
   }
 {% endstyle %}

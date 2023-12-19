@@ -28,9 +28,9 @@
 </md-chip-set>
 
 <script type="module">
-  const Ai = document.querySelectorAll('.chip');
-  Ai.length > 0 &&
-    Ai.forEach((e) => {
+  const chip = document.querySelectorAll('.chip');
+  chip.length > 0 &&
+    chip.forEach((e) => {
       e.addEventListener('remove', (e) => e.preventDefault());
     });
 </script>

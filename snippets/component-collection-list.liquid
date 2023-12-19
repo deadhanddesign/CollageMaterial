@@ -95,13 +95,14 @@
 
 {% style %}
   .card-container__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+    gap: var(--spacing-gap-medium);
     padding: var(--spacing-padding-xlarge);
     background: var(--md-sys-color-surface-variant);
     color: var(--md-sys-color-on-surface);
     border-radius: var(--border-radius-xlarge);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap: var(--spacing-gap-medium);
+    transition: all 0.3s ease;
     flex: 1;
 
     &.card-container__grid--solo {
@@ -145,16 +146,14 @@
     display: flex;
     justify-content: center;
     gap: var(--spacing-gap-medium);
-    font-family: var(--md-sys-typescale-body-font);
-    font-size: var(--md-sys-typescale-body-medium-size);
-    font-weight: var(--md-sys-typescale-body-medium-weight);
+    font: var(--md-sys-typescale-body-medium);
 
     & span {
       display: flex;
       align-items: center;
       justify-content: center;
       min-width: 40px;
-      min-height: 40px;
+      height: min(40px, 2.5em);
       border-radius: var(--border-radius-medium);
       transition: all 200ms ease;
 

@@ -408,7 +408,7 @@ md-menu-item {
 }
 
 md-chip-set {
-	padding: 0 var(--spacing-padding-medium);
+	padding-inline: var(--spacing-padding-medium);
 }
 
 /*
@@ -490,18 +490,18 @@ md-chip-set {
 }
 
 /* TODO: Refactor Tiles into reusable component */
-.tile {
+/* .tile {
 	display: flex;
 	flex-direction: column;
-	/* gap: var(--spacing-gap-medium); */
+	gap: var(--spacing-gap-medium); 
 	flex: 1;
 	color: var(--md-sys-color-on-primary-container);
 	background-color: var(--md-sys-color-primary-container);
 	padding: var(--spacing-padding-xlarge);
 	border-radius: var(--border-radius-xlarge);
 	position: relative;
-	/* outline: var(--md-sys-color-surface-container) solid 0.2rem;
-	outline-offset: -0.4rem; */
+	 outline: var(--md-sys-color-surface-container) solid 0.2rem;
+	outline-offset: -0.4rem; 
 
 	&.tile--highlight {
 		background: var(--md-sys-color-surface);
@@ -586,7 +586,7 @@ md-chip-set {
 	&#contact_form {
 		width: 100%;
 	}
-}
+} */
 
 /* TODO: Refactor Card-Containers et al into variant of the Tile component
  * -Possibly as a "sub-component" 
@@ -867,7 +867,7 @@ md-list-item {
 }
 
 /* TODO: Combine into one class or define reason for difference */
-.button-wrapper,
+
 .button-container {
 	display: flex;
 	justify-content: flex-end;

@@ -7,14 +7,30 @@
 {% endcomment %}
 {% capture nested-content %}
 
-    {% render 'component-collection-filter', type: type %}
-    {% render 'component-collection-list', type: type %}
+    <div class="component-collection-container">
+      {% render 'component-collection-filter', type: type %}
+      {% render 'component-collection-list', type: type %}
+    </div>
 
 {% endcapture %}
 
 {% render 'component-tile', tile-content: {{nested-content}}, tile-type: 'featured' %}
 
 {% style %}
-  .tile--collection {
+  .tile {
+    container-type: inline-size;
+  }
+
+  .component-collection-container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: var(--spacing-gap-small);
+  }
+
+  @container (max-width: 1000px) {
+    .component-collection-container {
+      flex-direction: column;
+    }
   }
 {% endstyle %}
