@@ -1,31 +1,42 @@
+{% comment %}
+  Requires:
+  -pagetype: {Object} - 'collection', 'search', or `blog`.
+
+  Example:
+  {% render 'component-collection-filter', type: collection %}
+{% endcomment %}
+
 {% if type == collection %}
   {% assign stuff = collection.products_count %}
-  {% assign stuffs = collection.products %}
 {% elsif type == search %}
   {% assign stuff = search.results_count %}
-  {% assign stuffs = search.results %}
 {% endif %}
 
 <div class="card-container__grid">
   {% if stuff > 0 %}
     <div class="card-container__sort">
-      <md-outlined-select id="sort-by">
+      {% render 'component-collection-chips', chip-type: type %}
+
+      <span style="position: relative; place-self: end;">
         {% assign sort_by = type.sort_by | default: type.default_sort_by %}
-        {% for option in type.sort_options %}
-          <md-select-option
-            value="{{ option.value }}"
-            {% if option.value == sort_by %}
-              selected="selected"
-            {% endif %}
-          >
-            <div slot="headline">
-              {{ option.name }}
-            </div>
-          </md-select-option>
-        {% endfor %}
-      </md-outlined-select>
+        <md-icon-button id="sort-button"> <md-icon style="transform: scaleX(-1)">sort</md-icon> </md-icon-button>
+        <md-menu id="sort-menu" anchor="sort-button">
+          {% for option in type.sort_options %}
+            <md-menu-item
+              {% if option.value == sort_by %}
+                selected="selected"
+              {% endif %}
+              data-value="{{ option.value }}"
+            >
+              <div slot="headline">
+                {{ option.name }}
+              </div>
+            </md-menu-item>
+          {% endfor %}
+        </md-menu>
+      </span>
     </div>
-    {% comment %} TODO: Refactor collection.products and search.results {% endcomment %}
+
     {% if type == collection %}
       {% paginate collection.products by 12 %}
         {% for product in collection.products %}
@@ -67,31 +78,6 @@
     </p>
   {% endif %}
 </div>
-
-<script type="module">
-  Shopify.queryParams = {};
-
-  // Preserve existing query parameters
-  if (location.search.length) {
-    var params = location.search.substr(1).split('&');
-
-    for (var i = 0; i < params.length; i++) {
-      var keyValue = params[i].split('=');
-
-      if (keyValue.length) {
-        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
-      }
-    }
-  }
-
-  // Update sort_by query parameter on select change
-  document.querySelector('#sort-by').addEventListener('change', function (e) {
-    var value = e.target.value;
-
-    Shopify.queryParams.sort_by = value;
-    location.search = new URLSearchParams(Shopify.queryParams).toString();
-  });
-</script>
 
 {% style %}
   .card-container__grid {
@@ -142,6 +128,12 @@
   .card-container__pagination {
     grid-column: 1 / -1;
   }
+
+  .card-container__sort {
+    display: grid;
+    justify-content: space-between;
+    grid-template: auto / 1fr auto;
+  }
   .card-container__pagination {
     display: flex;
     justify-content: center;
@@ -175,3 +167,40 @@
     }
   }
 {% endstyle %}
+
+<script
+  type="module"
+>
+  Shopify.queryParams = {};
+
+  // Preserve existing query parameters
+  if (location.search.length) {
+    var params = location.search.substr(1).split('&');
+
+    for (var i = 0; i < params.length; i++) {
+      var keyValue = params[i].split('=');
+
+      if (keyValue.length) {
+        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+      }
+    }
+  }
+
+  // Update sort_by query parameter on menu item click
+  document.querySelectorAll('#sort-menu > *').forEach(function (child) {
+    child.addEventListener('click', function (e) {
+      var value = e.currentTarget.getAttribute('data-value');
+
+      Shopify.queryParams.sort_by = value;
+      location.search = new URLSearchParams(Shopify.queryParams).toString();
+    });
+  });
+
+  // Connect the sort button to the menu
+  const sortButton = document.querySelector('#sort-button');
+  const sortMenu = document.querySelector('#sort-menu');
+
+  sortButton.addEventListener('click', () => {
+    sortMenu.open = !sortMenu.open;
+  });
+</script>

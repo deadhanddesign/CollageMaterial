@@ -6,7 +6,7 @@
   {% render 'chip', chip-type: search %}
 {% endcomment %}
 
-<md-chip-set aria-label="Input chips">
+<md-chip-set id="applied-filters" aria-label="Applied Filters">
   {% if chip-type == search %}
     {%- if search.terms -%}
       <md-input-chip
@@ -43,21 +43,31 @@
       {%- endfor -%}
     {%- endif -%}
   {%- endfor -%}
+  <md-text-button id="clear-filters-button" href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
+    >Clear Filters</md-text-button
+  >
 </md-chip-set>
 
 {% style %}
   md-chip-set {
     padding-inline: var(--spacing-padding-medium);
-    max-width: min-content;
+    transition: all 0.3s ease;
+    align-items: center;
   }
 {% endstyle %}
 
 <script type="module">
   const chip = document.querySelectorAll('.chip');
+  const clearFiltersButton = document.querySelector('#clear-filters-button');
+
   chip.length > 0 &&
     chip.forEach((e) => {
       e.addEventListener('remove', (e) => {
         window.location.href = e.target.getAttribute('href');
       });
     });
+
+  if (chip.length === 0 && clearFiltersButton) {
+    clearFiltersButton.style.display = 'none';
+  }
 </script>

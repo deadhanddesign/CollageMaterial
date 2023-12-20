@@ -1,7 +1,3 @@
-{% render 'component-header', title: collection.title %}
-
-{%- if collection.description != blank -%}
-  <p>{{ collection.description }}</p>
-{%- endif -%}
+{% render 'component-header', tile-type: 'header', title: collection.title %}
 
 {% render 'component-collection', type: collection %}

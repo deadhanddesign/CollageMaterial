@@ -1,11 +1,11 @@
 {% comment %}
   Requires:
-      -product: {Object} product object.
+    -product: {Object} product object.
 
-  Usage:
-      {% for foo in collection.products %}
-        {% render 'product-card', product: foo %}
-      {% endfor %}
+  Example:
+    {% for foo in collection.products %}
+      {% render 'product-card', product: foo %}
+    {% endfor %}
 {% endcomment %}
 
 {% form 'product', product, id: {{product.id}}, class: 'card' %}
