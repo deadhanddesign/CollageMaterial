@@ -11,6 +11,7 @@
     <md-icon-button type="button" id="filter-button" aria-label="open-close-filters">
       <md-icon id="filter-button-icon"></md-icon>
     </md-icon-button>
+    {% render 'component-collection-chips', chip-type: type %}
     <form class="filter" id="filter">
       {% if type == search %}
         <md-outlined-text-field id="search" label="Search" name="q" value="{{ search.terms | escape }}">
@@ -25,10 +26,9 @@
             }
           });
         </script>
-        {% render 'filters-search-chips' %}
+
         <div class="label--medium">Showing {{ search.results_count }} results</div>
       {% else %}
-        {% render 'filters-collection-chips' %}
         <div class="label--medium">
           Showing {{ collection.products_count }} out of {{ collection.all_products_count }} products
         </div>
@@ -167,11 +167,13 @@
     transition: all 0.3s ease;
   }
   .filters {
+    display: grid;
     padding-inline: var(--spacing-padding-medium);
     position: sticky;
     top: 0;
     margin-block: var(--spacing-margin-medium);
     background: var(--md-sys-color-surface);
+    gap: var(--spacing-gap-small);
   }
   .filter__track {
     display: grid;
@@ -244,6 +246,10 @@
       border-radius: 10px;
       background-color: var(--md-sys-color-on-surface-variant);
     }
+  }
+
+  #search {
+    margin-block-start: var(--spacing-margin-medium);
   }
 
   @container (max-width: 1300px) {

@@ -1,5 +1,23 @@
+{% comment %}
+  Requires:
+  - chip-type: {Object} - The type of chip to render. Valid values are 'search' or 'collection'.
+
+  Example:
+  {% render 'chip', chip-type: search %}
+{% endcomment %}
+
 <md-chip-set aria-label="Input chips">
-  {%- for filter in collection.filters -%}
+  {% if chip-type == search %}
+    {%- if search.terms -%}
+      <md-input-chip
+        class="chip"
+        label="Search: {{ search.terms | escape }}"
+        href="{{ search.url }}?sort_by={{ search.sort_by }}"
+      >
+      </md-input-chip>
+    {%- endif -%}
+  {%- endif -%}
+  {%- for filter in chip-type.filters -%}
     {%- if filter.type == 'price_range' -%}
       {%- if filter.min_value.value != null or filter.max_value.value != null -%}
         <md-input-chip
