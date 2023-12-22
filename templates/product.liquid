@@ -3,15 +3,6 @@
 {% render 'component-header', overline: product.type, title: product.title, subheader-vendor: product.vendor %}
 {% render 'component-product-highlight' %}
 
-{% capture tile-content--overview %}
-  <h2 class="display--small">Overview</h2>
-  <p>
-    {{ product.description }}
-  </p>
-{% endcapture %}
-
-{% render 'component-tile', tile-content: {{tile-content--overview}} %}
-
 {% if product.metafields.custom.ingredients %}
   {% capture tile-content--ingredients %}
     <h2 class="display--small">What's Inside</h2>
@@ -24,8 +15,17 @@
     </md-list>
   {% endcapture %}
 
-  {% render 'component-tile', tile-content: {{tile-content--ingredients}} %}
+  {% render 'component-tile', tile-type: 'small', tile-content: {{tile-content--ingredients}} %}
 {% endif %}
+
+{% capture tile-content--overview %}
+  <h2 class="display--small">Overview</h2>
+  <p>
+    {{ product.description }}
+  </p>
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'medium', tile-content: {{tile-content--overview}} %}
 
 {% if product.metafields.custom.deep_dive %}
   {% capture tile-content--deeper-dive %}
@@ -33,25 +33,32 @@
     {{ product.metafields.custom.deep_dive | metafield_tag }}
   {% endcapture %}
 
-  {% render 'component-tile', tile-content: {{tile-content--deeper-dive}} %}
+  {% render 'component-tile', tile-type: 'medium', tile-content: {{tile-content--deeper-dive}} %}
 {% endif %}
 
 {% if product.images.size > 1 %}
-  {% for image in product.images offset: 1 limit: 5 %}
-    {{ image.src | image_url: width: 1200 | image_tag: class: 'tile', loading: 'lazy' }}
-  {% endfor %}
+  {% capture tile-content--photos %}
+    {% for image in product.images offset: 1 limit: 5 %}
+      {{ image.src | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+    {% endfor %}
+  {% endcapture %}
+  {% render 'component-tile', tile-type: 'images', tile-content: {{tile-content--photos}} %}
 {% endif %}
 
-<div class="tile tile--large card-container__grid card-container__grid--solo">
+{% capture tile-content--upsells %}
   <h2 class="card display--medium">Find Your Next Favorite Here</h2>
   {% for product in collections['hand-care'].products limit: 3 %}
     {% unless product.handle == current_variant.handle %}
       {% render 'component-card', product: product %}
     {% endunless %}
   {% endfor %}
-</div>
+{% endcapture %}
 
-{% comment %} <div class="overlay-grain"></div> {% endcomment %}
+{% render 'component-collection-list', type: 'upsells', tile-content: tile-content--upsells %}
+
+{% comment %}
+  <div class="overlay-grain"></div>
+{% endcomment %}
 
 {% comment %}
   {% style %}

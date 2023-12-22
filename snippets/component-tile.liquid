@@ -1,7 +1,7 @@
 {% comment %}
   Requires:
-    - tile-type: {String} 'header', 'large', 'medium', 'small', 'featured', 'footer', 'cta'
-    - tile-content: {Object} caprtured content to be rendered in the tile, then pass object to the component
+    - tile-type: {String} 'header', 'large', 'medium', 'small', 'featured', 'footer', 'cta', 'images'
+    - tile-content: {Object} captured content to be rendered in the tile, then pass object to the component
 
   Example:
       {% capture tile-content %}
@@ -12,13 +12,13 @@
 {% endcomment %}
 
 {% if tile-type == 'header' %}
-  <header class="tile tile--large">
+  <header class="tile tile--large tile--primary">
     <div class="tile__track">
       {{ tile-content }}
     </div>
   </header>
 {% elsif tile-type == 'footer' %}
-  <footer class="tile tile--large">
+  <footer class="tile tile--large tile--primary">
     <div class="tile__track">
       {{ tile-content }}
     </div>
@@ -35,11 +35,20 @@
       class="tile tile--large tile--featured"
     {% elsif tile-type == 'cta' %}
       class="tile tile--large tile--tertiary"
+    {% elsif tile-type == 'images' %}
+      class="tile tile--small tile--images"
     {% else %}
       class="tile"
     {% endif %}
   >
-    <div class="tile__track">
+    <div
+      {% if tile-type == 'featured' %}
+        class="tile__track tile__container-query"
+
+      {% else %}
+        class="tile__track"
+      {% endif %}
+    >
       {{ tile-content }}
     </div>
   </div>
@@ -47,30 +56,41 @@
 
 {% style %}
   .tile {
-    background: var(--md-sys-color-primary-container);
-    color: var(--md-sys-color-on-primary-container);
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-background);
     padding: var(--spacing-padding-xlarge);
     border-radius: var(--border-radius-xlarge);
     overflow: clip;
   }
 
   .tile--large {
-    width: min(100%, 1920px);
+    width: min(100dvw, 1920px);
+    /* grid-column: span 3; */
   }
 
   .tile--medium {
-    width: min(66%, 1280px);
+    width: min(50dvw, 1280px);
+    flex: 1 1 auto;
+    /* grid-column: span 2; */
   }
 
   .tile--small {
-    width: min(33%, 640px);
+    width: min(30dvw, 640px);
+    /* grid-column: span 1; */
   }
 
   .tile--featured {
-    background: var(--md-sys-color-surface);
-    color: var(--md-sys-color-on-background);
     font: var(--md-sys-typescale-body-medium);
     padding: 0;
+
+    & .tile__track {
+      width: 100%;
+    }
+  }
+
+  .tile--primary {
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
   }
 
   .tile--secondary {
@@ -107,22 +127,32 @@
     width: fit-content;
   }
 
-  header.tile {
-    & .tile__track {
+  /* Required for making the Featured Tile responsive */
+  .tile__container-query {
+    container-type: inline-size;
+  }
+
+  .tile--images {
+    background: none;
+    padding: 0;
+
+    .tile__track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-gap-medium);
+    }
+
+    & img {
       width: 100%;
+      border-radius: var(--border-radius-large);
     }
   }
 
-  .hero__overline {
-    height: 300px;
-  }
-
-  .hero__subheader {
-    font: var(--md-sys-typescale-headline-small);
-    & a {
-      font: var(--md-sys-typescale-headline-large);
-      text-decoration: none;
-      color: inherit;
+  @media (max-width: 900px) {
+    .tile--large,
+    .tile--medium,
+    .tile--small {
+      width: 100%;
     }
   }
 {% endstyle %}

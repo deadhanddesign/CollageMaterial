@@ -1,27 +1,37 @@
 {% comment %}
   Requires:
-  -pagetype: {Object} - 'collection', 'search', or `blog`.
+  -type: {String} - 'collection', 'upsells' 'search', or `blog`.
+
+  Optional:
+  -tile-content: {Object} - The content to display in the tile. If not provided, the tile will display the collection
+    or search results.
 
   Example:
-  {% render 'component-collection-filter', type: collection %}
+  {% render 'component-collection-list', type: 'collection' %}
 {% endcomment %}
 
-{% if type == collection %}
+{% if type == 'collection' %}
   {% assign stuff = collection.products_count %}
-{% elsif type == search %}
+{% elsif type == 'search' %}
   {% assign stuff = search.results_count %}
 {% endif %}
 
-<div class="card-container__grid">
+<div
+  {% if type == 'upsells' %}
+    class="tile--large card-container__grid card-container__grid--solo"
+  {% else %}
+    class="card-container__grid"
+  {% endif %}
+>
   {% if stuff > 0 %}
     <div class="card-container__sort">
       {% render 'component-collection-chips', chip-type: type %}
 
       <span style="position: relative; place-self: end;">
-        {% assign sort_by = type.sort_by | default: type.default_sort_by %}
+        {% assign sort_by = object.sort_by | default: object.default_sort_by %}
         <md-icon-button id="sort-button"> <md-icon style="transform: scaleX(-1)">sort</md-icon> </md-icon-button>
         <md-menu id="sort-menu" anchor="sort-button">
-          {% for option in type.sort_options %}
+          {% for option in object.sort_options %}
             <md-menu-item
               {% if option.value == sort_by %}
                 selected="selected"
@@ -37,7 +47,7 @@
       </span>
     </div>
 
-    {% if type == collection %}
+    {% if type == 'collection' %}
       {% paginate collection.products by 12 %}
         {% for product in collection.products %}
           {% render 'component-card', product: product %}
@@ -45,7 +55,7 @@
         <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
       {% endpaginate %}
 
-    {% elsif type == search %}
+    {% elsif type == 'search' %}
       {% paginate search.results by 12 %}
         {% for product in search.results %}
           {% render 'component-card', product: product %}
@@ -53,8 +63,10 @@
         <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
       {% endpaginate %}
     {% endif %}
+  {% elsif type == 'upsells' %}
+    {{ tile-content }}
 
-  {% elsif type == collection and stuff == 0 %}
+  {% elsif type == 'collection' and stuff == 0 %}
     <p style="margin: auto">
       🔍 Looks like your filters have led to a hidden oasis with no results. Let's adjust your search to uncover more
       spa treasures! Clear some filters by clicking on them above or

@@ -268,6 +268,11 @@ ROOTS
 	--md-sys-typescale-label-small-line-height: 1.5;
 	--md-sys-typescale-label-small-size: var(--step--2);
 	--md-sys-typescale-label-small-weight: 500;
+	--md-sys-typescale-label-xsmall-font: var(--my-sys-typescale-label-font);
+	--md-sys-typescale-label-xsmall-line-height: 1.5;
+	--md-sys-typescale-label-xsmall-size: var(--step--3);
+	--md-sys-typescale-label-xsmall-weight: 500;
+
 
 	--md-sys-typescale-label-large: var(--md-sys-typescale-label-large-weight)
 		var(--md-sys-typescale-label-large-size) / var(--md-sys-typescale-label-large-line-height)
@@ -278,6 +283,9 @@ ROOTS
 	--md-sys-typescale-label-small: var(--md-sys-typescale-label-small-weight)
 		var(--md-sys-typescale-label-small-size) / var(--md-sys-typescale-label-small-line-height)
 		var(--md-sys-typescale-label-small-font);
+	--md-sys-typescale-label-xsmall: var(--md-sys-typescale-label-xsmall-weight)
+		var(--md-sys-typescale-label-xsmall-size) / var(--md-sys-typescale-label-xsmall-line-height)
+		var(--md-sys-typescale-label-xsmall-font);
 }
 
 /* GLOBAL */
@@ -348,6 +356,10 @@ DEFAULT STYLES & RESETS
 */
 
 body {
+	/* display: grid;
+    grid-auto-flow: dense;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 40ch), 1fr));
+	grid-gap: var(--spacing-gap-medium); */
 	background-color: var(--md-sys-color-surface-container);
 	font: var(--md-sys-typescale-body-medium);
 	color: var(--md-sys-color-on-background);
@@ -378,7 +390,7 @@ h3 {
 }
 
 p {
-	min-width: 40ch;
+	/* min-width: 40ch; */
 	max-width: 60ch;
 }
 
@@ -391,7 +403,7 @@ img {
 	width: min(66%, 600px);
 	vertical-align: middle;
 	object-fit: cover;
-	aspect-ratio: 1 / 1;
+	/* aspect-ratio: 1 / 1; */
 }
 
 /* Material Elements Defaults */

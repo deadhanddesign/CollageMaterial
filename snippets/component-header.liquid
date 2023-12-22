@@ -26,3 +26,26 @@
 {% endcapture %}
 
 {% render 'component-tile', tile-type: 'header', tile-content: {{tile-content}} %}
+
+{% style %}
+  header.tile {
+    grid-row: 1;
+
+    & .tile__track {
+      width: 100%;
+    }
+  }
+
+  .hero__overline {
+    height: var(--step-10);
+  }
+
+  .hero__subheader {
+    font: var(--md-sys-typescale-headline-small);
+    & a {
+      font: var(--md-sys-typescale-headline-large);
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+{% endstyle %}

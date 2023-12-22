@@ -2,8 +2,9 @@
   Requires:
     -pagetype: {Object} - 'collection', 'search', or `blog`.
 
+
   Example:
-    {% render 'component-collection-filter', type: search %}
+    {% render 'component-collection-filter', type: 'search', object: search %}
 {% endcomment %}
 
 <div class="filter__track" id="filter-track">
@@ -13,7 +14,7 @@
     </md-icon-button>
 
     <form class="filter" id="filter">
-      {% if type == search %}
+      {% if type == 'search' %}
         <md-outlined-text-field id="search" label="Search" name="q" value="{{ search.terms | escape }}">
           <input type="hidden" name="type" value="product">
           <md-icon slot="leading-icon">search</md-icon>
@@ -33,7 +34,7 @@
           Showing {{ collection.products_count }} out of {{ collection.all_products_count }} products
         </div>
       {% endif %}
-      {% for filter in type.filters %}
+      {% for filter in object.filters %}
         {% capture dropdown-summary %}
             {{- filter.label -}}
         {% endcapture %}
