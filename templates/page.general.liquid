@@ -1,7 +1,13 @@
 {% render 'component-header', title: page.title %}
 
 {% capture tile-content %}
-    {{ content_for_layout }}
+    <div class="rich-text-block">{{ page.content }}</div>
 {% endcapture %}
 
 {% render 'component-tile', tile-type: 'large', tile-content: {{tile-content}} %}
+
+{% style %}
+  .rich-text-block {
+    max-width: 60ch;
+  }
+{% endstyle %}
