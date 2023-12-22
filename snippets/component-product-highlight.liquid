@@ -91,12 +91,12 @@
         </div>
       
         <md-list class="product-highlight__pickup-availability">
-          <md-list-item class="label--large">Pickup Availability</md-list-item>
+          <md-list-item class="label--large" aria-label="Pickup Availability">Pickup Availability</md-list-item>
           <md-divider></md-divider>
           {% assign pick_up_availabilities = current_variant.store_availabilities | where: 'pick_up_enabled', true %}
           {%- for availability in pick_up_availabilities -%}
             {%- if availability.available -%}
-              <md-list-item class="yes-stock">
+              <md-list-item  class="yes-stock" aria-label="Available at {{ availability.location.name }}">
                 <div class="body--medium" slot="headline">{{ availability.location.name }}</div>
                 <div class="body--small" slot="supporting-text">
                   {{ availability.pick_up_time }}
@@ -104,7 +104,7 @@
                 <md-icon slot="start">check_circle</md-icon>
               </md-list-item>
             {%- else -%}
-              <md-list-item class="no-stock">
+              <md-list-item class="no-stock" aria-label="Not available at {{ availability.location.name }}">
                 <div slot="headline">{{ availability.location.name }}</div>
                 <div class="body--small" slot="supporting-text">Out of Stock</div>
                 <md-icon slot="start">cancel</md-icon>

@@ -25,7 +25,7 @@
     {{ 'style.css' | asset_url | stylesheet_tag }}
   </head>
   <body>
-    {% render 'nav' %}
+    {% render 'component-nav' %}
     {{ content_for_layout }}
 
     {% render 'component-footer' %}

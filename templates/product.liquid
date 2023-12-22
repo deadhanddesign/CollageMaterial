@@ -1,4 +1,5 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
 {% render 'component-header', overline: product.type, title: product.title, subheader-vendor: product.vendor %}
 {% render 'component-product-highlight' %}
@@ -8,7 +9,7 @@
     <h2 class="display--small">What's Inside</h2>
     <md-list>
       {% for ingredient in product.metafields.custom.ingredients.value %}
-        <md-list-item>
+        <md-list-item aria-label="{{ ingredient }}">
           <div slot="headline"><span style="font-weight: 1000">•</span> {{ ingredient }}</div>
         </md-list-item>
       {% endfor %}
@@ -58,9 +59,7 @@
 
 {% comment %}
   <div class="overlay-grain"></div>
-{% endcomment %}
 
-{% comment %}
   {% style %}
     .underlay-color {
       position: fixed;
