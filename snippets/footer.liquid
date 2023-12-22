@@ -1,67 +1,43 @@
-{% if page.url != '/pages/contact' %}
-  <div class="tile tile--large tile--tertiary " id="cta">
-    <div class="tile__track">
-      <div class="tile--grid">
-        <div>
-          <h2 class="display--medium">Get the Inside Scoop!</h2>
-          <p>
-            Be the first to know about our sizzling sales, fabulous new treatments, and irresistible offers! Indulge in
-            a spa experience that keeps giving – straight to your inbox!
-          </p>
+{% capture footer-content %}
+  <div class="footer__section">
+    <h2 class="display--medium">Locations</h2>
+    <md-list class="footer__list">
+      <md-list-item>
+        <div class="body--xlarge" slot="headline">Fredericksburg</div>
+        <div slot="supporting-text">
+          456 Main Street
+          <br>
+          Fredericksburg, VA 22701
+          <br>
+          540-555-5555
         </div>
-        <form action="" method="get">
-          <md-outlined-text-field
-            label="Email"
-            type="email"
-            value=""
-          ></md-outlined-text-field>
-          <md-filled-button type="submit">Subscribe</md-filled-button>
-        </form>
-      </div>
-    </div>
+      </md-list-item>
+      <md-list-item>
+        <div class="body--xlarge" slot="headline">Culpepper</div>
+        <div slot="supporting-text">
+          456 Main Street
+          <br>
+          Culpepper, VA 22701
+          <br>
+          540-555-5555
+        </div>
+      </md-list-item>
+      <md-list-item>
+        <div class="body--xlarge" slot="headline">Market</div>
+        <div slot="supporting-text">
+          789 Main Street
+          <br>
+          Market, VA 22901
+          <br>
+          540-555-5555
+        </div>
+      </md-list-item>
+    </md-list>
   </div>
-{% endif %}
-<footer class="tile tile--large">
-  <div class="tile__track">
-    <div class="footer__section">
-      <h2>Locations</h2>
-      <md-list class="footer__list">
-        <md-list-item>
-          <div slot="headline">Fredericksburg</div>
-          <div slot="supporting-text">
-            456 Main Street
-            <br>
-            Fredericksburg, VA 22701
-            <br>
-            540-555-5555
-          </div>
-        </md-list-item>
-        <md-list-item>
-          <div slot="headline">Culpepper</div>
-          <div slot="supporting-text">
-            456 Main Street
-            <br>
-            Culpepper, VA 22701
-            <br>
-            540-555-5555
-          </div>
-        </md-list-item>
-        <md-list-item>
-          <div slot="headline">Market</div>
-          <div slot="supporting-text">
-            789 Main Street
-            <br>
-            Market, VA 22901
-            <br>
-            540-555-5555
-          </div>
-        </md-list-item>
-      </md-list>
-    </div>
-    <div class="footer__section">
-      <h2>Navigation</h2>
-      <div class="footer__list" id="footer-nav" role="navigation">
-        {%- for link in linklists['main-menu'].links -%}
+  <div class="footer__section">
+    <h2 class="display--medium">Navigation</h2>
+    <div class="footer__list" id="footer-nav" role="navigation">
+      {%- for link in linklists['main-menu'].links -%}
           <md-list>
             <md-list-item
               role="button"
@@ -83,7 +59,7 @@
                 >
                   <div slot="headline">{{ child_link.title }}</div>
                 </md-list-item>
-                {%- if child_link.links != blank -%}
+              {%- if child_link.links != blank -%}
                   {%- for grandchild_link in child_link.links -%}
                     <md-list-item
                       role="button"
@@ -99,20 +75,52 @@
               {%- endfor -%}
             {%- endif -%}
           </md-list>
-        {%- endfor -%}
-      </div>
-    </div>
-    <div class="footer__section footer__fine-print">
-      <md-divider></md-divider>
-      <md-list class="footer__list">
-        {% for link in linklists['policy-menu'].links %}
-          <md-list-item type="button" href="{{ link.url }}">{{ link.title }}</md-list-item>
-        {% endfor %}
-      </md-list>
-      <p>
-        &copy; {{ 'now' | date: '%Y' }}
-        {{ shop.name }}. All rights reserved.
-      </p>
+      {%- endfor -%}
     </div>
   </div>
-</footer>
+  <div class="footer__section footer__fine-print">
+    <md-divider></md-divider>
+    <md-list class="footer__list">
+      {% for link in linklists['policy-menu'].links %}
+        <md-list-item type="button" href="{{ link.url }}">{{ link.title }}</md-list-item>
+      {% endfor %}
+    </md-list>
+    <p>
+      &copy; {{ 'now' | date: '%Y' }}
+      {{ shop.name }}. All rights reserved.
+    </p>
+  </div>          
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'footer', tile-content: footer-content %}
+
+{% style %}
+  footer {
+    background: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  .footer__section {
+    display: grid;
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-gap-medium);
+  }
+
+  #footer-nav {
+    --md-list-item-label-text-size: var(--md-sys-typescale-body-medium-size);
+  }
+
+  footer md-list-item:first-child {
+    --md-list-item-label-text-size: var(--md-sys-typescale-body-xlarge-size);
+  }
+
+  .footer__fine-print {
+    --md-list-item-label-text-size: var(--md-sys-typescale-body-small-size);
+    padding-bottom: 2rem;
+  }
+{% endstyle %}
