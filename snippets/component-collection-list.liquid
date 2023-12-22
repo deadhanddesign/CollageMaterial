@@ -1,32 +1,53 @@
-{% if type == collection %}
+{% comment %}
+  Requires:
+  -type: {String} - 'collection', 'upsells' 'search', or `blog`.
+
+  Optional:
+  -tile-content: {Object} - The content to display in the tile. If not provided, the tile will display the collection
+    or search results.
+
+  Example:
+  {% render 'component-collection-list', type: 'collection' %}
+{% endcomment %}
+
+{% if type == 'collection' %}
   {% assign stuff = collection.products_count %}
-  {% assign stuffs = collection.products %}
-{% elsif type == search %}
+{% elsif type == 'search' %}
   {% assign stuff = search.results_count %}
-  {% assign stuffs = search.results %}
 {% endif %}
 
-<div class="card-container__grid">
+<div
+  {% if type == 'upsells' %}
+    class="tile--large card-container__grid card-container__grid--solo"
+  {% else %}
+    class="card-container__grid"
+  {% endif %}
+>
   {% if stuff > 0 %}
     <div class="card-container__sort">
-      <md-outlined-select id="sort-by">
-        {% assign sort_by = type.sort_by | default: type.default_sort_by %}
-        {% for option in type.sort_options %}
-          <md-select-option
-            value="{{ option.value }}"
-            {% if option.value == sort_by %}
-              selected="selected"
-            {% endif %}
-          >
-            <div slot="headline">
-              {{ option.name }}
-            </div>
-          </md-select-option>
-        {% endfor %}
-      </md-outlined-select>
+      {% render 'component-collection-chips', chip-type: type %}
+
+      <span style="position: relative; place-self: end;">
+        {% assign sort_by = object.sort_by | default: object.default_sort_by %}
+        <md-icon-button id="sort-button"> <md-icon style="transform: scaleX(-1)">sort</md-icon> </md-icon-button>
+        <md-menu id="sort-menu" anchor="sort-button">
+          {% for option in object.sort_options %}
+            <md-menu-item
+              {% if option.value == sort_by %}
+                selected="selected"
+              {% endif %}
+              data-value="{{ option.value }}"
+            >
+              <div slot="headline">
+                {{ option.name }}
+              </div>
+            </md-menu-item>
+          {% endfor %}
+        </md-menu>
+      </span>
     </div>
-    {% comment %} TODO: Refactor collection.products and search.results {% endcomment %}
-    {% if type == collection %}
+
+    {% if type == 'collection' %}
       {% paginate collection.products by 12 %}
         {% for product in collection.products %}
           {% render 'component-card', product: product %}
@@ -34,7 +55,7 @@
         <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
       {% endpaginate %}
 
-    {% elsif type == search %}
+    {% elsif type == 'search' %}
       {% paginate search.results by 12 %}
         {% for product in search.results %}
           {% render 'component-card', product: product %}
@@ -42,8 +63,10 @@
         <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
       {% endpaginate %}
     {% endif %}
+  {% elsif type == 'upsells' %}
+    {{ tile-content }}
 
-  {% elsif type == collection and stuff == 0 %}
+  {% elsif type == 'collection' and stuff == 0 %}
     <p style="margin: auto">
       🔍 Looks like your filters have led to a hidden oasis with no results. Let's adjust your search to uncover more
       spa treasures! Clear some filters by clicking on them above or
@@ -68,40 +91,16 @@
   {% endif %}
 </div>
 
-<script type="module">
-  Shopify.queryParams = {};
-
-  // Preserve existing query parameters
-  if (location.search.length) {
-    var params = location.search.substr(1).split('&');
-
-    for (var i = 0; i < params.length; i++) {
-      var keyValue = params[i].split('=');
-
-      if (keyValue.length) {
-        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
-      }
-    }
-  }
-
-  // Update sort_by query parameter on select change
-  document.querySelector('#sort-by').addEventListener('change', function (e) {
-    var value = e.target.value;
-
-    Shopify.queryParams.sort_by = value;
-    location.search = new URLSearchParams(Shopify.queryParams).toString();
-  });
-</script>
-
 {% style %}
   .card-container__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+    gap: var(--spacing-gap-medium);
     padding: var(--spacing-padding-xlarge);
     background: var(--md-sys-color-surface-variant);
     color: var(--md-sys-color-on-surface);
     border-radius: var(--border-radius-xlarge);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap: var(--spacing-gap-medium);
+    transition: all 0.3s ease;
     flex: 1;
 
     &.card-container__grid--solo {
@@ -141,20 +140,24 @@
   .card-container__pagination {
     grid-column: 1 / -1;
   }
+
+  .card-container__sort {
+    display: grid;
+    justify-content: space-between;
+    grid-template: auto / 1fr auto;
+  }
   .card-container__pagination {
     display: flex;
     justify-content: center;
     gap: var(--spacing-gap-medium);
-    font-family: var(--md-sys-typescale-body-font);
-    font-size: var(--md-sys-typescale-body-medium-size);
-    font-weight: var(--md-sys-typescale-body-medium-weight);
+    font: var(--md-sys-typescale-body-medium);
 
     & span {
       display: flex;
       align-items: center;
       justify-content: center;
       min-width: 40px;
-      min-height: 40px;
+      height: min(40px, 2.5em);
       border-radius: var(--border-radius-medium);
       transition: all 200ms ease;
 
@@ -176,3 +179,40 @@
     }
   }
 {% endstyle %}
+
+<script
+  type="module"
+>
+  Shopify.queryParams = {};
+
+  // Preserve existing query parameters
+  if (location.search.length) {
+    var params = location.search.substr(1).split('&');
+
+    for (var i = 0; i < params.length; i++) {
+      var keyValue = params[i].split('=');
+
+      if (keyValue.length) {
+        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+      }
+    }
+  }
+
+  // Update sort_by query parameter on menu item click
+  document.querySelectorAll('#sort-menu > *').forEach(function (child) {
+    child.addEventListener('click', function (e) {
+      var value = e.currentTarget.getAttribute('data-value');
+
+      Shopify.queryParams.sort_by = value;
+      location.search = new URLSearchParams(Shopify.queryParams).toString();
+    });
+  });
+
+  // Connect the sort button to the menu
+  const sortButton = document.querySelector('#sort-button');
+  const sortMenu = document.querySelector('#sort-menu');
+
+  sortButton.addEventListener('click', () => {
+    sortMenu.open = !sortMenu.open;
+  });
+</script>

@@ -1,0 +1,130 @@
+{% capture footer-content %}
+  <div class="footer__section">
+    <h2 class="display--medium">Locations</h2>
+    <md-list class="footer__list">
+      <md-list-item aria-label="Fredericksburg">
+        <div class="body--xlarge" slot="headline">Fredericksburg</div>
+        <div slot="supporting-text">
+          456 Main Street
+          <br>
+          Fredericksburg, VA 22701
+          <br>
+          540-555-5555
+        </div>
+      </md-list-item>
+      <md-list-item aria-label="Culpepper">
+        <div class="body--xlarge" slot="headline">Culpepper</div>
+        <div slot="supporting-text">
+          456 Main Street
+          <br>
+          Culpepper, VA 22701
+          <br>
+          540-555-5555
+        </div>
+      </md-list-item>
+      <md-list-item aria-label="Market">
+        <div class="body--xlarge" slot="headline">Market</div>
+        <div slot="supporting-text">
+          789 Main Street
+          <br>
+          Market, VA 22901
+          <br>
+          540-555-5555
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+  <div class="footer__section">
+    <h2 class="display--medium">Navigation</h2>
+    <div class="footer__list" id="footer-nav">
+      {%- for link in linklists['main-menu'].links -%}
+          <md-list>
+            <md-list-item
+              role="button"
+              href="{{ link.url }}"
+              {% if link.active %}
+                aria-current="page"
+              {% endif %}
+              aria-label="{{ link.title }}"
+            >
+              <div slot="headline">{{ link.title }}</div>
+            </md-list-item>
+            {%- if link.links != blank -%}
+              {%- for child_link in link.links -%}
+                <md-list-item
+                  role="button"
+                  href="{{ child_link.url }}"
+                  {% if link.active %}
+                    aria-current="page"
+                  {% endif %}
+                  aria-label="{{ child_link.title }}"
+                >
+                  <div slot="headline">{{ child_link.title }}</div>
+                </md-list-item>
+              {%- if child_link.links != blank -%}
+                  {%- for grandchild_link in child_link.links -%}
+                    <md-list-item
+                      role="button"
+                      href="{{ grandchild_link.url }}"
+                      {% if link.active %}
+                        aria-current="page"
+                      {% endif %}
+                      aria-label="{{ grandchild_link.title }}"
+                    >
+                      <div slot="headline">{{ grandchild_link.title }}</div>
+                    </md-list-item>
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </md-list>
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="footer__section footer__fine-print">
+    <md-divider></md-divider>
+    <md-list class="footer__list">
+      {% for link in linklists['policy-menu'].links %}
+        <md-list-item type="button" href="{{ link.url }}" aria-label="{{ link.title }}">{{ link.title }}</md-list-item>
+      {% endfor %}
+    </md-list>
+    <p>
+      &copy; {{ 'now' | date: '%Y' }}
+      {{ shop.name }}. All rights reserved.
+    </p>
+  </div>          
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'footer', tile-content: footer-content %}
+
+{% style %}
+  footer {
+    background: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    /* grid-row: -1; */
+  }
+
+  .footer__section {
+    display: grid;
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-gap-medium);
+  }
+
+  #footer-nav {
+    --md-list-item-label-text-size: var(--md-sys-typescale-body-medium-size);
+  }
+
+  footer md-list-item:first-child {
+    --md-list-item-label-text-size: var(--md-sys-typescale-body-xlarge-size);
+  }
+
+  .footer__fine-print {
+    --md-list-item-label-text-size: var(--md-sys-typescale-body-small-size);
+    padding-bottom: 2rem;
+  }
+{% endstyle %}

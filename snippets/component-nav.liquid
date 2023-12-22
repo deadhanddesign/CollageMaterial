@@ -2,7 +2,7 @@
   <div class="nav__container">
     {%- for link in linklists['main-menu'].links limit: 2 -%}
       <span>
-        <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon>
+        <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon aria-label="{{ link.title }}">
           {{ link.title }}
           <md-icon slot="icon">arrow_drop_down</md-icon>
         </md-text-button>
@@ -15,6 +15,7 @@
                 {% if link.active %}
                   aria-current="page"
                 {% endif %}
+                aria-label="{{ child_link.title }}"
               >
                 <div slot="headline">{{ child_link.title }}</div>
               </md-menu-item>
@@ -27,6 +28,7 @@
                     {% if link.active %}
                       aria-current="page"
                     {% endif %}
+                    aria-label="{{ grandchild_link.title }}"
                   >
                     <div slot="headline">{{ grandchild_link.title }}</div>
                   </md-menu-item>
@@ -38,7 +40,7 @@
       </span>
     {%- endfor -%}
 
-    <md-icon-button href="/" id="cs-logo-button">
+    <md-icon-button href="/" id="cs-logo-button" aria-label="home">
       <svg id="cs-logo" viewBox="0 0 332.6 214.37" role="img">
         <title>Collage Logo</title>
         <g>
@@ -70,7 +72,7 @@
 
     {%- for link in linklists['main-menu'].links offset: 2 -%}
       <span>
-        <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon>
+        <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon aria-label="{{ link.title }}">
           {{ link.title }}
           <md-icon slot="icon">arrow_drop_down</md-icon>
         </md-text-button>
@@ -83,6 +85,7 @@
                 {% if link.active %}
                   aria-current="page"
                 {% endif %}
+                aria-label="{{ child_link.title }}"
               >
                 <div slot="headline">{{ child_link.title }}</div>
               </md-menu-item>
@@ -95,6 +98,7 @@
                     {% if link.active %}
                       aria-current="page"
                     {% endif %}
+                    aria-label="{{ grandchild_link.title }}"
                   >
                     <div slot="headline">{{ grandchild_link.title }}</div>
                   </md-menu-item>
@@ -153,6 +157,10 @@
 </nav>
 
 {% style %}
+  md-menu-item {
+    white-space: nowrap;
+  }
+
   nav {
     position: fixed;
     bottom: var(--spacing-margin-medium);

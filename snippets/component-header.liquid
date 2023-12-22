@@ -1,26 +1,43 @@
-<header class="tile">
-  <div class="tile__track">
-    {% if overline %}
-      <div class="hero__overline label--large">— {{ overline | capitalize }}</div>
-    {% endif %}
-    {% if title-caps %}
-      <h1 class="display--large">{{ title | capitalize }}</h1>
-    {% else %}
-      <h1 class="display--large">{{ title }}</h1>
-    {% endif %}
-    {% if subheader-vendor %}
-      <div class="hero__subheader">by {{ subheader-vendor | link_to_vendor }}</div>
-    {% endif %}
-  </div>
-</header>
+{% comment %}
+  Requires:
+    - title: {String} The title of the page
+
+    Optional:
+      - overline: {String} The category of the page
+      - title-caps: {Boolean} Whether or not to capitalize the title
+      - subheader-vendor: {String} The vendor of the product
+
+  Example:
+      {% render 'component-header', title: 'The Title', overline: 'The Overline', title-caps: true, subheader-vendor: 'The Vendor' %}
+{% endcomment %}
+
+{% capture tile-content %}
+        {% if overline %}
+          <div class="hero__overline label--large">— {{ overline | capitalize }}</div>
+        {% endif %}
+        {% if title-caps %}
+          <h1 class="display--large">{{ title | capitalize }}</h1>
+        {% else %}
+          <h1 class="display--large">{{ title }}</h1>
+        {% endif %}
+        {% if subheader-vendor %}
+          <div class="hero__subheader">by {{ subheader-vendor | link_to_vendor }}</div>
+        {% endif %}
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'header', tile-content: {{tile-content}} %}
 
 {% style %}
-  header {
-    min-width: 40ch;
+  header.tile {
+    grid-row: 1;
+
+    & .tile__track {
+      width: 100%;
+    }
   }
 
   .hero__overline {
-    height: 300px;
+    height: var(--step-10);
   }
 
   .hero__subheader {

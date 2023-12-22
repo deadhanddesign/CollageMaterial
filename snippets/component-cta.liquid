@@ -1,0 +1,44 @@
+{% capture cta-content %}
+    <div class="cta--grid">
+      <div>
+        <h2 class="display--medium">Get the Inside Scoop!</h2>
+        <p>
+          Be the first to know about our sizzling sales, fabulous new treatments, and irresistible offers! Indulge in a
+          spa experience that keeps giving – straight to your inbox!
+        </p>
+      </div>
+      <form class="cta--form" action="" method="get">
+        <md-outlined-text-field
+          label="Email"
+          type="email"
+          value=""
+        ></md-outlined-text-field>
+        <md-filled-button type="submit">Subscribe</md-filled-button>
+      </form>
+    </div>
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'cta', tile-content: cta-content %}
+
+{% style %}
+  .cta--grid {
+    display: grid;
+    grid-gap: var(--spacing-gap-large);
+    align-items: center;
+  }
+
+  .cta--form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-gap-small);
+
+    & md-outlined-text-field {
+      flex: 1;
+    }
+
+    & md-filled-button {
+      min-height: 40px;
+      height: auto;
+    }
+  }
+{% endstyle %}

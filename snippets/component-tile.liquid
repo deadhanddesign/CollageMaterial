@@ -1,71 +1,158 @@
-<div
-  {% if tile-type == 'large' %}
-    class="tile tile--large"
-  {% elsif tile-type == 'medium' %}
-    class="tile tile--medium"
-  {% elsif tile-type == 'small' %}
-    class="tile tile--small"
-  {% elsif tile-type == 'featured' %}
-    class="tile tile--large tile--featured"
-  {% else %}
-    class="tile"
-  {% endif %}
->
+{% comment %}
+  Requires:
+    - tile-type: {String} 'header', 'large', 'medium', 'small', 'featured', 'footer', 'cta', 'images'
+    - tile-content: {Object} captured content to be rendered in the tile, then pass object to the component
+
+  Example:
+      {% capture tile-content %}
+        ...content...
+      {% endcapture %}
+
+      {% render 'component-tile', tile-type: 'large',  tile-content: {{tile-content}}  %}
+{% endcomment %}
+
+{% if tile-type == 'header' %}
+  <header class="tile tile--large tile--primary">
+    <div class="tile__track">
+      {{ tile-content }}
+    </div>
+  </header>
+{% elsif tile-type == 'footer' %}
+  <footer class="tile tile--large tile--primary">
+    <div class="tile__track">
+      {{ tile-content }}
+    </div>
+  </footer>
+{% else %}
   <div
-    {% if tile-type == 'featured' %}
-      class="tile__track--featured"
+    {% if tile-type == 'large' %}
+      class="tile tile--large"
+    {% elsif tile-type == 'medium' %}
+      class="tile tile--medium"
+    {% elsif tile-type == 'small' %}
+      class="tile tile--small"
+    {% elsif tile-type == 'featured' %}
+      class="tile tile--large tile--featured"
+    {% elsif tile-type == 'cta' %}
+      class="tile tile--large tile--tertiary"
+    {% elsif tile-type == 'images' %}
+      class="tile tile--small tile--images"
     {% else %}
-      class="tile__track"
+      class="tile"
     {% endif %}
   >
-    {{ tile-content }}
+    <div
+      {% if tile-type == 'featured' %}
+        class="tile__track tile__container-query"
+
+      {% else %}
+        class="tile__track"
+      {% endif %}
+    >
+      {{ tile-content }}
+    </div>
   </div>
-</div>
+{% endif %}
 
 {% style %}
   .tile {
-    /* width: 100%; */
-    /* width: clamp(20ch, 100%, 1900px); */
-    /* width: minmax(20ch, 1900px); */
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-background);
     padding: var(--spacing-padding-xlarge);
+    border-radius: var(--border-radius-xlarge);
     overflow: clip;
   }
 
   .tile--large {
-    /* width: min(100%, 1900px); */
-    min-width: calc(100% - (var(--spacing-padding-large) * 2));
-    max-width: 1900px;
+    width: min(100dvw, 1920px);
+    /* grid-column: span 3; */
   }
 
   .tile--medium {
-    /* width: min(100%, 1900px); */
-    min-width: 50%;
-    max-width: 1900px;
+    width: min(50dvw, 1280px);
+    flex: 1 1 auto;
+    /* grid-column: span 2; */
   }
 
   .tile--small {
-    /* width: min(100%, 1900px); */
-    min-width: none;
-    max-width: 1900px;
+    width: min(30dvw, 640px);
+    /* grid-column: span 1; */
   }
 
   .tile--featured {
-    background: var(--md-sys-color-surface);
-    color: var(--md-sys-color-on-background);
     font: var(--md-sys-typescale-body-medium);
     padding: 0;
+
+    & .tile__track {
+      width: 100%;
+    }
+  }
+
+  .tile--primary {
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+  }
+
+  .tile--secondary {
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    --md-sys-color-primary: var(--md-sys-color-secondary);
+    --md-sys-color-on-primary: var(--md-sys-color-on-secondary);
+    --md-sys-color-primary-container: var(--md-sys-color-secondary-container);
+    --md-sys-color-on-primary-container: var(--md-sys-color-on-secondary-container);
+    --md-sys-color-primary-fixed: var(--md-sys-color-secondary-fixed);
+    --md-sys-color-primary-fixed-dim: var(--md-sys-color-secondary-fixed-dim);
+    --md-sys-color-on-primary-fixed: var(--md-sys-color-on-secondary-fixed);
+    --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-secondary-fixed-variant);
+  }
+
+  .tile--tertiary {
+    background: var(--md-sys-color-tertiary-container);
+    color: var(--md-sys-color-on-tertiary-container);
+    --md-sys-color-primary: var(--md-sys-color-tertiary);
+    --md-sys-color-on-primary: var(--md-sys-color-on-tertiary);
+    --md-sys-color-primary-container: var(--md-sys-color-tertiary-container);
+    --md-sys-color-on-primary-container: var(--md-sys-color-on-tertiary-container);
+    --md-sys-color-primary-fixed: var(--md-sys-color-tertiary-fixed);
+    --md-sys-color-primary-fixed-dim: var(--md-sys-color-tertiary-fixed-dim);
+    --md-sys-color-on-primary-fixed: var(--md-sys-color-on-tertiary-fixed);
+    --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-tertiary-fixed-variant);
   }
 
   .tile__track {
     position: sticky;
-    top: 0;
+    top: var(--spacing-padding-xlarge);
     align-self: flex-start;
     margin: 0 auto;
+    width: fit-content;
   }
 
-  .tile__track--featured {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-gap-small);
+  /* Required for making the Featured Tile responsive */
+  .tile__container-query {
+    container-type: inline-size;
+  }
+
+  .tile--images {
+    background: none;
+    padding: 0;
+
+    .tile__track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-gap-medium);
+    }
+
+    & img {
+      width: 100%;
+      border-radius: var(--border-radius-large);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .tile--large,
+    .tile--medium,
+    .tile--small {
+      width: 100%;
+    }
   }
 {% endstyle %}

@@ -1,20 +1,34 @@
 {% comment %}
   Requires:
-      -type: {Object} - 'collection', 'search', or `blog`. Determines which filter to render.
+      -type: {String} - 'collection', 'search', or `blog`. Determines which filter to render.
+      -object: {Object} - The collection, search, or blog object to render.
 
-  Usage:
-      {% render 'component-collection', type: foo %}
+  Example:
+      {% render 'component-collection', type: blog %}
 {% endcomment %}
-{% capture nested-content %}
 
-    {% render 'component-collection-filter', type: type %}
-    {% render 'component-collection-list', type: type %}
+{% capture tile-content %}
+
+    <div class="component-collection-container">
+      {% render 'component-collection-filter', type: type, object: object %}
+      {% render 'component-collection-list', type: type, object: object %}
+    </div>
 
 {% endcapture %}
 
-{% render 'component-tile', tile-content: {{nested-content}}, tile-type: 'featured' %}
+{% render 'component-tile', tile-type: 'featured', tile-content: {{tile-content}} %}
 
 {% style %}
-  .tile--collection {
+  .component-collection-container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: var(--spacing-gap-small);
+  }
+
+  @container (max-width: 1000px) {
+    .component-collection-container {
+      flex-direction: column;
+    }
   }
 {% endstyle %}
