@@ -1,2 +1,7 @@
 {% render 'component-header', title: page.title %}
-<div class="tile tile--highlight">{{ page.content }}</div>
+
+{% capture tile-content %}
+    {{ content_for_layout }}
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'large', tile-content: {{tile-content}} %}
