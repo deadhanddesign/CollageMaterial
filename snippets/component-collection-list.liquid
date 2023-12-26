@@ -201,6 +201,8 @@
 <script
   type="module"
 >
+  const sortButton = document.querySelector('#sort-button');
+  const sortMenu = document.querySelector('#sort-menu');
   Shopify.queryParams = {};
 
   // Preserve existing query parameters
@@ -217,20 +219,21 @@
   }
 
   // Update sort_by query parameter on menu item click
-  document.querySelectorAll('#sort-menu > *').forEach(function (child) {
-    child.addEventListener('click', function (e) {
-      var value = e.currentTarget.getAttribute('data-value');
+  if (sortMenu) {
+    document.querySelectorAll('#sort-menu > *').forEach(function (child) {
+      child.addEventListener('click', function (e) {
+        var value = e.currentTarget.getAttribute('data-value');
 
-      Shopify.queryParams.sort_by = value;
-      location.search = new URLSearchParams(Shopify.queryParams).toString();
+        Shopify.queryParams.sort_by = value;
+        location.search = new URLSearchParams(Shopify.queryParams).toString();
+      });
     });
-  });
+  }
 
   // Connect the sort button to the menu
-  const sortButton = document.querySelector('#sort-button');
-  const sortMenu = document.querySelector('#sort-menu');
-
-  sortButton.addEventListener('click', () => {
-    sortMenu.open = !sortMenu.open;
-  });
+  if (sortButton && sortMenu) {
+    sortButton.addEventListener('click', () => {
+      sortMenu.open = !sortMenu.open;
+    });
+  }
 </script>
