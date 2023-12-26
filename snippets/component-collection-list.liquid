@@ -67,27 +67,36 @@
     {{ tile-content }}
 
   {% elsif type == 'collection' and stuff == 0 %}
-    <p style="margin: auto">
-      🔍 Looks like your filters have led to a hidden oasis with no results. Let's adjust your search to uncover more
-      spa treasures! Clear some filters by clicking on them above or
-      <span>
-        <a style="color: var(--md-sys-color-primary)" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">
-          clear them all
-        </a>
-      </span>
-      to explore a world of relaxation and pampering. Your perfect match is waiting!
-    </p>
+    <div class="message-container">
+      <h2 class="display--medium">A Moment of Pause... No Results Found 🌟🔍</h2>
+      <p class="body--large" style="margin: auto">
+        🔍 Looks like your filters have led to a hidden oasis with no results. Let's adjust your search to uncover more
+        spa treasures! Clear some filters by clicking on them above or
+        <span>
+          <a style="color: var(--md-sys-color-primary)" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">
+            clear them all
+          </a>
+        </span>
+        to explore a world of relaxation and pampering. Your perfect match is waiting!
+      </p>
+    </div>
   {% elsif search.performed and stuff == 0 %}
-    <p style="margin: auto">
-      🔍 No results found. But don't worry, your perfect match might just be a search away! Try different keywords for
-      more spa delights. Let's find what you're looking for! 💆‍♀️🌟
-    </p>
+    <div class="message-container">
+      <h2 class="display--medium">Still Seeking Serenity? 🔍💫</h2>
+      <p class="body--large" style="margin: auto">
+        🔍 No results found. But don't worry, your perfect match might just be a search away! Try different keywords for
+        more spa delights. Let's find what you're looking for! 💆‍♀️🌟
+      </p>
+    </div>
   {% elsif search.performed != true %}
-    <p style="margin: auto">
-      🌟 Ready to find your perfect product? 🔍 Simply type in what your heart desires, then use our filters for a
-      tailored search. From blissful treatments to rejuvenating products, your journey to relaxation starts here. Let's
-      begin!
-    </p>
+    <div class="message-container">
+      <h2 class="display--medium">Begin Your Blissful Search! 🔍✨</h2>
+      <p class="body--large" style="margin: auto">
+        🌟 Ready to find your perfect product? 🔍 Simply type in what your heart desires, then use our filters for a
+        tailored search. From blissful treatments to rejuvenating products, your journey to relaxation starts here.
+        Let's begin!
+      </p>
+    </div>
   {% endif %}
 </div>
 
@@ -176,6 +185,15 @@
         background: var(--md-sys-color-on-primary);
         color: var(--md-sys-color-primary);
       }
+    }
+  }
+
+  .message-container {
+    width: fit-content;
+    margin: auto;
+
+    & h2 {
+      margin-block-end: var(--spacing-margin-small);
     }
   }
 {% endstyle %}
