@@ -1,7 +1,8 @@
 {% render 'component-header', title: 'cart' %}
 
+{% capture tile-content %}
 {%- if cart.item_count > 0 -%}
-  {% form 'cart', cart, class: 'tile tile--highlight', id: 'cart' %}
+  {% form 'cart', cart, id: 'cart' %}
     <md-list>
       {% for item in cart.items %}
         <md-list-item type="button">
@@ -54,7 +55,8 @@
   {% endform %}
 
 {%- else -%}
-  <div class="tile tile--highlight">
     <p>The cart is empty. <a href="/collections/all">Continue shopping!</a></p>
-  </div>
 {%- endif -%}
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'large', tile-content: tile-content %}

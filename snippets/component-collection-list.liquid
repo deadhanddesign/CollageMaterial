@@ -7,7 +7,7 @@
     or search results.
 
   Example:
-  {% render 'component-collection-list', type: 'collection' %}
+  {% render 'component-collection-list', type: 'collection', object: object %}
 {% endcomment %}
 
 {% if type == 'collection' %}
@@ -25,7 +25,7 @@
 >
   {% if stuff > 0 %}
     <div class="card-container__sort">
-      {% render 'component-collection-chips', chip-type: type %}
+      {% render 'component-collection-chips', chip-type: object %}
 
       <span style="position: relative; place-self: end;">
         {% assign sort_by = object.sort_by | default: object.default_sort_by %}
