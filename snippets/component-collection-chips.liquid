@@ -1,6 +1,8 @@
 {% comment %}
   Requires:
   - chip-type: {Object} - The type of chip to render. Valid values are 'search' or 'collection'.
+    IMPORTANT:
+      This should be the {Object} from the top-most parent!
 
   Example:
   {% render 'chip', chip-type: search %}
@@ -44,9 +46,9 @@
     {%- endif -%}
   {%- endfor -%}
 
-  <md-text-button id="clear-filters-button" href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
-    >Clear Filters</md-text-button
-  >
+  <md-text-button id="clear-filters-button" href="{{ type.url }}?sort_by={{ type.sort_by }}">
+    Clear Filters
+  </md-text-button>
 </md-chip-set>
 
 {% style %}
@@ -71,4 +73,10 @@
   if (chip.length === 0 && clearFiltersButton) {
     clearFiltersButton.style.display = 'none';
   }
+
+  // if (chip.length > 0) {
+  //   chip.forEach((chip) => {
+  //     chip.addEventListener('remove', (event) => event.preventDefault());
+  //   });
+  // }
 </script>

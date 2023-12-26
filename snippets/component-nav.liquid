@@ -226,3 +226,31 @@
     }
   }
 {% endstyle %}
+
+<script type="module">
+  function navMenu() {
+    const navSpaButton = document.body.querySelector('#nav-spa-button');
+    const navSpaMenu = document.body.querySelector('#nav-spa-menu');
+    const navShopButton = document.body.querySelector('#nav-shop-button');
+    const navShopMenu = document.body.querySelector('#nav-shop-menu');
+    const navInfoButton = document.body.querySelector('#nav-info-button');
+    const navInfoMenu = document.body.querySelector('#nav-info-menu');
+    const navCartButton = document.body.querySelector('#nav-cart-button');
+    const navCartMenu = document.body.querySelector('#nav-cart-menu');
+
+    navSpaButton.addEventListener('click', () => {
+      navSpaMenu.open = !navSpaMenu.open;
+    });
+    navShopButton.addEventListener('click', () => {
+      navShopMenu.open = !navShopMenu.open;
+    });
+    navInfoButton.addEventListener('click', () => {
+      navInfoMenu.open = !navInfoMenu.open;
+    });
+    navCartButton.addEventListener('click', () => {
+      navCartMenu.open = !navCartMenu.open;
+    });
+  }
+
+  navMenu();
+</script>

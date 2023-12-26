@@ -1,7 +1,7 @@
 {% render 'component-header', title: 'Collections' %}
 
-<div class="tile tile--highlight tile--wide">
-  <div class="button-container">
+{% capture tile-content %}
+  <div class="collections-container">
     <md-outlined-button
       href="/collections/all"
     >
@@ -15,4 +15,16 @@
       </md-outlined-button>
     {% endfor %}
   </div>
-</div>
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'featured', tile-content: {{tile-content}} %}
+
+{% style %}
+  .collections-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--spacing-gap-small);
+    padding: var(--spacing-padding-xlarge);
+  }
+{% endstyle %}
