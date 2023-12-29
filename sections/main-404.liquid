@@ -1,0 +1,25 @@
+<div class="tile tile--secondary">
+  <h2>{{ section.settings.header }}</h2>
+  <p>
+    {{ section.settings.explainer }}
+  </p>
+  <md-filled-button onclick="history.back()">Back</md-filled-button>
+</div>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header"
+    },
+    {
+      "type": "text",
+      "id": "explainer",
+      "label": "Explainer Text"
+    }
+  ]
+}
+{% endschema %}

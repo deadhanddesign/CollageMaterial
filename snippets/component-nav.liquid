@@ -4,7 +4,7 @@
       <span>
         <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon aria-label="{{ link.title }}">
           {{ link.title }}
-          <md-icon slot="icon">arrow_drop_down</md-icon>
+          {% comment %} <md-icon slot="icon">arrow_drop_down</md-icon> {% endcomment %}
         </md-text-button>
         <md-menu id="nav-{{ link.title | downcase }}-menu" anchor="nav-{{ link.title | downcase }}-button">
           {%- if link.links != blank -%}
@@ -74,7 +74,7 @@
       <span>
         <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon aria-label="{{ link.title }}">
           {{ link.title }}
-          <md-icon slot="icon">arrow_drop_down</md-icon>
+          {% comment %} <md-icon slot="icon">arrow_drop_down</md-icon> {% endcomment %}
         </md-text-button>
         <md-menu id="nav-{{ link.title | downcase }}-menu" anchor="nav-{{ link.title | downcase }}-button">
           {%- if link.links != blank -%}
@@ -112,7 +112,7 @@
 
     <span>
       <md-text-button id="nav-cart-button" has-icon>
-        <md-icon slot="icon">shopping_cart</md-icon>
+        {% comment %} <md-icon slot="icon">shopping_cart</md-icon> {% endcomment %}
         Cart
       </md-text-button>
       <md-menu id="nav-cart-menu" anchor="nav-cart-button">
@@ -180,9 +180,9 @@
       align-items: stretch;
       width: fit-content;
       position: relative;
-      gap: var(--spacing-gap-medium);
+      gap: var(--spacing-gap-xsmall);
       border-radius: var(--border-radius-xlarge);
-      padding: var(--spacing-padding-xsmall);
+      /* padding: var(--spacing-padding-xsmall); */
       background: var(--md-sys-color-background);
       color: var(--md-sys-color-on-background);
       --md-elevation-level: 2;

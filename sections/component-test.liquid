@@ -1,0 +1,107 @@
+{% assign content = section.settings['h2-content'] %}
+
+{% case section.settings['h2-size'] %}
+  {% when 'h2' %}
+    <h2>
+  {% when 'h3' %}
+    <h3>
+  {% when 'h4' %}
+    <h4>
+  {% when 'h5' %}
+    <h5>
+  {% when 'h6' %}
+    <h6>
+  {% else %}
+    <p>
+{% endcase %}
+Test test this is a {{ content }}
+{% case section.settings['h2-size'] %}
+  {% when 'h2' %}
+    </h2>
+  {% when 'h3' %}
+    </h3>
+  {% when 'h4' %}
+    </h4>
+  {% when 'h5' %}
+    </h5>
+  {% when 'h6' %}
+    </h6>
+  {% else %}
+    </p>
+{% endcase %}
+
+{% stylesheet %}
+  .headline-2:has(> h2) {
+    color: red;
+  }
+  .headline-2:has(> h3) {
+    color: blue;
+  }
+  .headline-2:has(> h4) {
+    color: green;
+  }
+  .headline-2:has(> h5) {
+    color: yellow;
+  }
+  .headline-2:has(> h6) {
+    color: orange;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Headline 2 Test",
+  "class": "headline-2",
+  "tag": "header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "h2-content",
+      "label": "Headline Content"
+    },
+    {
+      "type": "select",
+      "id": "h2-size",
+      "label": "Headline Size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Headline 2 Test",
+      "category": "Things",
+      "settings": {
+        "h2-content": "Success"
+      }
+    },
+    {
+      "name": "Default Headline 2 Test 2",
+      "category": "Things",
+      "settings": {
+        "h2-content": "Success 2"
+      }
+    }
+  ]
+}
+{% endschema %}

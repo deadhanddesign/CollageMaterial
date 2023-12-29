@@ -55,8 +55,22 @@
   {% endform %}
 
 {%- else -%}
-    <p>The cart is empty. <a href="/collections/all">Continue shopping!</a></p>
+  <div class="message-container">
+    <h2 class="display--medium">Treasures Await!</h2>
+    <p class="body--large">🛍️ Your cart is currently as tranquil as a spa room post-massage – empty and waiting for relaxation treasures! Continue browsing to fill it with your favorite pampering picks. Your journey to serenity is just a <a href="/collections/all">few clicks away</a>!</p>
+  </div>
 {%- endif -%}
 {% endcapture %}
 
 {% render 'component-tile', tile-type: 'large', tile-content: tile-content %}
+
+{% style %}
+  .message-container {
+    width: fit-content;
+    margin: auto;
+
+    & h2 {
+      margin-block-end: var(--spacing-margin-small);
+    }
+  }
+{% endstyle %}
