@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "header": {
+      "type": "component-header",
+      "settings": {
+      
+      }
+    },
+    "main":{
+      "type": "component-tile",
+      "settings": {
+      
+      }
+  }
+},
+  "order": [
+    "header",
+    "main"
+  ]
+
+}

@@ -486,233 +486,111 @@ md-text-button {
 	font: var(--md-sys-typescale-label-small);
 }
 
+/* Tile Components - Shared Settings */
+.tile {
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-background);
+    padding: var(--spacing-padding-xlarge);
+    border-radius: var(--border-radius-xlarge);
+    overflow: clip;
+  }
 
-/* TODO: Refactor Tiles into reusable component */
-/* .tile {
-	display: flex;
-	flex-direction: column;
-	gap: var(--spacing-gap-medium); 
-	flex: 1;
-	color: var(--md-sys-color-on-primary-container);
-	background-color: var(--md-sys-color-primary-container);
-	padding: var(--spacing-padding-xlarge);
-	border-radius: var(--border-radius-xlarge);
-	position: relative;
-	 outline: var(--md-sys-color-surface-container) solid 0.2rem;
-	outline-offset: -0.4rem; 
+  .tile--large {
+    width: min(100dvw, 1920px);
+    /* grid-column: span 3; */
+  }
 
-	&.tile--highlight {
-		background: var(--md-sys-color-surface);
-		color: var(--md-sys-color-on-background);
-		font: var(--md-sys-typescale-body-medium);
+  .tile--medium {
+    width: min(50dvw, 1280px);
+    flex: 1 1 auto;
+    /* grid-column: span 2; */
+  }
 
-		& form:not(.card) {
-			display: flex;
-			flex-direction: inherit;
-			gap: inherit;
-		}
+  .tile--small {
+    width: min(30dvw, 640px);
+    /* grid-column: span 1; */
+  }
 
-		& md-list {
-			padding: var(--spacing-padding-small);
-			background: var(--md-sys-color-surface-container-low);
-			color: var(--md-sys-color-on-surface);
-			border-radius: var(--border-radius-medium);
-		}
+  .tile--featured {
+    font: var(--md-sys-typescale-body-medium);
+    padding: 0;
 
-		& a {
-			text-decoration: none;
-			color: inherit;
-		}
-	}
+    & .tile__track {
+      width: 100%;
+    }
+  }
 
-	&.tile--secondary {
-		--md-sys-color-primary: var(--md-sys-color-secondary);
-		background: var(--md-sys-color-secondary-container);
-		color: var(--md-sys-color-on-secondary-container);
-	}
+  .tile--primary {
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+  }
 
-	&.tile--tertiary {
-		--md-sys-color-primary: var(--md-sys-color-tertiary);
-		background: var(--md-sys-color-tertiary-container);
-		color: var(--md-sys-color-on-tertiary-container);
-	}
+  .tile--secondary {
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    --md-sys-color-primary: var(--md-sys-color-secondary);
+    --md-sys-color-on-primary: var(--md-sys-color-on-secondary);
+    --md-sys-color-primary-container: var(--md-sys-color-secondary-container);
+    --md-sys-color-on-primary-container: var(--md-sys-color-on-secondary-container);
+    --md-sys-color-primary-fixed: var(--md-sys-color-secondary-fixed);
+    --md-sys-color-primary-fixed-dim: var(--md-sys-color-secondary-fixed-dim);
+    --md-sys-color-on-primary-fixed: var(--md-sys-color-on-secondary-fixed);
+    --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-secondary-fixed-variant);
+  }
 
-	&.tile--wide,
-	.tile--wide {
-		width: min(1920px, 100% - (var(--spacing-padding-large) * 2));
-		flex: none;
-	}
+  .tile--tertiary {
+    background: var(--md-sys-color-tertiary-container);
+    color: var(--md-sys-color-on-tertiary-container);
+    --md-sys-color-primary: var(--md-sys-color-tertiary);
+    --md-sys-color-on-primary: var(--md-sys-color-on-tertiary);
+    --md-sys-color-primary-container: var(--md-sys-color-tertiary-container);
+    --md-sys-color-on-primary-container: var(--md-sys-color-on-tertiary-container);
+    --md-sys-color-primary-fixed: var(--md-sys-color-tertiary-fixed);
+    --md-sys-color-primary-fixed-dim: var(--md-sys-color-tertiary-fixed-dim);
+    --md-sys-color-on-primary-fixed: var(--md-sys-color-on-tertiary-fixed);
+    --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-tertiary-fixed-variant);
+  }
 
-	&.tile--grid,
-	.tile--grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
-		align-content: center;
-		align-items: center;
+  .tile__track {
+    position: sticky;
+    top: var(--spacing-padding-xlarge);
+    align-self: flex-start;
+    margin: 0 auto;
+    width: fit-content;
+  }
 
-		& form {
-			display: flex;
-			align-items: stretch;
-			flex-wrap: wrap;
-			gap: var(--spacing-gap-medium);
+  /* Required for making the Featured Tile responsive */
+  .tile__container-query {
+    container-type: inline-size;
+  }
 
-			& md-outlined-text-field {
-				flex-grow: 1;
-			}
+  .tile--images {
+    background: none;
+    padding: 0;
 
-			& md-filled-button {
-				height: auto;
-			}
-		}
-	}
+    .tile__track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-gap-medium);
+    }
 
-	&.tile--filter-grid,
-	.tile--filter-grid {
-		display: grid;
-		grid-template-columns: 320px 1fr;
-		justify-items: stretch;
-		align-items: start;
-		gap: var(--spacing-gap-medium);
-	}
+    & img {
+      width: 100%;
+      border-radius: var(--border-radius-large);
+    }
+  }
 
-	&:is(img) {
-		padding: 0;
-		flex: 1;
-		max-height: 90dvh;
-	}
-
-	&#contact_form {
-		width: 100%;
-	}
-} */
-
-/* TODO: Refactor Card-Containers et al into variant of the Tile component
- * -Possibly as a "sub-component" 
- */
-/* .card-container__grid {
-	padding: var(--spacing-padding-medium);
-	background: var(--md-sys-color-surface-variant);
-	color: var(--md-sys-color-on-surface);
-	border-radius: var(--border-radius-large);
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-	gap: var(--spacing-gap-medium);
-
-	&.card-container__grid--solo {
-		background: var(--md-sys-color-secondary-fixed-dim);
-		color: var(--md-sys-color-on-secondary-fixed);
-		border-radius: var(--border-radius-large);
-		padding: var(--spacing-padding-large);
-		/* min-width: 40%;
-		max-width: 1920px; 
-
-		& .card {
-			background: var(--md-sys-color-secondary-container);
-			color: var(--md-sys-color-on-secondary-container);
-
-			& img {
-				outline: var(--md-sys-color-secondary-container) solid 0.2rem;
-			}
-
-			&:is(h2) {
-				display: block;
-				background: inherit;
-				color: inherit;
-				border: inherit;
-				min-width: 10ch;
-			}
-
-			& md-filled-button {
-				--md-filled-button-container-color: var(--md-sys-color-secondary);
-				--md-filled-button-label-text-color: var(--md-sys-color-on-secondary);
-			}
-			& md-filled-icon-button {
-				--md-filled-icon-button-container-color: var(--md-sys-color-secondary);
-				--md-filled-icon-button-label-text-color: var(--md-sys-color-on-secondary);
-			}
-		}
-	}
-} */
+  @media (max-width: 900px) {
+    .tile--large,
+    .tile--medium,
+    .tile--small {
+      width: 100%;
+    }
+  }
 
 
-/* TODO: Move to Tile Component */
-/* #card-container__filter {
-	display: grid;
-	 gap: var(--spacing-gap-medium); 
-	position: sticky;
-	top: var(--spacing-padding-large);
-
-	& p {
-		min-width: auto;
-		margin-block-start: var(--spacing-margin-xsmall);
-	}
-
-	& .button-wrapper {
-		margin-block-start: var(--spacing-padding-medium);
-	}
-
-	& details {
-		font: var(--md-sys-typescale-label-small);
-
-		& summary {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: var(--spacing-padding-medium);
-			font: var(--md-sys-typescale-body-xlarge);
-			cursor: pointer;
-			user-select: none;
-
-			& span::after {
-				font-family: "Material Symbols Outlined";
-				content: "add";
-				font-size: var(--md-sys-typescale-body-xlarge-size);
-			}
-		}
-
-		.filter-group-display__option-grid {
-			display: grid;
-			grid-auto-rows: 1fr;
-			grid-auto-columns: 1fr;
-			grid-auto-flow: row;
-			gap: var(--spacing-gap-xsmall);
-			align-items: center;
-			justify-items: stretch;
-			padding: 0 var(--spacing-padding-medium);
-			overflow-y: scroll;
-			max-height: 10rem;
-			margin-bottom: var(--spacing-margin-medium);
-
-			&:is([data-type="price_range"]) {
-				overflow: visible;
-			}
-
-			& md-slider {
-				grid-column: 1 / 3;
-				--md-slider-label-container-height: 0.5rem;
-				--md-slider-label-text-size: 0.75rem;
-				--md-slider-label-text-line-height: 1;
-			}
-
-			& label {
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
-				gap: var(--spacing-gap-xsmall);
-			}
-		}
-
-		&:is([open]) > summary > span::after {
-			content: "remove";
-		}
-	}
-} */
 
 
-/* TODO: Move into Tile component */
-/* .card-container__sort {
-	width: 100%;
-} */
 
 /* TODO: Move into CS specific group */
 #cs-logo {
@@ -740,9 +618,8 @@ md-text-button {
 	}
 }
 
-/* TODO: Consider for refactor (only on contact form) */
 
-
+/* TODO: What is this? */
 #WebPixelsManagerSandboxContainer {
 	display: none;
 }

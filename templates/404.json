@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "header": "Oops! Looks Like This Page Took a Spa Day! 🛀✨",
+        "explainer": "We can't find the page you're looking for, but we've got plenty of relaxing options waiting for you back home. Take a step back and find your path to serenity!"
+      }
+    },
+    "be6530eb-e575-4193-b7d0-0944fa319494": {
+      "type": "component-test",
+      "settings": {
+        "h2-content": "Success",
+        "h2-size": "h2"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "be6530eb-e575-4193-b7d0-0944fa319494"
+  ]
+}

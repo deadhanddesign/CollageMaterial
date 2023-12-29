@@ -1,0 +1,312 @@
+{% assign tile-type = section.settings['tile-type'] %}
+{% assign tile-content = section.settings['tile-content'] %}
+
+{% comment %}
+  <h1>{{ section.settings['tile-type'] }}</h1>
+
+  {% case tile-type %}
+    {% when 'header' %}
+      <h1>Chubiano</h1>
+
+    {% when 'footer' %}
+      <h1>Footiano</h1>
+
+    {% when 'large' %}
+      <h1>Large Chubiano</h1>
+
+    {% when 'medium' %}
+      <h1>Medium Chubiano</h1>
+
+    {% when 'small' %}
+      <h1>Small Chubiano</h1>
+
+    {% when 'featured' %}
+      <h1>Featured Chubiano</h1>
+
+    {% when 'cta' %}
+      <h1>CTA Chubiano</h1>
+
+    {% when 'images' %}
+      <h1>Images Chubiano</h1>
+    {% else %}
+      <h1>No Chubiano</h1>
+  {% endcase %}
+{% endcomment %}
+
+{% comment %}
+  {% case tile-type %}
+    {% when 'large' %}
+      "tile tile--large"
+    {% when 'medium' %}
+      "tile tile--medium"
+    {% when 'small' %}
+      "tile tile--small"
+    {% when 'featured' %}
+      "tile tile--large tile--featured"
+    {% when 'cta' %}
+      "tile tile--large tile--tertiary"
+    {% when 'images' %}
+      "tile tile--small tile--images"
+    {% else %}
+      "tile"
+  {% endcase %}
+{% endcomment %}
+
+{% if tile-type == 'header' %}
+  <header class="tile tile--large tile--primary">
+    <div class="tile__track">
+      {{ tile-content }}
+    </div>
+  </header>
+{% elsif tile-type == 'footer' %}
+  <footer class="tile tile--large tile--primary">
+    <div class="tile__track">
+      {{ tile-content }}
+    </div>
+  </footer>
+{% else %}
+  <div
+    {% case tile-type %}
+      {% when 'large' %}
+        class="tile tile--large"
+      {% when 'medium' %}
+        class="tile tile--medium"
+      {% when 'small' %}
+        class="tile tile--small"
+      {% when 'featured' %}
+        class="tile tile--large tile--featured"
+      {% when 'cta' %}
+        class="tile tile--large tile--tertiary"
+      {% when 'images' %}
+        class="tile tile--small tile--images"
+      {% else %}
+        class="tile"
+    {% endcase %}
+  >
+    <div
+      {% if tile-type == 'featured' %}
+        class="tile__track tile__container-query"
+
+      {% else %}
+        class="tile__track"
+      {% endif %}
+    >
+      {{ tile-content }}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .tile {
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-background);
+    padding: var(--spacing-padding-xlarge);
+    border-radius: var(--border-radius-xlarge);
+    overflow: clip;
+  }
+
+  .tile--large {
+    width: min(100%, 1920px);
+    /* grid-column: span 3; */
+  }
+
+  .tile--medium {
+    width: min(50%, 1280px);
+    flex: 1 1 auto;
+    /* grid-column: span 2; */
+  }
+
+  .tile--small {
+    width: min(30%, 640px);
+    /* grid-column: span 1; */
+  }
+
+  .tile--featured {
+    font: var(--md-sys-typescale-body-medium);
+    padding: 0;
+
+    & .tile__track {
+      width: 100%;
+    }
+  }
+
+  .tile--primary {
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+  }
+
+  .tile--secondary {
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    --md-sys-color-primary: var(--md-sys-color-secondary);
+    --md-sys-color-on-primary: var(--md-sys-color-on-secondary);
+    --md-sys-color-primary-container: var(--md-sys-color-secondary-container);
+    --md-sys-color-on-primary-container: var(--md-sys-color-on-secondary-container);
+    --md-sys-color-primary-fixed: var(--md-sys-color-secondary-fixed);
+    --md-sys-color-primary-fixed-dim: var(--md-sys-color-secondary-fixed-dim);
+    --md-sys-color-on-primary-fixed: var(--md-sys-color-on-secondary-fixed);
+    --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-secondary-fixed-variant);
+  }
+
+  .tile--tertiary {
+    background: var(--md-sys-color-tertiary-container);
+    color: var(--md-sys-color-on-tertiary-container);
+    --md-sys-color-primary: var(--md-sys-color-tertiary);
+    --md-sys-color-on-primary: var(--md-sys-color-on-tertiary);
+    --md-sys-color-primary-container: var(--md-sys-color-tertiary-container);
+    --md-sys-color-on-primary-container: var(--md-sys-color-on-tertiary-container);
+    --md-sys-color-primary-fixed: var(--md-sys-color-tertiary-fixed);
+    --md-sys-color-primary-fixed-dim: var(--md-sys-color-tertiary-fixed-dim);
+    --md-sys-color-on-primary-fixed: var(--md-sys-color-on-tertiary-fixed);
+    --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-tertiary-fixed-variant);
+  }
+
+  .tile__track {
+    position: sticky;
+    top: var(--spacing-padding-xlarge);
+    align-self: flex-start;
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  /* Required for making the Featured Tile responsive */
+  .tile__container-query {
+    container-type: inline-size;
+  }
+
+  .tile--images {
+    background: none;
+    padding: 0;
+
+    .tile__track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-gap-medium);
+    }
+
+    & img {
+      width: 100%;
+      border-radius: var(--border-radius-large);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .tile--large,
+    .tile--medium,
+    .tile--small {
+      width: 100%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile Content",
+  "class": "fakeclass",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tile-type",
+      "label": "Tile Type",
+      "options": [
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "featured",
+          "label": "Featured"
+        },
+        {
+          "value": "cta",
+          "label": "CTA"
+        },
+        {
+          "value": "images",
+          "label": "Images"
+        },
+        {
+          "value": "header",
+          "label": "Header"
+        },
+        {
+          "value": "footer",
+          "label": "Footer"
+        }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "richtext",
+      "id": "tile-content",
+      "label": "Tile Content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tiles - Large",
+      "settings": {
+        "tile-type": "large",
+        "tile-content": "<h1>Large Tile Content</h1>"
+      }
+    },
+    {
+      "name": "Tiles - Medium",
+      "settings": {
+        "tile-type": "medium",
+        "tile-content": "<h1>Medium Tile Content</h1>"
+      }
+    },
+    {
+      "name": "Tiles - Small",
+      "settings": {
+        "tile-type": "small",
+        "tile-content": "<h1>Small Tile Content</h1>"
+      }
+    },
+    {
+      "name": "Tiles - Featured",
+      "settings": {
+        "tile-type": "featured",
+        "tile-content": "<h1>Featured Tile Content</h1>"
+      }
+    },
+    {
+      "name": "Tiles - CTA",
+      "settings": {
+        "tile-type": "cta",
+        "tile-content": "<h1>CTA Tile Content</h1>"
+      }
+    },
+    {
+      "name": "Tiles - Images",
+      "settings": {
+        "tile-type": "images",
+        "tile-content": "<h1>Images Tile Content</h1>"
+      }
+    },
+    {
+      "name": "Tiles - Header",
+      "settings": {
+        "tile-type": "header",
+        "tile-content": "<h1>Header Tile Content</h1>"
+      }
+    },
+    {
+      "name": "Tiles - Footer",
+      "settings": {
+        "tile-type": "footer",
+        "tile-content": "<h1>Footer Tile Content</h1>"
+      }
+    }
+  ]
+}
+{% endschema %}

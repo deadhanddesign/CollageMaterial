@@ -52,7 +52,18 @@
         {% for product in collection.products %}
           {% render 'component-card', product: product %}
         {% endfor %}
-        <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
+        <div class="card-container__pagination">
+          {{
+            paginate
+            | default_pagination:
+              next: '<span class="material-symbols-outlined">
+            navigate_next
+            </span>',
+              previous: '<span class="material-symbols-outlined">
+                navigate_before
+                </span>'
+          }}
+        </div>
       {% endpaginate %}
 
     {% elsif type == 'search' %}
@@ -60,7 +71,18 @@
         {% for product in search.results %}
           {% render 'component-card', product: product %}
         {% endfor %}
-        <div class="card-container__pagination">{{ paginate | default_pagination }}</div>
+        <div class="card-container__pagination">
+          {{
+            paginate
+            | default_pagination:
+              next: '<span class="material-symbols-outlined">
+          navigate_next
+          </span>',
+              previous: '<span class="material-symbols-outlined">
+              navigate_before
+              </span>'
+          }}
+        </div>
       {% endpaginate %}
     {% endif %}
   {% elsif type == 'upsells' %}

@@ -1,0 +1,23 @@
+<div class="tile__track">
+  {% if section.settings.title %}
+    <h1 class="display--large">{{ section.settings.title }}</h1>
+  {% else %}
+    <h1 class="display--large">{{ page.title }}</h1>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Page Header",
+  "class": "tile tile--large tile--primary",
+  "tag": "header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Page Title"
+    }
+  ]
+}
+{% endschema %}
