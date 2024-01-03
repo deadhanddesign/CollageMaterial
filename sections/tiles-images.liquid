@@ -1,0 +1,38 @@
+<div class="tile__track">
+  {% for block in section.blocks %}
+    {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'lazy' }}
+  {% endfor %}
+</div>
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile - Images",
+  "class": "tile tile--small tile--images",
+
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tile - Images",
+      "category": "tiles",
+      "settings": {},
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

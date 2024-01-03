@@ -1,0 +1,63 @@
+<div class="tile__track">
+  {% case section.settings.header_size %}
+    {% when 'h2' %}
+      <h2 class="display--medium">{{ section.settings.headline }}</h2>
+    {% when 'h3' %}
+      <h3 class="display--small">{{ section.settings.headline }}</h3>
+    {% else %}
+      <h4>{{ section.settings.headline }}</h4>
+  {% endcase %}
+  <div class="rich-text-block">{{ section.settings.copy }}</div>
+</div>
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile - Medium",
+  "class": "tile tile--medium",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline"
+    },
+    {
+      "type": "select",
+      "id": "header_size",
+      "label": "Header Size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tile - Medium",
+      "category": "tiles",
+      "settings": {
+        "headline": "This is a Medium Tile",
+        "header_size": "h3",
+        "copy": "<p>Use this tile for average pieces of page content.</p><p>It's great if you want to put a small tile of something next to it on desktop.</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

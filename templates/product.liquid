@@ -53,7 +53,8 @@
       {%- for product in recommendations.products -%}
         <li>
           <a href="{{ product.url }}">
-            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt }}">
+            {{ product.featured_image | image_url: '300x300' | image_tag: loading: 'lazy' }}
+
             <p>{{ product.title }}</p>
             <p>{{ product.price | money }}</p>
           </a>
@@ -62,6 +63,8 @@
     </ul>
   {%- endif -%}
 </div>
+
+{% section 'footer' %}
 
 <script type="module">
   var loadProductRecommendationsIntoSection = function () {

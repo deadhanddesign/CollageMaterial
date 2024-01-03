@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "title": "",
+        "overline": "",
+        "show_overline": false,
+        "byline": "",
+        "show_byline": false
+      }
+    },
+    "main": {
+      "type": "tiles-large",
+      "settings": {
+        "headline": "",
+        "copy": ""
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "header",
+    "main",
+    "footer"
+  ]
+}

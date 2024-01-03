@@ -1,0 +1,66 @@
+{% case section.settings['hero-type'] %}
+  {% when 'product' %}
+    {% render 'component-product-highlight' %}
+  {% when 'collection' %}
+    <div class="component-collection-container">
+      {% render 'component-collection-filter', type: 'collection', object: collection %}
+      {% render 'component-collection-list', type: 'collection', object: collection %}
+    </div>
+  {% when 'search' %}
+    <div class="component-collection-container">
+      {% render 'component-collection-filter', type: 'search', object: search %}
+      {% render 'component-collection-list', type: 'search', object: search %}
+    </div>
+  {% when 'blog' %}
+    <div class="component-collection-container">
+      {% render 'component-collection-filter', type: 'blog', object: blog %}
+      {% render 'component-collection-list', type: 'blog', object: blog %}
+    </div>
+{% endcase %}
+
+{% stylesheet %}
+  .component-collection-container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: var(--spacing-gap-small);
+  }
+
+  @container (max-width: 1000px) {
+    .component-collection-container {
+      flex-direction: column;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile - Hero",
+  "class": "tile tile--large tile--hero",
+  "settings": [
+    {
+      "type": "select",
+      "id": "hero-type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "product",
+          "label": "Product"
+        },
+        {
+          "value": "collection",
+          "label": "Collection"
+        },
+        {
+          "value": "search",
+          "label": "Search"
+        },
+        {
+          "value": "blog",
+          "label": "Blog"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
