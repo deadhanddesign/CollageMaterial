@@ -1,0 +1,190 @@
+<div class="home-hero__tile">
+  <img
+    class="home-hero__image"
+    src="/assets/fredericksburg-door.jpg"
+    alt="Front door of the Fredericksburg Spa location"
+    height="1200"
+    width="1200"
+    loading="eager"
+  >
+  <div class="home-hero__info-section" id="info-fred">
+    <div class="home-hero__location" id="location-fred">
+      <h2 class="display--medium">Fredericksburg Spa</h2>
+      <div class="body--large">
+        804 Charles Street<br>
+        Fredericksburg, VA 22401<br>
+        (540) 479-6470
+      </div>
+      <div class="home-hero__button-wrapper">
+        <md-text-button>Learn More</md-text-button>
+        <md-filled-button>Book Now</md-filled-button>
+      </div>
+    </div>
+  </div>
+  {% comment %}
+    <md-filled-icon-button id="info-button-fred" type="button" aria-label="open-close-info">
+      <md-icon id="info-button-fred-icon">add</md-icon>
+    </md-filled-icon-button>
+  {% endcomment %}
+</div>
+
+<div class="home-hero__logo-wrapper">
+  <svg class="home-hero__logo" viewBox="0 0 332.6 214.37" role="img" height="100%" width="100%">
+    <title>Collage Logo</title>
+    <g>
+      <path
+        class="cs-logo__teal"
+        d="m237.92,75.35l19.42-44.3,19.3,44.3h-38.71Zm50.22,26.39h10.81l-35.58-81.38h-4.53l-35.69,81.38h3.26l10.58-24.07h40.69l10.46,24.07Z" />
+      <polygon
+        class="cs-logo__yellow"
+        points="201.36 109.45 201.36 30.39 191.02 30.39 191.02 111.78 236.88 111.78 236.88 109.45 201.36 109.45" />
+      <polygon
+        class="cs-logo__coral"
+        points="178.59 99.4 178.59 20.34 168.24 20.34 168.24 101.72 217.37 101.72 217.37 99.4 178.59 99.4" />
+      <path
+        class="cs-logo__yellow"
+        d="m119,158.23c-14.93,0-24.64-13.48-24.64-34.79s9.71-34.79,24.64-34.79,24.79,13.48,24.79,34.79-9.71,34.79-24.79,34.79Zm0,2.9c21.89,0,38.27-16.24,38.27-37.69s-16.38-37.69-38.27-37.69-38.13,16.24-38.13,37.69,16.38,37.69,38.13,37.69Z" />
+      <polygon
+        class="cs-logo__coral"
+        points="253.32 189.77 253.32 151.37 290.41 151.37 290.41 149.01 253.32 149.01 253.32 111.8 299.86 111.8 299.86 109.44 242.81 109.44 242.81 192.13 301.04 192.13 301.04 189.77 253.32 189.77" />
+      <path
+        class="cs-logo__green"
+        d="m151,159.62c-10.04,12.21-25.94,19.72-45.29,19.72-36.97,0-61.76-27.73-61.76-70.79s24.58-70.37,62.81-70.37c21.43,0,37.18,8.82,43.06,21.64-.63-.21-1.26-.21-1.89-.21-6.51,0-11.34,4.62-11.34,11.13s4.83,11.13,11.34,11.13,10.92-4.83,10.92-10.92v-.21c0-19.96-24.37-37.6-56.93-37.6-44.74,0-77.51,33.19-77.51,75.62s33.82,75.62,77.72,75.62c22.7,0,42.16-8.7,53.06-21.29l-4.2-3.47Z" />
+      <path
+        class="cs-logo__teal"
+        d="m223.94,164.73v20.68c-2.94,6.53-10.67,10.45-21.01,10.45-19.16,0-31.46-14.59-31.46-36.69s12.63-36.91,33.31-36.91c10.67,0,18.83,3.81,21.77,10.34-.33-.11-.54-.11-.87-.11-3.48,0-5.99,2.4-5.99,5.77s2.5,5.77,5.99,5.77c3.16,0,5.55-2.4,5.55-5.77,0-10.67-12.52-18.62-28.85-18.62-23.73,0-41.04,16.87-41.04,39.19s17.53,39.19,40.5,39.19c10.67,0,19.81-3.48,24.28-8.82l6.21,7.73h1.09v-32.22h-9.47Z" />
+    </g>
+  </svg>
+</div>
+
+<div class="home-hero__tile">
+  <img
+    class="home-hero__image"
+    src="/assets/culpepper-door.jpg"
+    alt="Front door of the Culpepper Spa location"
+    height="1200"
+    width="1200"
+    loading="eager"
+  >
+  <div class="home-hero__info-section" id="info-fred">
+    <div class="home-hero__location" id="location-fred">
+      <h2 class="display--medium">Culpepper Spa</h2>
+      <div class="body--large">
+        254 East Davis Street<br>
+        Culpeper, VA 22701<br>
+        (540) 317-0424
+      </div>
+      <div class="home-hero__button-wrapper">
+        <md-text-button>Learn More</md-text-button>
+        <md-filled-button>Book Now</md-filled-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .home-hero {
+    gap: var(--spacing-gap-medium);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-self: stretch;
+    width: min(100dvw, 1920px);
+  }
+
+  .home-hero__tile {
+    display: grid;
+    grid-template-rows: 75% 1fr;
+    align-items: stretch;
+    justify-items: stretch;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: flex-start; */
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    position: relative;
+    border-radius: var(--border-radius-xlarge);
+    overflow: clip;
+    width: min(30dvw, 640px);
+    /* height: calc(100dvh - (var(--spacing-gap-medium) * 2)); */
+    height: 90dvh;
+    flex: 1 1 auto;
+    padding: 0;
+    transition: all 300ms ease-out;
+  }
+
+  .home-hero__tile:hover {
+    width: min(50dvw, 1280px);
+  }
+
+  .home-hero__image {
+    width: auto;
+    height: auto;
+    /* height: 100%; */
+    /* height: calc(100dvh - (var(--spacing-gap-medium) * 2)); */
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--border-radius-xlarge);
+    transition: all 250ms ease-out;
+    /* flex: 1 1 auto; */
+  }
+
+  .home-hero__info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: var(--spacing-padding-medium);
+    gap: var(--spacing-gap-xxsmall);
+
+    & h2 {
+      margin-block-start: 0;
+    }
+
+    & .home-hero__button-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--spacing-gap-xsmall);
+    }
+  }
+
+  .home-hero__location {
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+  }
+
+  .home-hero__logo-wrapper {
+    --logo-size: 200px;
+    --negative-margin: calc(((var(--logo-size) * -1) - var(--spacing-gap-medium)) / 2);
+    display: flex;
+    height: var(--logo-size);
+    width: var(--logo-size);
+    background: var(--md-sys-color-surface);
+    border-radius: 50%;
+    place-self: center;
+    margin-inline-start: var(--negative-margin);
+    margin-inline-end: var(--negative-margin);
+    z-index: 20;
+    outline: var(--cs-blue) solid 0.2rem;
+    outline-offset: -0.4rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-hero__logo {
+    --relative-size: 90%;
+    height: var(--relative-size);
+    width: var(--relative-size);
+    fill: var(--cs-blue);
+    transform: translateX(-2%);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Home Hero",
+  "class": "home-hero",
+  "settings": []
+}
+{% endschema %}

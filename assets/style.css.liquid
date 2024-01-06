@@ -513,8 +513,8 @@ md-text-button {
     /* grid-column: span 1; */
   }
 
-  .tile--featured,
-  .tile--hero {
+  .tile.tile--large.tile--featured,
+  .tile.tile--large.tile--hero {
     font: var(--md-sys-typescale-body-medium);
     padding: 0;
 
@@ -601,31 +601,38 @@ md-text-button {
 
 
 /* TODO: Move into CS specific group */
-#cs-logo {
+#cs-logo,
+.home-hero__logo {
 	min-height: 1rem;
-	height: 100%;
-
-	& .cs-logo__mask {
-		fill: none;
-	}
-
-	& .cs-logo__green {
-		fill: var(--cs-green);
-	}
-
-	& .cs-logo__yellow {
-		fill: var(--cs-yellow);
-	}
-
-	& .cs-logo__coral {
-		fill: var(--cs-coral);
-	}
-
-	& .cs-logo__teal {
-		fill: var(--cs-teal);
-	}
 }
 
+.cs-logo__mask {
+	fill: none;
+}
+
+.cs-logo__green {
+	fill: var(--cs-green);
+}
+
+.cs-logo__yellow {
+	fill: var(--cs-yellow);
+}
+
+.cs-logo__coral {
+	fill: var(--cs-coral);
+}
+
+.cs-logo__teal {
+	fill: var(--cs-teal);
+}
+
+.cs-logo__blue {
+	fill: var(--cs-blue);
+}
+
+#cs-logo {
+	width: 100%;
+}
 
 /* TODO: What is this? */
 #WebPixelsManagerSandboxContainer {

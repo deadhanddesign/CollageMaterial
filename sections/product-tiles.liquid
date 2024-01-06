@@ -1,0 +1,60 @@
+{% capture tile-content--overview %}
+    <h2 class="display--small">Overview</h2>
+    <p>
+      {{ product.description }}
+    </p>
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'medium', tile-content: {{tile-content--overview}} %}
+
+{% if product.metafields.custom.ingredients %}
+  {% capture tile-content--ingredients %}
+      <h2 class="display--small">What's Inside</h2>
+      <md-list>
+        {% for ingredient in product.metafields.custom.ingredients.value %}
+          <md-list-item aria-label="{{ ingredient }}">
+            <div slot="headline"><span style="font-weight: 1000">•</span> {{ ingredient }}</div>
+          </md-list-item>
+        {% endfor %}
+      </md-list>
+    {% endcapture %}
+
+  {% render 'component-tile', tile-type: 'small', tile-content: {{tile-content--ingredients}} %}
+{% endif %}
+
+{% if product.metafields.custom.deep_dive %}
+  {% capture tile-content--deeper-dive %}
+      <h2 class="display--small">Deeper Dive</h2>
+      {{ product.metafields.custom.deep_dive | metafield_tag }}
+    {% endcapture %}
+
+  {% render 'component-tile', tile-type: 'medium', tile-content: {{tile-content--deeper-dive}} %}
+{% endif %}
+
+{% if product.images.size > 1 %}
+  {% capture tile-content--photos %}
+      {% for image in product.images offset: 1 limit: 5 %}
+        {{ image.src | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+      {% endfor %}
+    {% endcapture %}
+  {% render 'component-tile', tile-type: 'images', tile-content: {{tile-content--photos}} %}
+{% endif %}
+
+{% stylesheet %}
+  .body__sections-wrapper {
+    gap: var(--spacing-gap-medium);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-self: stretch;
+    width: min(100dvw, 1920px);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Info Tiles",
+  "class": "body__sections-wrapper",
+  "settings": []
+}
+{% endschema %}

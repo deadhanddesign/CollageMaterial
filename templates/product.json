@@ -1,0 +1,29 @@
+{
+    "sections": {
+        "header": {
+            "type": "header",
+            "settings": {
+                "title": "",
+                "overline": "",
+                "show_overline": true,
+                "byline": "",
+                "show_byline": true
+            }
+        },
+        "main": {
+            "type": "tiles-hero",
+            "settings": {
+                "hero-type": "product"
+            }
+        },
+        "footer": {
+            "type": "footer",
+            "settings": {}
+        }
+    },
+    "order": [
+        "header",
+        "main",
+        "footer"
+    ]
+}

@@ -1,7 +1,7 @@
 {% case section.settings['tile-type'] %}
   {% when 'ingredients' %}
-    <div class="tile__track">
-      {% if product.metafields.custom.ingredients %}
+    {% if product.metafields.custom.ingredients %}
+      <div class="tile__track">
         <h2 class="display--small">What's Inside</h2>
         <md-list>
           {% for ingredient in product.metafields.custom.ingredients.value %}
@@ -10,14 +10,44 @@
             </md-list-item>
           {% endfor %}
         </md-list>
-      {% endif %}
-    </div>
+      </div>
+    {% else %}
+      <style>
+        #shopify-section-{{ section.id }} {display:none}
+      </style>
+    {% endif %}
+
   {% when 'product-photos' %}
-    <div class="tile__track">
-      {% for image in product.images offset: 1 limit: 5 %}
-        {{ image.src | image_url: width: 1200 | image_tag: loading: 'lazy' }}
-      {% endfor %}
-    </div>
+    {% if product.images.size > 1 %}
+      <div class="tile__track">
+        {% for image in product.images offset: 1 limit: 5 %}
+          {{ image.src | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {% endfor %}
+      </div>
+      <style>
+        #shopify-section-{{ section.id }} {
+          background: none;
+          padding: 0;
+
+          & .tile__track {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-gap-medium);
+            width: auto;
+          }
+
+          & img {
+            width: min(30dvw, 640px);
+            flex: 1 1 auto;
+            border-radius: var(--border-radius-large);
+          }
+        }
+      </style>
+    {% else %}
+      <style>
+        #shopify-section-{{ section.id }} {display:none}
+      </style>
+    {% endif %}
   {% else %}
     <div class="tile__track">
       {% case section.settings.header_size %}
