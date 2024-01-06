@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "title": "",
+        "overline": "",
+        "show_overline": true,
+        "byline": "",
+        "show_byline": true
+      }
+    },
+    "main": {
+      "type": "tiles-hero",
+      "settings": {
+        "hero-type": "product"
+      }
+    },
+    "d4029fc4-682c-40e1-b258-80e2569a9f7d": {
+      "type": "tiles-medium",
+      "settings": {
+        "tile-type": "overview",
+        "headline": "This is a Medium Tile",
+        "header_size": "h3",
+        "copy": "<p>Use this tile for average pieces of page content.<\/p><p>It's great if you want to put a small tile of something next to it on desktop.<\/p>"
+      }
+    },
+    "9d41e486-8ea8-4544-adbb-fea5eedd3fea": {
+      "type": "tiles-small",
+      "settings": {
+        "tile-type": "ingredients",
+        "headline": "This is a Small Tile",
+        "header_size": "h4",
+        "copy": "<p>Use this tile for minor pieces of page content.<\/p><p>Perfect for asides like Highlight Lists.<\/p>"
+      }
+    },
+    "3037d37f-2e37-4dd2-81a7-6836c79d1a3f": {
+      "type": "tiles-small",
+      "settings": {
+        "tile-type": "product-photos",
+        "headline": "This is a Small Tile",
+        "header_size": "h4",
+        "copy": "<p>Use this tile for minor pieces of page content.<\/p><p>Perfect for asides like Highlight Lists.<\/p>"
+      }
+    },
+    "1138f1c9-8e85-4f97-ac3b-e64e58db675a": {
+      "type": "tiles-medium",
+      "settings": {
+        "tile-type": "deep_dive",
+        "headline": "This is a Medium Tile",
+        "header_size": "h3",
+        "copy": "<p>Use this tile for average pieces of page content.<\/p><p>It's great if you want to put a small tile of something next to it on desktop.<\/p>"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "header",
+    "main",
+    "d4029fc4-682c-40e1-b258-80e2569a9f7d",
+    "9d41e486-8ea8-4544-adbb-fea5eedd3fea",
+    "3037d37f-2e37-4dd2-81a7-6836c79d1a3f",
+    "1138f1c9-8e85-4f97-ac3b-e64e58db675a",
+    "footer"
+  ]
+}

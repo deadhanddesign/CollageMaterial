@@ -1,0 +1,182 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+{% render 'component-header', overline: product.type, title: product.title, subheader-vendor: product.vendor %}
+{% render 'component-product-highlight' %}
+
+{% if product.metafields.custom.ingredients %}
+  {% capture tile-content--ingredients %}
+    <h2 class="display--small">What's Inside</h2>
+    <md-list>
+      {% for ingredient in product.metafields.custom.ingredients.value %}
+        <md-list-item aria-label="{{ ingredient }}">
+          <div slot="headline"><span style="font-weight: 1000">•</span> {{ ingredient }}</div>
+        </md-list-item>
+      {% endfor %}
+    </md-list>
+  {% endcapture %}
+
+  {% render 'component-tile', tile-type: 'small', tile-content: {{tile-content--ingredients}} %}
+{% endif %}
+
+{% capture tile-content--overview %}
+  <h2 class="display--small">Overview</h2>
+  <p>
+    {{ product.description }}
+  </p>
+{% endcapture %}
+
+{% render 'component-tile', tile-type: 'medium', tile-content: {{tile-content--overview}} %}
+
+{% if product.metafields.custom.deep_dive %}
+  {% capture tile-content--deeper-dive %}
+    <h2 class="display--small">Deeper Dive</h2>
+    {{ product.metafields.custom.deep_dive | metafield_tag }}
+  {% endcapture %}
+
+  {% render 'component-tile', tile-type: 'medium', tile-content: {{tile-content--deeper-dive}} %}
+{% endif %}
+
+{% if product.images.size > 1 %}
+  {% capture tile-content--photos %}
+    {% for image in product.images offset: 1 limit: 5 %}
+      {{ image.src | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+    {% endfor %}
+  {% endcapture %}
+  {% render 'component-tile', tile-type: 'images', tile-content: {{tile-content--photos}} %}
+{% endif %}
+
+<div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="4">
+  {%- if recommendations.products_count > 0 -%}
+    <h2>You may also like</h2>
+    <ul>
+      {%- for product in recommendations.products -%}
+        <li>
+          <a href="{{ product.url }}">
+            {{ product.featured_image | image_url: '300x300' | image_tag: loading: 'lazy' }}
+
+            <p>{{ product.title }}</p>
+            <p>{{ product.price | money }}</p>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% section 'footer' %}
+
+<script type="module">
+  var loadProductRecommendationsIntoSection = function () {
+    // Look for an element with class 'product-recommendations'
+    var productRecommendationsSection = document.querySelector('.product-recommendations');
+    if (productRecommendationsSection === null) {
+      return;
+    }
+    // Read product id from data attribute
+    var productId = productRecommendationsSection.dataset.productId;
+    // Read limit from data attribute
+    var limit = productRecommendationsSection.dataset.limit;
+    // Build request URL
+    var requestUrl =
+      '/recommendations/products?section_id=product-recommendations&limit=' + limit + '&product_id=' + productId;
+    // Create request and submit it using Ajax
+    var request = new XMLHttpRequest();
+    request.open('GET', requestUrl);
+    request.onload = function () {
+      if (request.status >= 200 && request.status < 300) {
+        var container = document.createElement('div');
+        container.innerHTML = request.response;
+        productRecommendationsSection.parentElement.innerHTML =
+          container.querySelector('.product-recommendations').innerHTML;
+      }
+    };
+    request.send();
+  };
+  // If your section has theme settings, the theme editor
+  // reloads the section as you edit those settings. When that happens, the
+  // recommendations need to be fetched again.
+  // See https://help.shopify.com/en/themes/development/sections/integration-with-theme-editor
+  document.addEventListener('shopify:section:load', function (event) {
+    if (event.detail.sectionId === 'product-recommendations') {
+      loadProductRecommendationsIntoSection();
+    }
+  });
+  // Fetching the recommendations on page load
+  loadProductRecommendationsIntoSection();
+</script>
+
+{% comment %}
+  {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+    {% capture tile-content--upsells %}
+      {% if recommendations.intent == 'related' %}
+        <h2 class="card display--medium">Find Your Next Favorite Here</h2>
+      {% elsif recommendations.intent == 'complementary' %}
+        <h2 class="card display--medium">Pair it with these</h2>
+      {% endif %}
+
+      {% for product in recommendations.products limit: 3 %}
+
+          {% render 'component-card', product: product %}
+
+      {% endfor %}
+
+    {% endcapture %}
+
+    {% render 'component-collection-list', type: 'upsells', tile-content: tile-content--upsells %}
+  {% endif %}
+
+  <script type="module">
+    const handleIntersection = (entries, observer) => {
+      if (!entries[0].isIntersecting) return;
+      observer.unobserve(productRecommendationsSection);
+      const url = productRecommendationsSection.dataset.url;
+      fetch(url)
+        .then((response) => response.text())
+        .then((text) => {
+          const html = document.createElement('div');
+          html.innerHTML = text;
+          const recommendations = html.querySelector('.card-container__grid--solo');
+          if (recommendations && recommendations.innerHTML.trim().length) {
+            productRecommendationsSection.innerHTML = recommendations.innerHTML;
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    };
+    const productRecommendationsSection = document.querySelector('.card-container__grid--solo');
+    const observer = new IntersectionObserver(handleIntersection, { rootMargin: '0px 0px 200px 0px' });
+    observer.observe(productRecommendationsSection);
+  </script>
+{% endcomment %}
+
+{% comment %}
+  <div class="overlay-grain"></div>
+
+  {% style %}
+    .underlay-color {
+      position: fixed;
+      inset: 0;
+      background-image: url('{{ featured_image | image_url: width: 100 }}');
+      filter: blur(1000px);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      z-index: 0;
+      mix-blend-mode: hard-light;
+    }
+
+    .overlay-grain {
+      position: fixed;
+      inset: 0;
+      opacity: 0.4;
+      z-index: 9001;
+      pointer-events: none;
+      filter: grayscale(100%);
+      mix-blend-mode: overlay;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.63' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+  {% endstyle %}
+{% endcomment %}

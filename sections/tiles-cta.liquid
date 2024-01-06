@@ -1,0 +1,140 @@
+<div class="tile__track">
+  <div class="cta-grid">
+    <div class="cta-grid__content-container">
+      <h2>{{ section.settings.headline }}</h2>
+      <p>{{ section.settings.copy }}</p>
+    </div>
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'sign-up_form' %}
+          <div class="cta-grid__content-container">
+            <form action="{{ block.settings.form_url }}" class="cta-grid__form" method="get">
+              <md-outlined-text-field label="Email" type="email" aria-label="email"></md-outlined-text-field>
+              <md-filled-button type="submit">{{ block.settings.button_text }}</md-filled-button>
+            </form>
+          </div>
+        {% when 'button' %}
+          <div class="cta-grid__content-container">
+            <md-filled-button
+              type="button"
+              href="{{ block.settings.button_url }}"
+              {% if block.settings.button_url contains 'http' %}
+                target="_blank"
+              {% endif %}
+            >
+              {{ block.settings.button_text }}
+            </md-filled-button>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .cta-grid {
+    display: grid;
+    grid-gap: var(--spacing-gap-medium);
+    align-items: center;
+  }
+
+  .cta-grid__form {
+    display: grid;
+    grid-gap: var(--spacing-gap-xsmall);
+    justify-items: stretch;
+  }
+
+  .cta-grid__content-container {
+    display: grid;
+
+    & md-filled-button {
+      min-height: 40px;
+      height: auto;
+      justify-self: self-end;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile - Call to Action",
+  "class": "tile tile--medium tile--tertiary",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sign-up_form",
+      "name": "Sign-up Form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "url",
+          "id": "form_url",
+          "label": "Form URL"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Subscribe"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tile - Call to Action",
+      "category": "tiles",
+      "settings": {
+        "headline": "Welcome to the Call to Action Tile!",
+        "copy": "<p>Use this tile to encourage your customers to take action. They're are perfect for announcing a sale, promoting a new product, getting newsletter signups, or driving traffic to a specific page.</p><p>If you add a Sign-up Form, don't add a Button and vice-versa!</p>"
+      }
+    },
+    {
+      "name": "Tile - Sign-up Form",
+      "category": "tiles",
+      "blocks": [
+        {
+          "type": "sign-up_form",
+          "settings": {
+            "form_url": "https://example.com",
+            "button_text": "Subscribe"
+          }
+        }
+      ],
+      "settings": {
+        "headline": "Get the Inside Scoop!",
+        "copy": "<p>Be the first to know about our sizzling sales, fabulous new treatments, and irresistible offers! Indulge in a spa experience that keeps giving – straight to your inbox!<\/p>"
+      }
+    }
+  ]
+}
+{% endschema %}

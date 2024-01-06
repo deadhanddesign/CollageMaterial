@@ -1,0 +1,103 @@
+{% case section.settings['tile-type'] %}
+  {% when 'overview' %}
+    <div class="tile__track">
+      <h2 class="display--small">Overview</h2>
+      <p>
+        {{ product.description }}
+      </p>
+    </div>
+  {% when 'deep_dive' %}
+    {% if product.metafields.custom.deep_dive %}
+      <div class="tile__track">
+        <h2 class="display--small">Deeper Dive</h2>
+        {{ product.metafields.custom.deep_dive | metafield_tag }}
+      </div>
+    {% else %}
+      <style>
+        #shopify-section-{{ section.id }} {display:none}
+      </style>
+    {% endif %}
+  {% else %}
+    <div class="tile__track">
+      {% case section.settings.header_size %}
+        {% when 'h2' %}
+          <h2 class="display--medium">{{ section.settings.headline }}</h2>
+        {% when 'h3' %}
+          <h3 class="display--small">{{ section.settings.headline }}</h3>
+        {% else %}
+          <h4>{{ section.settings.headline }}</h4>
+      {% endcase %}
+      <div class="rich-text-block">{{ section.settings.copy }}</div>
+    </div>
+{% endcase %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile - Medium",
+  "class": "tile tile--medium",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tile-type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "blank",
+          "label": "Blank"
+        },
+        {
+          "value": "overview",
+          "label": "Overview"
+        },
+        {
+          "value": "deep_dive",
+          "label": "Deep Dive"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline"
+    },
+    {
+      "type": "select",
+      "id": "header_size",
+      "label": "Header Size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tile - Medium",
+      "category": "tiles",
+      "settings": {
+        "headline": "This is a Medium Tile",
+        "header_size": "h3",
+        "copy": "<p>Use this tile for average pieces of page content.</p><p>It's great if you want to put a small tile of something next to it on desktop.</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

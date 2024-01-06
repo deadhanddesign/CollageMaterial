@@ -1,0 +1,25 @@
+{
+    "sections": {
+        "header": {
+            "type": "header",
+            "settings": {
+                "title": "Categories"
+            }
+        },
+        "main": {
+            "type": "tiles-large",
+            "settings": {
+                "tile-type": "collections"
+            }
+        },
+        "footer": {
+            "type": "footer",
+            "settings": {}
+        }
+    },
+    "order": [
+        "header",
+        "main",
+        "footer"
+    ]
+}

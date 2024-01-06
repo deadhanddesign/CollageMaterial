@@ -1,0 +1,101 @@
+<div class="tile__track">
+  {% case section.settings['tile-type'] %}
+    {% when 'normal' %}
+      <h2 class="display--medium">{{ section.settings.headline }}</h2>
+      <div class="rich-text-block">{{ section.settings.copy }}</div>
+    {% when 'content' %}
+      <div class="rich-text-block">{{ page.content }}</div>
+    {% when 'collections' %}
+      <div class="collections-container">
+        <md-outlined-button
+          href="/collections/all"
+        >
+          All
+        </md-outlined-button>
+        {% for collection in collections %}
+          <md-outlined-button
+            href="{{ collection.url }}"
+          >
+            {{- collection.title -}}
+          </md-outlined-button>
+        {% endfor %}
+      </div>
+    {% when 'vendors' %}
+      <div class="collections-container">
+        <md-outlined-button
+          href="/collections/all"
+        >
+          All
+        </md-outlined-button>
+        {% for vendor in shop.vendors %}
+          <md-outlined-button
+            href="/collections/vendors?q={{- vendor -}}"
+          >
+            {{- vendor -}}
+          </md-outlined-button>
+        {% endfor %}
+      </div>
+  {% endcase %}
+</div>
+
+{% stylesheet %}
+  .collections-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--spacing-gap-small);
+    padding: var(--spacing-padding-xlarge);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile - Large",
+  "class": "tile tile--large",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy"
+    },
+    {
+      "type": "select",
+      "id": "tile-type",
+      "label": "Tile Type",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "content",
+          "label": "Page Content"
+        },
+        {
+          "value": "collections",
+          "label": "Collection List"
+        },
+        {
+          "value": "vendors",
+          "label": "Vendor List"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tile - Large",
+      "category": "tiles",
+      "settings": {
+        "headline": "This is a Large Tile",
+        "copy": "<p>Use this tile for major pieces of page content.</p><p>Don't use this if it's something like an Article since there's specific Tiles for those.</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

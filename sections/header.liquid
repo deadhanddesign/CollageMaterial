@@ -1,0 +1,98 @@
+<div class="tile__track">
+  {% if section.settings.show_overline %}
+    {% if product.type %}
+      <div class="hero__overline label--large">— {{ product.type | capitalize }}</div>
+    {% else %}
+      <div class="hero__overline label--large">— {{ section.settings.overline | capitalize }}</div>
+    {% endif %}
+  {% endif %}
+
+  {% if page.title %}
+    <h1 class="display--large">{{ page.title }}</h1>
+  {% elsif collection.title %}
+    <h1 class="display--large">{{ collection.title }}</h1>
+  {% elsif search %}
+    <h1 class="display--large">Search</h1>
+  {% elsif product.title %}
+    <h1 class="display--large">{{ product.title }}</h1>
+  {% elsif blog.title %}
+    <h1 class="display--large">{{ blog.title }}</h1>
+  {% else %}
+    <h1 class="display--large">{{ section.settings.title }}</h1>
+  {% endif %}
+
+  {% if section.settings.show_byline %}
+    {% if product.vendor %}
+      <div class="hero__subheader">by {{ product.vendor | link_to_vendor }}</div>
+    {% else %}
+      <div class="hero__subheader">by {{ section.settings.byline | link_to_vendor }}</div>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  header.tile {
+    grid-row: 1;
+
+    & .tile__track {
+      width: 100%;
+    }
+  }
+
+  .hero__overline {
+    height: var(--step-10);
+  }
+
+  .hero__subheader {
+    font: var(--md-sys-typescale-headline-small);
+    & a {
+      font: var(--md-sys-typescale-headline-large);
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page Header",
+  "class": "tile tile--large tile--primary",
+  "tag": "header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Overline"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overline",
+      "label": "Show Overline",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "byline",
+      "label": "Byline"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_byline",
+      "label": "Show Byline",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Header",
+      "category": "tiles",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

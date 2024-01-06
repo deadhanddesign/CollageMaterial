@@ -1,22 +1,51 @@
 {
   "sections": {
-    "main": {
-      "type": "main-404",
+    "a887b8a6-ea4d-4e70-95eb-31d6b736db0b": {
+      "type": "header",
       "settings": {
-        "header": "Oops! Looks Like This Page Took a Spa Day! 🛀✨",
-        "explainer": "We can't find the page you're looking for, but we've got plenty of relaxing options waiting for you back home. Take a step back and find your path to serenity!"
+        "title": "404 Error - Page not Found",
+        "overline": "",
+        "show_overline": false,
+        "byline": "",
+        "show_byline": false
       }
     },
-    "be6530eb-e575-4193-b7d0-0944fa319494": {
-      "type": "component-test",
+    "db2b5d16-368e-45ea-8628-bf35e97e30c3": {
+      "type": "tiles-large",
       "settings": {
-        "h2-content": "Success",
-        "h2-size": "h2"
+        "headline": "Oops! Looks Like This Page Took a Spa Day! 🛀✨",
+        "copy": "<p>We can't find the page you're looking for, but we've got plenty of relaxing options waiting for you back home. Take a step back and find your path to serenity!<\/p>"
+      }
+    },
+    "feba7c20-44a7-4a06-878d-f24b94f50cca": {
+      "type": "tiles-cta",
+      "blocks": {
+        "template--15551876988988__feba7c20-44a7-4a06-878d-f24b94f50cca-sign-up_form-1": {
+          "type": "sign-up_form",
+          "settings": {
+            "form_url": "https:\/\/example.com",
+            "button_text": "Subscribe"
+          }
+        }
+      },
+      "block_order": [
+        "template--15551876988988__feba7c20-44a7-4a06-878d-f24b94f50cca-sign-up_form-1"
+      ],
+      "settings": {
+        "headline": "Get the Inside Scoop!",
+        "copy": "<p>Be the first to know about our sizzling sales, fabulous new treatments, and irresistible offers! Indulge in a spa experience that keeps giving – straight to your inbox!<\/p>"
+      }
+    },
+    "c5ff4f72-9220-4c34-93bb-161ddc6a7ee1": {
+      "type": "footer",
+      "settings": {
       }
     }
   },
   "order": [
-    "main",
-    "be6530eb-e575-4193-b7d0-0944fa319494"
+    "a887b8a6-ea4d-4e70-95eb-31d6b736db0b",
+    "db2b5d16-368e-45ea-8628-bf35e97e30c3",
+    "feba7c20-44a7-4a06-878d-f24b94f50cca",
+    "c5ff4f72-9220-4c34-93bb-161ddc6a7ee1"
   ]
 }
