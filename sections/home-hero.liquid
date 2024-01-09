@@ -1,33 +1,3 @@
-<div class="home-hero__tile">
-  <img
-    class="home-hero__image"
-    src="/assets/fredericksburg-door.jpg"
-    alt="Front door of the Fredericksburg Spa location"
-    height="1200"
-    width="1200"
-    loading="eager"
-  >
-  <div class="home-hero__info-section" id="info-fred">
-    <div class="home-hero__location" id="location-fred">
-      <h2 class="display--medium">Fredericksburg Spa</h2>
-      <div class="body--large">
-        804 Charles Street<br>
-        Fredericksburg, VA 22401<br>
-        (540) 479-6470
-      </div>
-      <div class="home-hero__button-wrapper">
-        <md-text-button>Learn More</md-text-button>
-        <md-filled-button>Book Now</md-filled-button>
-      </div>
-    </div>
-  </div>
-  {% comment %}
-    <md-filled-icon-button id="info-button-fred" type="button" aria-label="open-close-info">
-      <md-icon id="info-button-fred-icon">add</md-icon>
-    </md-filled-icon-button>
-  {% endcomment %}
-</div>
-
 <div class="home-hero__logo-wrapper">
   <svg class="home-hero__logo" viewBox="0 0 332.6 214.37" role="img" height="100%" width="100%">
     <title>Collage Logo</title>
@@ -57,76 +27,74 @@
   </svg>
 </div>
 
-<div class="home-hero__tile">
-  <img
-    class="home-hero__image"
-    src="/assets/culpepper-door.jpg"
-    alt="Front door of the Culpepper Spa location"
-    height="1200"
-    width="1200"
-    loading="eager"
-  >
-  <div class="home-hero__info-section" id="info-fred">
-    <div class="home-hero__location" id="location-fred">
-      <h2 class="display--medium">Culpepper Spa</h2>
-      <div class="body--large">
-        254 East Davis Street<br>
-        Culpeper, VA 22701<br>
-        (540) 317-0424
-      </div>
+{% assign locations = shop.metaobjects.locations.values %}
+{% assign locations = locations | sort: 'display_order' %}
+
+{% for location in locations %}
+  <div class="home-hero__tile">
+    {{
+      location.hero_image
+      | image_url: width: '1200x'
+      | image_tag: alt: 'Front door of the location', class: 'home-hero__image'
+    }}
+    <div class="home-hero__info-section" id="info-fred">
+      <h2 class="display--small">{{ location.name }}</h2>
+      {% comment %}
+        <div class="body--medium">
+          {{ location.address_line_1 -}}
+          <br>
+          {{- location.city -}}
+          ,&nbsp;
+          {{- location.state | upcase -}}
+          &nbsp;
+          {{- location.zip -}}
+          <br>
+          ({{ location.phone_number | slice: 0, 3 }})&nbsp;{{ location.phone_number | slice: 3, 3 }}-
+          {{- location.phone_number | slice: 6, 4 }}
+        </div>
+      {% endcomment %}
       <div class="home-hero__button-wrapper">
         <md-text-button>Learn More</md-text-button>
         <md-filled-button>Book Now</md-filled-button>
       </div>
     </div>
   </div>
-</div>
+{% endfor %}
 
 {% stylesheet %}
   .home-hero {
-    gap: var(--spacing-gap-medium);
-    display: flex;
-    flex-wrap: wrap;
+    grid-gap: var(--spacing-gap-medium);
+    display: grid;
+    grid-auto-flow: column;
     align-items: stretch;
-    justify-self: stretch;
     width: min(100dvw, 1920px);
+    /* height: calc(100dvh - (var(--spacing-gap-medium) * 2)); */
+    height: 90dvh;
+    position: relative;
   }
 
   .home-hero__tile {
-    display: grid;
-    grid-template-rows: 75% 1fr;
-    align-items: stretch;
-    justify-items: stretch;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: flex-start; */
-    background: var(--md-sys-color-primary-container);
-    color: var(--md-sys-color-on-primary-container);
     position: relative;
     border-radius: var(--border-radius-xlarge);
     overflow: clip;
-    width: min(30dvw, 640px);
-    /* height: calc(100dvh - (var(--spacing-gap-medium) * 2)); */
-    height: 90dvh;
-    flex: 1 1 auto;
-    padding: 0;
-    transition: all 300ms ease-out;
-  }
-
-  .home-hero__tile:hover {
-    width: min(50dvw, 1280px);
+    padding: var(--spacing-padding-xsmall);
+    transition: all 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
   }
 
   .home-hero__image {
-    width: auto;
-    height: auto;
-    /* height: 100%; */
-    /* height: calc(100dvh - (var(--spacing-gap-medium) * 2)); */
     object-fit: cover;
     object-position: center;
-    border-radius: var(--border-radius-xlarge);
+    border-radius: var(--border-radius-large);
     transition: all 250ms ease-out;
-    /* flex: 1 1 auto; */
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 
   .home-hero__info-section {
@@ -134,8 +102,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    position: relative;
     padding: var(--spacing-padding-medium);
     gap: var(--spacing-gap-xxsmall);
+    z-index: 2;
+    background: var(--md-sys-color-surface);
+    border-radius: var(--border-radius-large);
+    color: var(--md-sys-color-on-surface);
 
     & h2 {
       margin-block-start: 0;
@@ -143,33 +116,28 @@
 
     & .home-hero__button-wrapper {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       gap: var(--spacing-gap-xsmall);
     }
-  }
-
-  .home-hero__location {
-    display: flex;
-    flex-direction: column;
-    margin-inline: auto;
   }
 
   .home-hero__logo-wrapper {
     --logo-size: 200px;
     --negative-margin: calc(((var(--logo-size) * -1) - var(--spacing-gap-medium)) / 2);
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: var(--logo-size);
     width: var(--logo-size);
     background: var(--md-sys-color-surface);
     border-radius: 50%;
-    place-self: center;
-    margin-inline-start: var(--negative-margin);
-    margin-inline-end: var(--negative-margin);
     z-index: 20;
     outline: var(--cs-blue) solid 0.2rem;
     outline-offset: -0.4rem;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .home-hero__logo {
@@ -184,7 +152,7 @@
 {% schema %}
 {
   "name": "Home Hero",
-  "class": "home-hero",
+  "class": "tile tile--large tile--primary home-hero",
   "settings": []
 }
 {% endschema %}
