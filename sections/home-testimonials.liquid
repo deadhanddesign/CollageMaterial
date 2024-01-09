@@ -1,0 +1,41 @@
+{% assign testimonials = shop.metaobjects.testimonial.values %}
+
+<h2 class="display--large">
+  Customer<br>
+  Kudos!
+</h2>
+
+{% for testimonial in testimonials %}
+  <div class="tile tile--small hero-testimonials--tile">
+    <div class="tile__track">
+      <p class="body--medium">{{ testimonial.review }}</p>
+      <h3 class="display--small">{{ testimonial.name }}</h3>
+    </div>
+  </div>
+{% endfor %}
+
+{% stylesheet %}
+  .home-testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: var(--spacing-gap-medium);
+    width: min(100dvw, 1920px);
+
+    & h2 {
+      padding: var(--spacing-padding-large);
+    }
+  }
+
+  .tile.hero-testimonials--tile {
+    border-radius: var(--border-radius-large);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Home Testimonials",
+  "class": "tile tile--large tile--tertiary home-testimonials",
+  "settings": []
+}
+{% endschema %}
