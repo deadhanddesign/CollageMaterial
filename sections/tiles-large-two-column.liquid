@@ -1,0 +1,140 @@
+<div class="two-column">
+  <div class="tile__track">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'headline-left' %}
+          <h2 class="display--medium">{{ block.settings.headline }}</h2>
+        {% when 'copy-left' %}
+          <div class="copy">
+            {{ block.settings.copy }}
+          </div>
+        {% when 'image-left' %}
+          {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'lazy' }}
+      {% endcase %}
+    {% endfor %}
+  </div>
+  <div class="tile__track">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'headline-right' %}
+          <h2 class="display--medium">{{ block.settings.headline }}</h2>
+        {% when 'copy-right' %}
+          <div class="copy">
+            {{ block.settings.copy }}
+          </div>
+        {% when 'image-right' %}
+          {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'lazy' }}
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .two-column__container {
+    container-type: inline-size;
+    container-name: two-column;
+  }
+
+  .two-column {
+    display: flex;
+    gap: var(--spacing-gap-medium);
+  }
+
+  .two-column > .tile__track {
+    flex: 1;
+
+    & img {
+      width: 100%;
+      border-radius: var(--border-radius-large);
+    }
+  }
+
+  @container two-column (max-width: 1000px) {
+    .two-column {
+      flex-direction: column;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tile - Large - Two Column",
+  "class": "tile tile--large two-column__container",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "headline-left",
+      "name": "Headline - Left Side",
+      "settings": [
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+        }
+      ]
+    },
+    {
+      "type": "copy-left",
+      "name": "Copy - Left Side",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "copy",
+          "label": "Copy"
+        }
+      ]
+    },
+    {
+      "type": "image-left",
+      "name": "Image - Left Side",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "headline-right",
+      "name": "Headline - Right Side",
+      "settings": [
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+        }
+      ]
+    },
+    {
+      "type": "copy-right",
+      "name": "Copy - Right Side",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "copy",
+          "label": "Copy"
+        }
+      ]
+    },
+    {
+      "type": "image-right",
+      "name": "Image - Right Side",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tile - Large - Two Column",
+      "category": "tiles",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
