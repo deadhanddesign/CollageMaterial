@@ -46,6 +46,11 @@
     gap: var(--spacing-gap-small);
     padding: var(--spacing-padding-xlarge);
   }
+  @container (max-width: 1000px) {
+    .component-collection-container {
+      flex-direction: column;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
