@@ -4,10 +4,6 @@
             "type": "header",
             "settings": {}
         },
-        "main": {
-            "type": "contact-form",
-            "settings": {}
-        },
         "footer": {
             "type": "footer",
             "settings": {}
