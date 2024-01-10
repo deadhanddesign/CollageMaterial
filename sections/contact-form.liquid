@@ -1,21 +1,22 @@
-{% form 'contact' %}
-  <md-outlined-text-field id="name" label="Name" required></md-outlined-text-field>
-  <md-outlined-select id="pronouns" label="Pronouns">
-    <md-select-option value="">Select one...</md-select-option>
-    <md-select-option value="Ae/Aer"><div slot="headline">Ae/Aer</div></md-select-option>
-    <md-select-option value="Ey/Em"><div slot="headline">Ey/Em</div></md-select-option>
-    <md-select-option value="He/Him"><div slot="headline">He/Him</div></md-select-option>
-    <md-select-option value="Per/Per"><div slot="headline">Per/Per</div></md-select-option>
-    <md-select-option value="She/Her"><div slot="headline">She/Her</div></md-select-option>
-    <md-select-option value="They/Them"><div slot="headline">They/Them</div></md-select-option>
-    <md-select-option value="Ve/Ver"><div slot="headline">Ve/Ver</div></md-select-option>
-    <md-select-option value="Xe/Xem"><div slot="headline">Xe/Xem</div></md-select-option>
-    <md-select-option value="Ze/Hir"><div slot="headline">Ze/Hir</div></md-select-option>
-  </md-outlined-select>
-  <md-outlined-text-field id="email" label="Email" type="email"></md-outlined-text-field>
-  <md-outlined-text-field id="phone" label="Phone" type="tel"></md-outlined-text-field>
-  <md-outlined-text-field id="message" label="Message" type="textarea" required></md-outlined-text-field>
-  <div class="option-container">
+<div class="tile__track">
+  {% form 'contact' %}
+    <md-outlined-text-field id="name" label="Name" required></md-outlined-text-field>
+    <md-outlined-select id="pronouns" label="Pronouns">
+      <md-select-option value="">Select one...</md-select-option>
+      <md-select-option value="Ae/Aer"><div slot="headline">Ae/Aer</div></md-select-option>
+      <md-select-option value="Ey/Em"><div slot="headline">Ey/Em</div></md-select-option>
+      <md-select-option value="He/Him"><div slot="headline">He/Him</div></md-select-option>
+      <md-select-option value="Per/Per"><div slot="headline">Per/Per</div></md-select-option>
+      <md-select-option value="She/Her"><div slot="headline">She/Her</div></md-select-option>
+      <md-select-option value="They/Them"><div slot="headline">They/Them</div></md-select-option>
+      <md-select-option value="Ve/Ver"><div slot="headline">Ve/Ver</div></md-select-option>
+      <md-select-option value="Xe/Xem"><div slot="headline">Xe/Xem</div></md-select-option>
+      <md-select-option value="Ze/Hir"><div slot="headline">Ze/Hir</div></md-select-option>
+    </md-outlined-select>
+    <md-outlined-text-field id="email" label="Email" type="email"></md-outlined-text-field>
+    <md-outlined-text-field id="phone" label="Phone" type="tel"></md-outlined-text-field>
+    <md-outlined-text-field id="message" label="Message" type="textarea" required></md-outlined-text-field>
+    <div class="option-container">
       <div class="label--small">Opt In</div>
       <div class="option-wrapper">
         <md-checkbox
@@ -37,41 +38,37 @@
         </md-checkbox>
         <label for="opt-in-outreach"> I want more info on Collage Community Outreach and how I can help. </label>
       </div>
-  </div>
-  <md-filled-button type="submit">Send</md-filled-button>
-{% endform %}
-{% endcapture %}
-
-{% render , 'component-tile', tile-type: 'medium', tile-content: tile-content %}
+    </div>
+    <md-filled-button type="submit">Send</md-filled-button>
+  {% endform %}
+</div>
 
 {% stylesheet %}
-.tile.tile--medium {
-overflow: visible;
-}
+  .tile.tile--medium {
+    overflow: visible;
+  }
 
-form {
-display: grid;
-grid-template-columns: 1fr;
-grid-gap: var(--spacing-gap-small);
-}
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--spacing-gap-small);
+  }
 
-.option-container {
-display: grid;
-grid-template-columns: 1fr;
-margin-block-start: var(--spacing-margin-small);
-}
+  .option-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-block-start: var(--spacing-margin-small);
+  }
 
-.option-wrapper {
-display: grid;
-grid-template-columns: auto 1fr;
-align-items: center;
-}
+  .option-wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
 
-md-filled-button {
-justify-self: end;
-}
-
-
+  md-filled-button {
+    justify-self: end;
+  }
 
   .tile__track:has(#theme-image) {
     height: 100%;
