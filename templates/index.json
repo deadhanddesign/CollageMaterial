@@ -8,10 +8,6 @@
             "type": "home-testimonials",
             "settings": {}
         },
-        "instagram": {
-            "type": "home-instagram-feed",
-            "settings": {}
-        },
         "footer": {
             "type": "footer",
             "settings": {}
@@ -20,7 +16,6 @@
     "order": [
         "header",
         "testimonials",
-        "instagram",
         "footer"
     ]
 }
