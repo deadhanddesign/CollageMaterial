@@ -1,0 +1,22 @@
+{% render 'component-contact-form' %}
+
+{% stylesheet %}
+  .tile__track:has(#theme-image) {
+    height: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [],
+
+  "presets": [
+    {
+      "name": "Contact Form",
+      "category": "Contact",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
