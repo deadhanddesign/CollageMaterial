@@ -1,10 +1,17 @@
 <div class="tile__track">
   {% for block in section.blocks %}
-    {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'lazy' }}
+    {% if block.settings.theme_image %}
+      {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'eager', id: 'theme-image' }}
+    {% else %}
+      {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'lazy' }}
+    {% endif %}
   {% endfor %}
 </div>
 
 {% stylesheet %}
+  .tile__track:has(#theme-image) {
+    height: 100%;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -22,6 +29,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "theme_image",
+          "label": "Theme Image?"
         }
       ]
     }

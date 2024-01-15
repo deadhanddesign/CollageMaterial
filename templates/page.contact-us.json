@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "title": "",
+        "overline": "",
+        "show_overline": false,
+        "byline": "",
+        "show_byline": false
+      }
+    },
+    "tiles_medium_fywyLV": {
+      "type": "tiles-medium",
+      "settings": {
+        "tile-type": "contact",
+        "headline": "",
+        "header_size": "h2",
+        "copy": ""
+      }
+    },
+    "tiles_images_WiADKw": {
+      "type": "tiles-images",
+      "blocks": {
+        "image_LM9ptn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Surrealism_style_pattern.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_LM9ptn"
+      ],
+      "settings": {
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "header",
+    "tiles_medium_fywyLV",
+    "tiles_images_WiADKw",
+    "footer"
+  ]
+}
