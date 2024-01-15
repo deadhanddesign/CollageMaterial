@@ -1,24 +1,20 @@
-{% case section.settings['tile-type'] %}
-  {% when 'overview' %}
-    <div class="tile__track">
+<div class="tile__track">
+  {% case section.settings.tile_type %}
+    {% when 'overview' %}
       <h2 class="display--small">Overview</h2>
       <p>
         {{ product.description }}
       </p>
-    </div>
-  {% when 'deep_dive' %}
-    {% if product.metafields.custom.deep_dive %}
-      <div class="tile__track">
+    {% when 'deep_dive' %}
+      {% if product.metafields.custom.deep_dive %}
         <h2 class="display--small">Deeper Dive</h2>
         {{ product.metafields.custom.deep_dive | metafield_tag }}
-      </div>
+      {% else %}
+        <style>
+          #shopify-section-{{ section.id }} {display:none}
+        </style>
+      {% endif %}
     {% else %}
-      <style>
-        #shopify-section-{{ section.id }} {display:none}
-      </style>
-    {% endif %}
-  {% else %}
-    <div class="tile__track">
       {% case section.settings.header_size %}
         {% when 'h2' %}
           <h2 class="display--medium">{{ section.settings.headline }}</h2>
@@ -28,10 +24,80 @@
           <h4>{{ section.settings.headline }}</h4>
       {% endcase %}
       <div class="rich-text-block">{{ section.settings.copy }}</div>
-    </div>
-{% endcase %}
+  {% endcase %}
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'contact_form' %}
+        {% form 'contact', class: 'contact-form' %}
+          <md-outlined-text-field id="name" label="Name" required></md-outlined-text-field>
+          <md-outlined-select id="pronouns" label="Pronouns">
+            <md-select-option value="">Select one...</md-select-option>
+            <md-select-option value="Ae/Aer"><div slot="headline">Ae/Aer</div></md-select-option>
+            <md-select-option value="Ey/Em"><div slot="headline">Ey/Em</div></md-select-option>
+            <md-select-option value="He/Him"><div slot="headline">He/Him</div></md-select-option>
+            <md-select-option value="Per/Per"><div slot="headline">Per/Per</div></md-select-option>
+            <md-select-option value="She/Her"><div slot="headline">She/Her</div></md-select-option>
+            <md-select-option value="They/Them"><div slot="headline">They/Them</div></md-select-option>
+            <md-select-option value="Ve/Ver"><div slot="headline">Ve/Ver</div></md-select-option>
+            <md-select-option value="Xe/Xem"><div slot="headline">Xe/Xem</div></md-select-option>
+            <md-select-option value="Ze/Hir"><div slot="headline">Ze/Hir</div></md-select-option>
+          </md-outlined-select>
+          <md-outlined-text-field id="email" label="Email" type="email"></md-outlined-text-field>
+          <md-outlined-text-field id="phone" label="Phone" type="tel"></md-outlined-text-field>
+          <md-outlined-text-field id="message" label="Message" type="textarea" required></md-outlined-text-field>
+          <div class="option-container">
+            <div class="label--small">Opt In</div>
+            <div class="option-wrapper">
+              <md-checkbox
+                id="opt-in-email"
+                aria-label="I want to receive updates about Collage Spa, like new services, new products, and sales"
+                touch-target="wrapper"
+              >
+              </md-checkbox>
+              <label for="opt-in-email">
+                {{ block.settings.opt_in_email }}
+              </label>
+            </div>
+            <div class="option-wrapper">
+              <md-checkbox
+                id="opt-in-outreach"
+                aria-label="I want more info on Collage Community Outreach and how I can help"
+                touch-target="wrapper"
+              >
+              </md-checkbox>
+              <label for="opt-in-outreach"> {{ block.settings.opt_in_outreach }} </label>
+            </div>
+          </div>
+          <md-filled-button type="submit">Send</md-filled-button>
+        {% endform %}
+      {% else %}
+        Sup?
+    {% endcase %}
+  {% endfor %}
+</div>
 
 {% stylesheet %}
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--spacing-gap-small);
+
+    & .option-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-block-start: var(--spacing-margin-small);
+    }
+
+    & .option-wrapper {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+    }
+
+    & md-filled-button {
+      justify-self: end;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -41,7 +107,7 @@
   "settings": [
     {
       "type": "select",
-      "id": "tile-type",
+      "id": "tile_type",
       "label": "Type",
       "options": [
         {
@@ -88,6 +154,26 @@
       "label": "Copy"
     }
   ],
+  "blocks": [
+    {
+      "name": "Contact Form",
+      "type": "contact_form",
+      "settings": [
+        {
+          "type": "text",
+          "id": "opt_in_email",
+          "label": "Opt-in Email Copy",
+          "default": "I want to receive updates about Collage Spa, like new services, new products, and sales."
+        },
+        {
+          "type": "text",
+          "id": "opt_in_outreach",
+          "label": "Opt-in Outreach Copy",
+          "default": "I want more info on Collage Community Outreach and how I can help."
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "Tile - Medium",
@@ -97,6 +183,17 @@
         "header_size": "h3",
         "copy": "<p>Use this tile for average pieces of page content.</p><p>It's great if you want to put a small tile of something next to it on desktop.</p>"
       }
+    },
+    {
+      "name": "Tile - Contact Form",
+      "category": "tiles",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "contact_form",
+          "settings": {}
+        }
+      ]
     }
   ]
 }
