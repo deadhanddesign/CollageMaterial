@@ -40,7 +40,7 @@
       </span>
     {%- endfor -%}
 
-    <md-icon-button href="/" id="cs-logo-button" aria-label="home">
+    <md-icon-button href="/" id="cs-logo-nav-button" aria-label="home">
       <svg id="cs-logo" viewBox="0 0 332.6 214.37" role="img">
         <title>Collage Logo</title>
         <g>
@@ -165,10 +165,10 @@
 
   nav {
     position: fixed;
-    bottom: var(--spacing-margin-medium);
+    top: var(--spacing-margin-medium);
     left: 0;
     right: 0;
-    z-index: 9000;
+    z-index: 999999;
     pointer-events: none;
 
     --md-menu-item-hover-state-layer-color: var(--md-sys-color-primary);
@@ -199,12 +199,12 @@
       }
 
       & md-text-button,
-      #cs-logo-button {
+      #cs-logo-nav-button {
         height: 100%;
         border-radius: var(--border-radius-xlarge);
       }
 
-      & #cs-logo-button {
+      & #cs-logo-nav-button {
         --md-icon-button-icon-size: calc(var(--md-sys-typescale-display-medium-size) * 1.8);
         --md-icon-button-state-layer-width: auto;
         --md-icon-button-icon-color: var(--md-sys-color-primary);
@@ -212,7 +212,7 @@
 
         & #cs-logo {
           height: var(--md-sys-typescale-display-medium-size);
-          margin-left: calc(var(--spacing-padding-small) * -0.5);
+          /* margin-left: calc(var(--spacing-padding-small) * -0.5); */
         }
       }
 
