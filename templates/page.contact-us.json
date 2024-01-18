@@ -13,7 +13,6 @@
     "tiles_medium_fywyLV": {
       "type": "tiles-medium",
       "settings": {
-        "tile-type": "contact",
         "headline": "",
         "header_size": "h2",
         "copy": ""

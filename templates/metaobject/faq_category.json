@@ -1,21 +1,16 @@
 {
   "sections": {
     "header": {
-      "type": "component-header",
-      "settings": {
-      
-      }
+      "type": "header",
+      "settings": {}
     },
-    "main":{
-      "type": "component-tile",
-      "settings": {
-      
-      }
-  }
-},
+    "footer": {
+      "type": "footer",
+      "settings": {}
+    }
+  },
   "order": [
     "header",
-    "main"
+    "footer"
   ]
-
 }

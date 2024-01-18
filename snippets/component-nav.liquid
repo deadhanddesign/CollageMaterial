@@ -41,9 +41,9 @@
     {%- endfor -%}
 
     <md-icon-button href="/" id="cs-logo-nav-button" aria-label="home">
-      <svg id="cs-logo" viewBox="0 0 332.6 214.37" role="img">
+      <svg id="cs-logo-nav" viewBox="0 0 332.6 214.37" role="img">
         <title>Collage Logo</title>
-        <g>
+        <g id="cs-logo">
           <path
             class="cs-logo__teal"
             d="m237.92,75.35l19.42-44.3,19.3,44.3h-38.71Zm50.22,26.39h10.81l-35.58-81.38h-4.53l-35.69,81.38h3.26l10.58-24.07h40.69l10.46,24.07Z" />
@@ -209,6 +209,10 @@
         --md-icon-button-state-layer-width: auto;
         --md-icon-button-icon-color: var(--md-sys-color-primary);
         --md-icon-button-hover-state-layer-color: var(--md-sys-color-primary);
+
+        & #cs-logo-nav {
+          height: fit-content;
+        }
 
         & #cs-logo {
           height: var(--md-sys-typescale-display-medium-size);

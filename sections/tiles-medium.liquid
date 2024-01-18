@@ -70,8 +70,8 @@
           </div>
           <md-filled-button type="submit">Send</md-filled-button>
         {% endform %}
-      {% else %}
-        Sup?
+      {% when 'dropdown' %}
+        {% render 'component-dropdown', summary: '{{ block.settings.dropdown_summary }}', contents: '{{ block.settings.dropdown_contents }}' %}
     {% endcase %}
   {% endfor %}
 </div>
@@ -170,6 +170,22 @@
           "id": "opt_in_outreach",
           "label": "Opt-in Outreach Copy",
           "default": "I want more info on Collage Community Outreach and how I can help."
+        }
+      ]
+    },
+    {
+      "name": "Dropdown",
+      "type": "dropdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "dropdown_summary",
+          "label": "Summary"
+        },
+        {
+          "type": "text",
+          "id": "dropdown_contents",
+          "label": "Contents"
         }
       ]
     }
