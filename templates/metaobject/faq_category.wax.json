@@ -13,16 +13,16 @@
     "tiles_images_gFb8hN": {
       "type": "tiles-images",
       "blocks": {
-        "image_Hrm7hc": {
+        "image_N7gJNi": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Abstract_style_pattern.png",
+            "image": "shopify:\/\/shop_images\/Bauhaus_style_pattern.png",
             "theme_image": true
           }
         }
       },
       "block_order": [
-        "image_Hrm7hc"
+        "image_N7gJNi"
       ],
       "settings": {
       }
