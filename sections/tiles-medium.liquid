@@ -83,6 +83,8 @@
         <a href="{{ block.settings.large_link_url }}" class="large_link">
           <h2 class="display--medium">{{ block.settings.large_link_text }}</h2>
         </a>
+      {% when '@app' %}
+        {% render block %}
     {% endcase %}
   {% endfor %}
 </div>
@@ -138,35 +140,6 @@
           "label": "Deep Dive"
         }
       ]
-    },
-    {
-      "type": "text",
-      "id": "headline",
-      "label": "Headline"
-    },
-    {
-      "type": "select",
-      "id": "header_size",
-      "label": "Header Size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        },
-        {
-          "value": "h4",
-          "label": "H4"
-        }
-      ]
-    },
-    {
-      "type": "richtext",
-      "id": "copy",
-      "label": "Copy"
     }
   ],
   "blocks": [
@@ -260,6 +233,9 @@
           "default": "I want more info on Collage Community Outreach and how I can help."
         }
       ]
+    },
+    {
+      "type": "@app"
     }
   ],
   "presets": [
