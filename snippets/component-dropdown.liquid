@@ -15,10 +15,15 @@
 {% endcomment %}
 
 <details>
-  <summary>
-    {{ summary }}
-    <span></span>
-  </summary>
+  {% case content-type %}
+    {% when 'filter' %}
+      <summary>
+    {% else %}
+      <summary class="summary--large">
+    {% endcase %}
+        {{ summary }}
+        <span></span>
+      </summary>
 </details>
 <div class="details">
   {% case content-type %}
@@ -117,6 +122,16 @@
     ::-webkit-scrollbar-thumb {
       border-radius: 10px;
       background-color: var(--md-sys-color-on-surface-variant);
+    }
+
+  }
+  
+  .summary--large {
+    margin-block-start: var(--spacing-margin-large);  
+    margin-block-end: var(--spacing-margin-small);  
+
+    & h3 {
+      margin-block-start: 0;
     }
   }
 {% endstyle %}

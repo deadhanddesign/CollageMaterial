@@ -33,8 +33,8 @@
         "dropdown_BaPFtY": {
           "type": "dropdown",
           "settings": {
-            "dropdown_summary": "",
-            "dropdown_contents": ""
+            "dropdown_summary": "Are all your therapists the same?",
+            "dropdown_contents": "<p>No. All our therapists are certified, licensed and educated body workers. Each therapist has different ways of approaching the body and many have specialized in one modality or another. All our therapists will provide you with their best service, but you will also want to find one who fits your needs, temperament and style. It takes time develop a relationship with your therapist. Ask the front desk for recommendations, because we always try our best to make a great match.<\/p>"
           }
         }
       },
