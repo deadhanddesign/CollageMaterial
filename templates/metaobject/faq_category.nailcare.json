@@ -4,7 +4,7 @@
       "type": "header",
       "settings": {
         "title": "{{ metaobject.title.value }}",
-        "overline": "{{ metaobject.title.value }}",
+        "overline": "FAQ",
         "show_overline": true,
         "byline": "",
         "show_byline": false
@@ -16,7 +16,7 @@
         "image_Hrm7hc": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Abstract_style_pattern.png",
+            "image": "shopify:\/\/shop_images\/Pop_Art_style_pattern_gender_neutral.png",
             "theme_image": true
           }
         }
