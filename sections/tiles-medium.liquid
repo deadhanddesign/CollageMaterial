@@ -88,7 +88,9 @@
             <h4>{{ block.settings.block_headline }}</h4>
         {% endcase %}
       {% when 'large_link' %}
-        <h2 href="{{ block.settings.large_link_url }}" class="display--medium">{{ block.settings.large_link_text }}</h2>
+        <a href="{{ block.settings.large_link_url }}">
+          <h2 class="display--medium">{{ block.settings.large_link_text }}</h2>
+        </a>
     {% endcase %}
   {% endfor %}
 </div>
