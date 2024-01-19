@@ -88,7 +88,7 @@
             <h4>{{ block.settings.block_headline }}</h4>
         {% endcase %}
       {% when 'large_link' %}
-        <a href="{{ block.settings.large_link_url }}">
+        <a href="{{ block.settings.large_link_url }}" class="large_link">
           <h2 class="display--medium">{{ block.settings.large_link_text }}</h2>
         </a>
     {% endcase %}
@@ -116,6 +116,10 @@
     & md-filled-button {
       justify-self: end;
     }
+  }
+
+  .large_link {
+    width: 100%;
   }
 {% endstylesheet %}
 
