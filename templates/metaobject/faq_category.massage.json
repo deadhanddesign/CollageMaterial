@@ -30,24 +30,24 @@
     "tiles_medium_MnXMKc": {
       "type": "tiles-medium",
       "blocks": {
-        "headline_htcni3": {
-          "type": "headline",
+        "large_link_9Rz8Fx": {
+          "type": "large_link",
           "settings": {
-            "header_size": "h2",
-            "headline": "Swedish Spa Massage"
+            "large_link_text": "Swedish Spa Massage",
+            "large_link_url": "shopify:\/\/metaobjects\/faq_subcategory\/swedish-spa-massage"
           }
         },
-        "dropdown_BaPFtY": {
-          "type": "dropdown",
+        "large_link_WqMEnF": {
+          "type": "large_link",
           "settings": {
-            "dropdown_summary": "Are all your therapists the same?",
-            "dropdown_contents": "<p>No. All our therapists are certified, licensed and educated body workers. Each therapist has different ways of approaching the body and many have specialized in one modality or another. All our therapists will provide you with their best service, but you will also want to find one who fits your needs, temperament and style. It takes time develop a relationship with your therapist. Ask the front desk for recommendations, because we always try our best to make a great match.<\/p>"
+            "large_link_text": "Prenatal Relaxing Massage",
+            "large_link_url": "shopify:\/\/metaobjects\/faq_subcategory\/prenatal-relaxing-massage"
           }
         }
       },
       "block_order": [
-        "headline_htcni3",
-        "dropdown_BaPFtY"
+        "large_link_9Rz8Fx",
+        "large_link_WqMEnF"
       ],
       "settings": {
         "tile_type": "blank",
