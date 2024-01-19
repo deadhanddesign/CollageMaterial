@@ -1,0 +1,22 @@
+{
+    "sections": {
+        "header": {
+            "type": "header",
+            "settings": {
+                "title": "",
+                "overline": "",
+                "show_overline": false,
+                "byline": "",
+                "show_byline": false
+            }
+        },
+        "footer": {
+            "type": "footer",
+            "settings": {}
+        }
+    },
+    "order": [
+        "header",
+        "footer"
+    ]
+}
