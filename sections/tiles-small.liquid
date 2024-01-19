@@ -1,7 +1,7 @@
-{% case section.settings['tile-type'] %}
-  {% when 'ingredients' %}
-    {% if product.metafields.custom.ingredients %}
-      <div class="tile__track">
+<div class="tile__track">
+  {% case section.settings.tile_type %}
+    {% when 'ingredients' %}
+      {% if product.metafields.custom.ingredients %}
         <h2 class="display--small">What's Inside</h2>
         <md-list>
           {% for ingredient in product.metafields.custom.ingredients.value %}
@@ -10,58 +10,73 @@
             </md-list-item>
           {% endfor %}
         </md-list>
-      </div>
-    {% else %}
-      <style>
-        #shopify-section-{{ section.id }} {display:none}
-      </style>
-    {% endif %}
 
-  {% when 'product-photos' %}
-    {% if product.images.size > 1 %}
-      <div class="tile__track">
+      {% else %}
+        <style>
+          #shopify-section-{{ section.id }} {display:none}
+        </style>
+      {% endif %}
+
+    {% when 'product-photos' %}
+      {% if product.images.size > 1 %}
         {% for image in product.images offset: 1 limit: 5 %}
           {{ image.src | image_url: width: 1200 | image_tag: loading: 'lazy' }}
         {% endfor %}
-      </div>
-      <style>
-        #shopify-section-{{ section.id }} {
-          background: none;
-          padding: 0;
 
-          & .tile__track {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-gap-medium);
-            width: auto;
+        <style>
+          #shopify-section-{{ section.id }} {
+            background: none;
+            padding: 0;
+
+            & .tile__track {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--spacing-gap-medium);
+              width: auto;
+            }
+
+            & img {
+              width: min(30dvw, 640px);
+              flex: 1 1 auto;
+              border-radius: var(--border-radius-large);
+            }
           }
+        </style>
+      {% else %}
+        <style>
+          #shopify-section-{{ section.id }} {display:none}
+        </style>
+      {% endif %}
+  {% endcase %}
 
-          & img {
-            width: min(30dvw, 640px);
-            flex: 1 1 auto;
-            border-radius: var(--border-radius-large);
-          }
-        }
-      </style>
-    {% else %}
-      <style>
-        #shopify-section-{{ section.id }} {display:none}
-      </style>
-    {% endif %}
-  {% else %}
-    <div class="tile__track">
-      {% case section.settings.header_size %}
-        {% when 'h2' %}
-          <h2 class="display--medium">{{ section.settings.headline }}</h2>
-        {% when 'h3' %}
-          <h3 class="display--small">{{ section.settings.headline }}</h3>
-        {% else %}
-          <h4>{{ section.settings.headline }}</h4>
-      {% endcase %}
-      <div class="rich-text-block">{{ section.settings.copy }}</div>
-    </div>
-{% endcase %}
-
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'dropdown' %}
+        {% capture question %}
+                  <h3>{{ block.settings.dropdown_summary }}</h3>
+                {% endcapture %}
+        {% capture answer %}
+                  <div>{{ block.settings.dropdown_contents }}</div>
+                {% endcapture %}
+        {% render 'component-dropdown', summary: question, contents: answer %}
+      {% when 'headline' %}
+        {% case block.settings.block_headline_size %}
+          {% when 'h2' %}
+            <h2>{{ block.settings.block_headline }}</h2>
+          {% when 'h3' %}
+            <h3>{{ block.settings.block_headline }}</h3>
+          {% else %}
+            <h4>{{ block.settings.block_headline }}</h4>
+        {% endcase %}
+      {% when 'richtext' %}
+        {{ block.settings.copy }}
+      {% when 'html_embed' %}
+        {{ block.settings.html_embed_code }}
+      {% when '@app' %}
+        {% render block %}
+    {% endcase %}
+  {% endfor %}
+</div>
 {% stylesheet %}
 {% endstylesheet %}
 
@@ -72,7 +87,7 @@
   "settings": [
     {
       "type": "select",
-      "id": "tile-type",
+      "id": "tile_type",
       "label": "Type",
       "options": [
         {
@@ -88,59 +103,99 @@
           "label": "Product Photos"
         }
       ]
-    },
+    }
+  ],
+  "blocks": [
     {
-      "type": "text",
-      "id": "headline",
-      "label": "Headline"
-    },
-    {
-      "type": "select",
-      "id": "header_size",
-      "label": "Header Size",
-      "options": [
+      "name": "Headline",
+      "type": "headline",
+      "settings": [
         {
-          "value": "h2",
-          "label": "H2"
+          "type": "select",
+          "id": "block_headline_size",
+          "label": "Headline Size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            }
+          ]
         },
         {
-          "value": "h3",
-          "label": "H3"
-        },
-        {
-          "value": "h4",
-          "label": "H4"
+          "type": "text",
+          "id": "block_headline",
+          "label": "Headline"
         }
       ]
     },
     {
+      "name": "Rich Text",
       "type": "richtext",
-      "id": "copy",
-      "label": "Copy"
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "copy",
+          "label": "Copy"
+        }
+      ]
+    },
+    {
+      "name": "Dropdown",
+      "type": "dropdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "dropdown_summary",
+          "label": "Summary"
+        },
+        {
+          "type": "richtext",
+          "id": "dropdown_contents",
+          "label": "Contents"
+        }
+      ]
+    },
+    {
+      "name": "HTML Embed",
+      "type": "html_embed",
+      "settings": [
+        {
+          "type": "html",
+          "id": "html_embed_code",
+          "label": "Embed Code"
+        }
+      ]
+    },
+    {
+      "type": "@app"
     }
   ],
   "presets": [
     {
       "name": "Tile - Small",
       "category": "tiles",
-      "settings": {
-        "headline": "This is a Small Tile",
-        "header_size": "h4",
-        "copy": "<p>Use this tile for minor pieces of page content.</p><p>Perfect for asides like Highlight Lists.</p>"
-      }
+      "settings": {}
     },
     {
       "name": "Tile - Ingredients",
       "category": "tiles",
       "settings": {
-        "tile-type": "ingredients"
+        "tile_type": "ingredients"
       }
     },
     {
       "name": "Tile - Product Photos",
       "category": "tiles",
       "settings": {
-        "tile-type": "product-photos"
+        "tile_type": "product-photos"
       }
     }
   ]
