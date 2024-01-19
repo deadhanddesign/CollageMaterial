@@ -1,22 +1,63 @@
 {
-    "sections": {
-        "header": {
-            "type": "header",
-            "settings": {
-                "title": "",
-                "overline": "",
-                "show_overline": false,
-                "byline": "",
-                "show_byline": false
-            }
-        },
-        "footer": {
-            "type": "footer",
-            "settings": {}
-        }
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "title": "",
+        "overline": "",
+        "show_overline": false,
+        "byline": "",
+        "show_byline": false
+      }
     },
-    "order": [
-        "header",
-        "footer"
-    ]
+    "tiles_images_qX6pxQ": {
+      "type": "tiles-images",
+      "blocks": {
+        "image_7wcN7V": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Spa_Party_in_the_Abstract_Style_Blue.png",
+            "theme_image": true
+          }
+        }
+      },
+      "block_order": [
+        "image_7wcN7V"
+      ],
+      "settings": {
+      }
+    },
+    "tiles_medium_z9AR8N": {
+      "type": "tiles-medium",
+      "blocks": {
+        "large_link_Gpj3cB": {
+          "type": "large_link",
+          "settings": {
+            "large_link_text": "Spa",
+            "large_link_url": "shopify:\/\/metaobjects\/faq_category\/spa"
+          }
+        }
+      },
+      "block_order": [
+        "large_link_Gpj3cB"
+      ],
+      "settings": {
+        "tile_type": "blank",
+        "headline": "",
+        "header_size": "h2",
+        "copy": "<p>Spa FAQ: All the Answers You Didn't Even Know You Needed! Just pick the category you want to learn more about and enjoy the rabbit hole of knowledge. Your journey starts here!<\/p>"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "header",
+    "tiles_images_qX6pxQ",
+    "tiles_medium_z9AR8N",
+    "footer"
+  ]
 }
