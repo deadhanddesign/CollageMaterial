@@ -71,7 +71,13 @@
           <md-filled-button type="submit">Send</md-filled-button>
         {% endform %}
       {% when 'dropdown' %}
-        {% render 'component-dropdown', summary: '{{ block.settings.dropdown_summary }}', contents: '{{ block.settings.dropdown_contents }}' %}
+        {% capture question %}
+                    <h3>{{ block.settings.dropdown_summary }}</h3>
+                  {% endcapture %}
+        {% capture answer %}
+                    <div>{{ block.settings.dropdown_contents }}</div>
+                  {% endcapture %}
+        {% render 'component-dropdown', summary: question, contents: answer %}
     {% endcase %}
   {% endfor %}
 </div>
@@ -183,7 +189,7 @@
           "label": "Summary"
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "dropdown_contents",
           "label": "Contents"
         }
