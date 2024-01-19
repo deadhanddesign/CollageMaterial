@@ -1,8 +1,7 @@
 {% assign testimonials = shop.metaobjects.testimonial.values %}
 
 <h2 class="display--large">
-  Customer<br>
-  Kudos
+  {{ section.settings.title }}
 </h2>
 
 {% for testimonial in testimonials %}
@@ -36,6 +35,13 @@
 {
   "name": "Home Testimonials",
   "class": "tile tile--large tile--tertiary home-testimonials",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Customer<br>Kudos"
+    }
+  ]
 }
 {% endschema %}
