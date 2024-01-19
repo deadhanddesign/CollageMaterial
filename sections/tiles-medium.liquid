@@ -15,15 +15,7 @@
         </style>
       {% endif %}
     {% else %}
-      {% case section.settings.header_size %}
-        {% when 'h2' %}
-          <h2 class="display--medium">{{ section.settings.headline }}</h2>
-        {% when 'h3' %}
-          <h3 class="display--small">{{ section.settings.headline }}</h3>
-        {% else %}
-          <h4>{{ section.settings.headline }}</h4>
-      {% endcase %}
-      <div class="rich-text-block">{{ section.settings.copy }}</div>
+
   {% endcase %}
   {% for block in section.blocks %}
     {% case block.type %}
