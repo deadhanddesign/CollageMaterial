@@ -83,6 +83,10 @@
         <a href="{{ block.settings.large_link_url }}" class="large_link">
           <h2 class="display--medium">{{ block.settings.large_link_text }}</h2>
         </a>
+      {% when 'richtext' %}
+        {{ block.settings.copy }}
+      {% when 'html_embed' %}
+        {{ block.settings.html_embed_code }}
       {% when '@app' %}
         {% render block %}
     {% endcase %}
@@ -231,6 +235,17 @@
           "id": "opt_in_outreach",
           "label": "Opt-in Outreach Copy",
           "default": "I want more info on Collage Community Outreach and how I can help."
+        }
+      ]
+    },
+    {
+      "name": "HTML Embed",
+      "type": "html_embed",
+      "settings": [
+        {
+          "type": "html",
+          "id": "html_embed_code",
+          "label": "Embed Code"
         }
       ]
     },
