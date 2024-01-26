@@ -29,7 +29,9 @@
 
       <span style="position: relative; place-self: end;">
         {% assign sort_by = object.sort_by | default: object.default_sort_by %}
-        <md-icon-button id="sort-button"> <md-icon style="transform: scaleX(-1)">sort</md-icon> </md-icon-button>
+        <md-icon-button aria-label="Sort" id="sort-button">
+          <md-icon style="transform: scaleX(-1)">sort</md-icon>
+        </md-icon-button>
         <md-menu id="sort-menu" anchor="sort-button">
           {% for option in object.sort_options %}
             <md-menu-item

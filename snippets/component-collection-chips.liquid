@@ -30,6 +30,12 @@
             {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
             {{ min_value | money }} - {{ max_value | money }}
           "
+          aria-label="
+            {{ filter.label }}:
+            {% assign min_value = filter.min_value.value | default: 0 -%}
+            {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+            {{ min_value | money }} - {{ max_value | money }}
+          "
           href="{{ filter.url_to_remove }}"
         >
         </md-input-chip>
@@ -39,6 +45,7 @@
         <md-input-chip
           class="chip"
           label="{{ filter.label }}: {{ filter_value.label }}"
+          aria-label="{{ filter.label }}: {{ filter_value.label }}"
           href="{{ filter_value.url_to_remove }}"
         >
         </md-input-chip>
@@ -46,7 +53,7 @@
     {%- endif -%}
   {%- endfor -%}
 
-  <md-text-button id="clear-filters-button" href="{{ type.url }}?sort_by={{ type.sort_by }}">
+  <md-text-button id="clear-filters-button" href="{{ type.url }}?sort_by={{ type.sort_by }}" aria-label="Clear Filters">
     Clear Filters
   </md-text-button>
 </md-chip-set>

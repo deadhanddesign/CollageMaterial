@@ -6,7 +6,7 @@
     <md-list>
       {% for item in cart.items %}
         <md-list-item type="button">
-          <md-icon-button slot="start" href="{{ item.url_to_remove }}"><md-icon>close</md-icon></md-icon-button>
+          <md-icon-button slot="start" href="{{ item.url_to_remove }}"  aria-label="Close"><md-icon>close</md-icon></md-icon-button>
           {{ item | image_url: height: '90dvh' | image_tag: class: 'tile', loading: 'lazy', slot: 'start' }}
           <div slot="headline">
             <a href="{{ item.url }}">{{ item.product.title }}</a>
@@ -49,8 +49,8 @@
         {% endif %}
       {% endcomment %}
 
-      <md-filled-tonal-button type="submit" name="update">Update</md-filled-tonal-button>
-      <md-filled-button type="submit" name="checkout">Checkout</md-filled-button>
+      <md-filled-tonal-button aria-label="Update Cart" type="submit" name="update">Update</md-filled-tonal-button>
+      <md-filled-button aria-label="Checkout" type="submit" name="checkout">Checkout</md-filled-button>
     </div>
   {% endform %}
 

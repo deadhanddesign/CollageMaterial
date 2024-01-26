@@ -15,7 +15,13 @@
 
     <form class="filter" id="filter">
       {% if type == 'search' %}
-        <md-outlined-text-field id="search" label="Search" name="q" value="{{ search.terms | escape }}">
+        <md-outlined-text-field
+          aria-label="{{ search.terms | escape }}"
+          id="search"
+          label="Search"
+          name="q"
+          value="{{ search.terms | escape }}"
+        >
           <input type="hidden" name="type" value="product">
           <md-icon slot="leading-icon">search</md-icon>
         </md-outlined-text-field>
@@ -159,7 +165,7 @@
         %}
       {% endfor %}
 
-      <md-filled-tonal-button type="submit">Apply Filters</md-filled-tonal-button>
+      <md-filled-tonal-button aria-label="Apply Filters" type="submit">Apply Filters</md-filled-tonal-button>
     </form>
   </div>
 </div>
