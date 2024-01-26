@@ -34,7 +34,6 @@
   {% for location in locations %}
     <div class="home-hero__tile">
       {{ location.hero_image | image_url: width: 600 | image_tag: loading: 'eager', class: 'home-hero__background' }}
-
       <h2 class="display--small home-hero__location-name">{{ location.name }}</h2>
       <div class="home-hero__button-wrapper">
         <md-filled-tonal-button aria-label="Learn More about {{ location.name }}">Learn More</md-filled-tonal-button>
