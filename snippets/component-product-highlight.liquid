@@ -26,7 +26,12 @@
             <div class="label--medium">{{ option.name | escape }}</div>
             {%- for variant in product.variants -%}
               {% if variant == current_variant %}
-                <md-filled-tonal-button type="button" selected style="pointer-events: none">
+                <md-filled-tonal-button
+                  aria-label="{{ variant.title | escape }}"
+                  type="button"
+                  selected
+                  style="pointer-events: none"
+                >
                   {{- variant.title | escape -}}
                 </md-filled-tonal-button>
               {% else %}
@@ -38,6 +43,7 @@
                     href="{{ variant.url }}"
                   {% endif %}
                   type="button"
+                  aria-label="{{ variant.title | escape }}"
                 >
                   {{- variant.title | escape -}}
                 </md-outlined-button>
@@ -61,7 +67,7 @@
         <div class="display--medium" id="quantity-price">{{ current_variant.price | money }}</div>
       </div>
       <div class="product-highlight__button-container">
-        <md-filled-button type="submit" id="add-to-cart-button">Add to Cart</md-filled-button>
+        <md-filled-button aria-label="Add to Cart" type="submit" id="add-to-cart-button">Add to Cart</md-filled-button>
         <md-filled-button trailing-icon id="gpay-button">
           Buy with
           <svg slot="icon" width="41" height="17">

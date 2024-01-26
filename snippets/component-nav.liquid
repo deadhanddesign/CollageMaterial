@@ -6,11 +6,11 @@
           {{ link.title }}
           {% comment %} <md-icon slot="icon">arrow_drop_down</md-icon> {% endcomment %}
         </md-text-button>
-        <md-menu id="nav-{{ link.title | downcase }}-menu" anchor="nav-{{ link.title | downcase }}-button">
+        <md-menu id="nav-{{ link.title | downcase }}-menu" anchor="nav-{{ link.title | downcase }}-button" tabindex="0">
           {%- if link.links != blank -%}
             {%- for child_link in link.links -%}
               <md-menu-item
-                role="button"
+                role="link"
                 href="{{ child_link.url }}"
                 {% if link.active %}
                   aria-current="page"
@@ -23,7 +23,7 @@
               {%- if child_link.links != blank -%}
                 {%- for grandchild_link in child_link.links -%}
                   <md-menu-item
-                    role="button"
+                    role="link"
                     href="{{ grandchild_link.url }}"
                     {% if link.active %}
                       aria-current="page"
@@ -80,7 +80,7 @@
           {%- if link.links != blank -%}
             {%- for child_link in link.links -%}
               <md-menu-item
-                role="button"
+                role="link"
                 href="{{ child_link.url }}"
                 {% if link.active %}
                   aria-current="page"
@@ -93,7 +93,7 @@
               {%- if child_link.links != blank -%}
                 {%- for grandchild_link in child_link.links -%}
                   <md-menu-item
-                    role="button"
+                    role="link"
                     href="{{ grandchild_link.url }}"
                     {% if link.active %}
                       aria-current="page"

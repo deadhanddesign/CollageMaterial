@@ -24,20 +24,19 @@
         "image_LM9ptn": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Surrealism_style_pattern.png"
+            "image": "shopify:\/\/shop_images\/Surrealism_style_pattern.png",
+            "decorative": true
           }
         }
       },
       "block_order": [
         "image_LM9ptn"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "footer": {
       "type": "footer",
-      "settings": {
-      }
+      "settings": {}
     }
   },
   "order": [

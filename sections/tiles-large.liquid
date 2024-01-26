@@ -6,12 +6,14 @@
       <div class="collections-container">
         <md-outlined-button
           href="/collections/all"
+          aria-label="All Collections"
         >
           All
         </md-outlined-button>
         {% for collection in collections %}
           <md-outlined-button
             href="{{ collection.url }}"
+            aria-label="{{ collection.title }}"
           >
             {{- collection.title -}}
           </md-outlined-button>
@@ -21,12 +23,14 @@
       <div class="collections-container">
         <md-outlined-button
           href="/collections/all"
+          aria-label="All Vendors"
         >
           All
         </md-outlined-button>
         {% for vendor in shop.vendors %}
           <md-outlined-button
             href="/collections/vendors?q={{- vendor -}}"
+            aria-label="{{ vendor }}"
           >
             {{- vendor -}}
           </md-outlined-button>

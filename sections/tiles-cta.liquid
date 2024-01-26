@@ -11,7 +11,9 @@
           <div class="cta-grid__content-container">
             <form action="{{ block.settings.form_url }}" class="cta-grid__form" method="get">
               <md-outlined-text-field label="Email" type="email" aria-label="email"></md-outlined-text-field>
-              <md-filled-button type="submit">{{ block.settings.button_text }}</md-filled-button>
+              <md-filled-button aria-label="{{ block.settings.button_text }}" type="submit">
+                {{- block.settings.button_text -}}
+              </md-filled-button>
             </form>
           </div>
         {% when 'button' %}
@@ -22,6 +24,7 @@
               {% if block.settings.button_url contains 'http' %}
                 target="_blank"
               {% endif %}
+              aria-label="{{ block.settings.button_text }}"
             >
               {{ block.settings.button_text }}
             </md-filled-button>

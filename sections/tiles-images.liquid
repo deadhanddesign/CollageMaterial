@@ -1,9 +1,25 @@
 <div class="tile__track">
   {% for block in section.blocks %}
-    {% if block.settings.theme_image %}
-      {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'eager', id: 'theme-image' }}
+    {% if block.settings.decorative %}
+      {% if block.settings.theme_image %}
+        {{
+          block.settings.image.src
+          | image_url: width: 1000
+          | image_tag: loading: 'eager', id: 'theme-image', alt: ' ', role: 'presentation'
+        }}
+      {% else %}
+        {{
+          block.settings.image.src
+          | image_url: width: 1000
+          | image_tag: loading: 'lazy', id: 'theme-image', alt: ' ', role: 'presentation'
+        }}
+      {% endif %}
     {% else %}
-      {{ block.settings.image.src | image_url: width: 600 | image_tag: loading: 'lazy' }}
+      {% if block.settings.theme_image %}
+        {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', id: 'theme-image' }}
+      {% else %}
+        {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+      {% endif %}
     {% endif %}
   {% endfor %}
 </div>
@@ -11,6 +27,12 @@
 {% stylesheet %}
   .tile__track:has(#theme-image) {
     height: calc(100dvh - (var(--spacing-padding-xlarge) * 2));
+  }
+
+  @media (max-width: 900px) {
+    .tile__track:has(#theme-image) {
+      height: calc(40dvh - (var(--spacing-padding-xlarge) * 2));
+    }
   }
 {% endstylesheet %}
 
@@ -34,6 +56,11 @@
           "type": "checkbox",
           "id": "theme_image",
           "label": "Theme Image?"
+        },
+        {
+          "type": "checkbox",
+          "id": "decorative",
+          "label": "Decorative?"
         }
       ]
     }
