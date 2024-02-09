@@ -36,10 +36,42 @@
             "large_link_text": "Spa",
             "large_link_url": "shopify:\/\/metaobjects\/faq_category\/spa"
           }
+        },
+        "large_link_6KEHHb": {
+          "type": "large_link",
+          "settings": {
+            "large_link_text": "Massage",
+            "large_link_url": "shopify:\/\/metaobjects\/faq_category\/massage"
+          }
+        },
+        "large_link_eVdhNg": {
+          "type": "large_link",
+          "settings": {
+            "large_link_text": "Nail Care",
+            "large_link_url": "shopify:\/\/metaobjects\/faq_category\/nail-care"
+          }
+        },
+        "large_link_bMJmaC": {
+          "type": "large_link",
+          "settings": {
+            "large_link_text": "Sauna",
+            "large_link_url": "shopify:\/\/metaobjects\/faq_category\/sauna"
+          }
+        },
+        "large_link_h3b6r9": {
+          "type": "large_link",
+          "settings": {
+            "large_link_text": "Wax",
+            "large_link_url": "shopify:\/\/metaobjects\/faq_category\/wax"
+          }
         }
       },
       "block_order": [
-        "large_link_Gpj3cB"
+        "large_link_Gpj3cB",
+        "large_link_6KEHHb",
+        "large_link_eVdhNg",
+        "large_link_bMJmaC",
+        "large_link_h3b6r9"
       ],
       "settings": {
         "tile_type": "blank",

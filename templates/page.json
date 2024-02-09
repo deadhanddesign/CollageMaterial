@@ -14,7 +14,8 @@
       "type": "tiles-large",
       "settings": {
         "headline": "",
-        "copy": ""
+        "copy": "",
+        "tile-type": "content"
       }
     },
     "footer": {

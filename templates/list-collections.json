@@ -1,25 +1,26 @@
 {
-    "sections": {
-        "header": {
-            "type": "header",
-            "settings": {
-                "title": "Categories"
-            }
-        },
-        "main": {
-            "type": "tiles-large",
-            "settings": {
-                "tile-type": "collections"
-            }
-        },
-        "footer": {
-            "type": "footer",
-            "settings": {}
-        }
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "title": "Categories"
+      }
     },
-    "order": [
-        "header",
-        "main",
-        "footer"
-    ]
+    "main": {
+      "type": "tiles-large",
+      "settings": {
+        "tile-type": "collections"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "header",
+    "main",
+    "footer"
+  ]
 }

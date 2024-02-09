@@ -19,7 +19,7 @@
     "d4029fc4-682c-40e1-b258-80e2569a9f7d": {
       "type": "tiles-medium",
       "settings": {
-        "tile-type": "overview",
+        "tile_type": "overview",
         "headline": "This is a Medium Tile",
         "header_size": "h3",
         "copy": "<p>Use this tile for average pieces of page content.<\/p><p>It's great if you want to put a small tile of something next to it on desktop.<\/p>"
@@ -46,10 +46,29 @@
     "1138f1c9-8e85-4f97-ac3b-e64e58db675a": {
       "type": "tiles-medium",
       "settings": {
-        "tile-type": "deep_dive",
+        "tile_type": "deep_dive",
         "headline": "This is a Medium Tile",
         "header_size": "h3",
         "copy": "<p>Use this tile for average pieces of page content.<\/p><p>It's great if you want to put a small tile of something next to it on desktop.<\/p>"
+      }
+    },
+    "tiles_cta_Ai9AJt": {
+      "type": "tiles-cta",
+      "blocks": {
+        "sign_up_form_66X37L": {
+          "type": "sign-up_form",
+          "settings": {
+            "form_url": "https:\/\/example.com",
+            "button_text": "Subscribe"
+          }
+        }
+      },
+      "block_order": [
+        "sign_up_form_66X37L"
+      ],
+      "settings": {
+        "headline": "Get the Inside Scoop!",
+        "copy": "<p>Be the first to know about our sizzling sales, fabulous new treatments, and irresistible offers! Indulge in a spa experience that keeps giving – straight to your inbox!<\/p>"
       }
     },
     "footer": {
@@ -65,6 +84,7 @@
     "9d41e486-8ea8-4544-adbb-fea5eedd3fea",
     "3037d37f-2e37-4dd2-81a7-6836c79d1a3f",
     "1138f1c9-8e85-4f97-ac3b-e64e58db675a",
+    "tiles_cta_Ai9AJt",
     "footer"
   ]
 }

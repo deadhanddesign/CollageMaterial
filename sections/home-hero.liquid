@@ -37,9 +37,14 @@
       <h2 class="display--small home-hero__location-name">{{ location.name }}</h2>
       <div class="home-hero__button-wrapper">
         <md-filled-tonal-button aria-label="Learn More about {{ location.name }}">Learn More</md-filled-tonal-button>
-        <md-filled-button aria-label="Book an appointment at {{ location.name }}" href="{{ location.booking_link }}"
-          >Book Now</md-filled-button
-        >
+        {% if location.booking_link %}
+          <md-filled-button aria-label="Book an appointment at {{ location.name }}" href="{{ location.booking_link }}">
+            Book Now
+          </md-filled-button>
+
+        {% else %}
+          <md-filled-button aria-label="Browse Products" href="/collections/all/"> Browse </md-filled-button>
+        {% endif %}
       </div>
     </div>
   {% endfor %}

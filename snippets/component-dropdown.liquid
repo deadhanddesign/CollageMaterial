@@ -64,6 +64,7 @@
         padding-block: var(--spacing-padding-medium);
         overflow: auto;
         margin-bottom: var(--spacing-margin-medium);
+        opacity: 1;
 
         &.filter__options:is([data-type='price_range']) {
           overflow-y: hidden;
@@ -80,6 +81,8 @@
     & .contents {
       overflow: hidden;
       padding-inline: var(--spacing-padding-medium);
+      opacity: 0;
+      transition: opacity cubic-bezier(0.64, 0, 1, -0.02) 400ms;
     }
   }
 

@@ -1,21 +1,62 @@
 {
-    "sections": {
-        "header": {
-            "type": "home-hero",
-            "settings": {}
-        },
-        "testimonials": {
-            "type": "home-testimonials",
-            "settings": {}
-        },
-        "footer": {
-            "type": "footer",
-            "settings": {}
-        }
+  "sections": {
+    "header": {
+      "type": "home-hero",
+      "settings": {
+      }
     },
-    "order": [
-        "header",
-        "testimonials",
-        "footer"
-    ]
+    "tiles_large_two_column_qHJ8JJ": {
+      "type": "tiles-large-two-column",
+      "blocks": {
+        "copy_left_3Hxt74": {
+          "type": "copy-left",
+          "settings": {
+            "copy": "<p>We are inspired by the artistic technique of collage, the assemblage of different forms and media to create something new and beautiful. We have embraced this concept in our approach to wellness and the healing arts. At our core, we create customized experiences that are tailored to the individual. Our massage, skincare and nail services are results driven, but we also incorporate other sensory elements to deliver an exceptional spa experience. We know there isn’t one solution to wellness, so our combination of elements and modalities is our advantage. This approach is the beauty of Collage.<\/p>"
+          }
+        },
+        "headline_left_ETbhV8": {
+          "type": "headline-left",
+          "settings": {
+            "headline": "Brian Lam, Founder"
+          }
+        },
+        "image_right_UqBDTa": {
+          "type": "image-right",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/brian_fls.webp"
+          }
+        }
+      },
+      "block_order": [
+        "copy_left_3Hxt74",
+        "headline_left_ETbhV8",
+        "image_right_UqBDTa"
+      ],
+      "settings": {
+      }
+    },
+    "home_instagram_feed_UAz4ga": {
+      "type": "home-instagram-feed",
+      "settings": {
+      }
+    },
+    "testimonials": {
+      "type": "home-testimonials",
+      "settings": {
+        "title": "Customer<br>Kudos"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "header",
+    "tiles_large_two_column_qHJ8JJ",
+    "home_instagram_feed_UAz4ga",
+    "testimonials",
+    "footer"
+  ]
 }
