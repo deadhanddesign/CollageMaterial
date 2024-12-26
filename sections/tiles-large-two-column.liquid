@@ -7,8 +7,8 @@
             {% when 'display' %}
               <h2 class="display--medium">{{ block.settings.headline }}</h2>
             {% when 'headline' %}
-              <h2 class="headline--large">{{ block.settings.headline }}</h2>      
-          {% endcase %}  
+              <h2 class="headline--large">{{ block.settings.headline }}</h2>
+          {% endcase %}
         {% when 'copy-left' %}
           <div class="copy">
             {{ block.settings.copy }}
@@ -26,8 +26,8 @@
             {% when 'display' %}
               <h2 class="display--medium">{{ block.settings.headline }}</h2>
             {% when 'headline' %}
-              <h2 class="headline--large">{{ block.settings.headline }}</h2>      
-          {% endcase %}  
+              <h2 class="headline--large">{{ block.settings.headline }}</h2>
+          {% endcase %}
         {% when 'copy-right' %}
           <div class="copy">
             {{ block.settings.copy }}
@@ -62,7 +62,7 @@
   @container tile-large (max-width: 900px) {
     .two-column {
       flex-direction: column;
-  
+
       & .tile__track {
         position: initial;
       }
@@ -176,7 +176,6 @@
   "presets": [
     {
       "name": "Tile - Large - Two Column",
-      "category": "tiles",
       "settings": {}
     }
   ]
