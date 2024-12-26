@@ -1,37 +1,18 @@
-{% comment %}
-  Requires:
-    -summary: {Object} Capture of the header text for the Dropdown.
-    -contents: {Object} Capture of the contents inside the Dropdown.
-    -content-type: {String} Type of content to render. Options are 'filter' or 'default'.
-
-  Example:
-    {%  capture foo %}
-      <h3>What is a foo?</h3>
-    {% endcapture %}
-    {%  capture bar %}
-      <p>A delicious kind of bar</p>
-    {% endcapture %}
-    {% render 'component-dropdown', summary: foo, contents: bar, content-type: filter %}
-{% endcomment %}
-
 <details>
-  {% case content-type %}
-    {% when 'filter' %}
-      <summary>
-    {% else %}
-      <summary class="summary--large">
-    {% endcase %}
-        {{ summary }}
-        <span></span>
-      </summary>
+  <summary class="summary--large">
+    <div class="dropdown-column">
+      <h3>{{ block.settings.summary }}</h3>
+      {% if block.settings.second_line != blank %}
+        <div>{{ block.settings.second_line }}</div>
+      {% endif %}
+    </div>
+    <span></span>
+  </summary>
 </details>
 <div class="details">
-  {% case content-type %}
-    {% when 'filter' %}
-      <div class="contents filter__options" data-type="{{- filter-type -}}">{{ contents }}</div>
-    {% else %}
-      <div class="contents">{{ contents }}</div>
-  {% endcase %}
+  <div class="contents">
+    {{ block.settings.contents }}
+  </div>
   <md-divider></md-divider>
 </div>
 
@@ -62,16 +43,11 @@
       grid-template-rows: 1fr;
       & .contents {
         padding-block: var(--spacing-padding-medium);
-
         opacity: 1;
         margin-bottom: var(--spacing-margin-medium);
 
         &.filter__options:is([data-type='price_range']) {
           overflow-y: hidden;
-        }
-
-        &.filter__options:is([data-type='list']) {
-          overflow-y: auto;
         }
       }
     }
@@ -92,10 +68,10 @@
 
   .filter__options {
     display: grid;
-  grid-template-rows: repeat(auto-fill, 1fr);
-  grid-template-columns: repeat(auto-fill, 1fr);
-  gap: var(--spacing-gap-xsmall);
-  max-height: 10rem;
+    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-template-columns: repeat(auto-fill, 1fr);
+    gap: var(--spacing-gap-xsmall);
+    max-height: 10rem;
 
     & md-slider {
       grid-column: 1 / 3;
@@ -129,15 +105,43 @@
       border-radius: 10px;
       background-color: var(--md-sys-color-on-surface-variant);
     }
-
   }
-  
+
   .summary--large {
-    margin-block-start: var(--spacing-margin-large);  
-    margin-block-end: var(--spacing-margin-small);  
+    margin-block-start: var(--spacing-margin-large);
+    margin-block-end: var(--spacing-margin-small);
 
     & h3 {
       margin-block-start: 0;
     }
   }
 {% endstyle %}
+
+{% schema %}
+{
+  "name": "Dropdown",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "summary",
+      "label": "Summary"
+    },
+    {
+      "type": "text",
+      "id": "second_line",
+      "label": "Second Line"
+    },
+    {
+      "type": "richtext",
+      "id": "contents",
+      "label": "Contents"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dropdown"
+    }
+  ]
+}
+{% endschema %}

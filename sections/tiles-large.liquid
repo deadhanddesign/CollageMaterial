@@ -37,34 +37,7 @@
         {% endfor %}
       </div>
   {% endcase %}
-
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'dropdown' %}
-        {% capture question %}
-                    <h3>{{ block.settings.dropdown_summary }}</h3>
-                  {% endcapture %}
-        {% capture answer %}
-                    <div>{{ block.settings.dropdown_contents }}</div>
-                  {% endcapture %}
-        {% render 'component-dropdown', summary: question, contents: answer %}
-      {% when 'headline' %}
-        {% case block.settings.block_headline_size %}
-          {% when 'h2' %}
-            <h2>{{ block.settings.block_headline }}</h2>
-          {% when 'h3' %}
-            <h3>{{ block.settings.block_headline }}</h3>
-          {% else %}
-            <h4>{{ block.settings.block_headline }}</h4>
-        {% endcase %}
-      {% when 'richtext' %}
-        {{ block.settings.copy }}
-      {% when 'html_embed' %}
-        {{ block.settings.html_embed_code }}
-      {% when '@app' %}
-        {% render block %}
-    {% endcase %}
-  {% endfor %}
+  {% content_for 'blocks' %}
 </div>
 
 {% stylesheet %}
@@ -112,74 +85,7 @@
     }
   ],
   "blocks": [
-    {
-      "name": "Headline",
-      "type": "headline",
-      "settings": [
-        {
-          "type": "select",
-          "id": "block_headline_size",
-          "label": "Headline Size",
-          "options": [
-            {
-              "value": "h2",
-              "label": "H2"
-            },
-            {
-              "value": "h3",
-              "label": "H3"
-            },
-            {
-              "value": "h4",
-              "label": "H4"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "block_headline",
-          "label": "Headline"
-        }
-      ]
-    },
-    {
-      "name": "Rich Text",
-      "type": "richtext",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "copy",
-          "label": "Copy"
-        }
-      ]
-    },
-    {
-      "name": "Dropdown",
-      "type": "dropdown",
-      "settings": [
-        {
-          "type": "text",
-          "id": "dropdown_summary",
-          "label": "Summary"
-        },
-        {
-          "type": "richtext",
-          "id": "dropdown_contents",
-          "label": "Contents"
-        }
-      ]
-    },
-    {
-      "name": "HTML Embed",
-      "type": "html_embed",
-      "settings": [
-        {
-          "type": "html",
-          "id": "html_embed_code",
-          "label": "Embed Code"
-        }
-      ]
-    },
+    { "type": "@theme" },
     {
       "type": "@app"
     }

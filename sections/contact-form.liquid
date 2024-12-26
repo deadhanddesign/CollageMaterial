@@ -1,0 +1,98 @@
+<div class="tile__track">
+  {% form 'contact', class: 'contact-form' %}
+    <md-outlined-text-field id="name" label="Name" required></md-outlined-text-field>
+    <md-outlined-select id="pronouns" label="Pronouns">
+      <md-select-option value="">Select one...</md-select-option>
+      <md-select-option value="Ae/Aer"><div slot="headline">Ae/Aer</div></md-select-option>
+      <md-select-option value="Ey/Em"><div slot="headline">Ey/Em</div></md-select-option>
+      <md-select-option value="He/Him"><div slot="headline">He/Him</div></md-select-option>
+      <md-select-option value="Per/Per"><div slot="headline">Per/Per</div></md-select-option>
+      <md-select-option value="She/Her"><div slot="headline">She/Her</div></md-select-option>
+      <md-select-option value="They/Them"><div slot="headline">They/Them</div></md-select-option>
+      <md-select-option value="Ve/Ver"><div slot="headline">Ve/Ver</div></md-select-option>
+      <md-select-option value="Xe/Xem"><div slot="headline">Xe/Xem</div></md-select-option>
+      <md-select-option value="Ze/Hir"><div slot="headline">Ze/Hir</div></md-select-option>
+    </md-outlined-select>
+    <md-outlined-text-field id="email" label="Email" type="email"></md-outlined-text-field>
+    <md-outlined-text-field id="phone" label="Phone" type="tel"></md-outlined-text-field>
+    <md-outlined-text-field id="message" label="Message" type="textarea" required></md-outlined-text-field>
+    <div class="option-container">
+      <div class="label--small">Opt In</div>
+      <div class="option-wrapper">
+        <md-checkbox
+          id="opt-in-email"
+          aria-label="I want to receive updates about Collage Spa, like new services, new products, and sales"
+          touch-target="wrapper"
+        >
+        </md-checkbox>
+        <label for="opt-in-email">
+          {{ section.settings.opt_in_email }}
+        </label>
+      </div>
+      <div class="option-wrapper">
+        <md-checkbox
+          id="opt-in-outreach"
+          aria-label="I want more info on Collage Community Outreach and how I can help"
+          touch-target="wrapper"
+        >
+        </md-checkbox>
+        <label for="opt-in-outreach"> {{ section.settings.opt_in_outreach }} </label>
+      </div>
+    </div>
+    <md-filled-button aria-label="Send" type="submit">Send</md-filled-button>
+  {% endform %}
+</div>
+
+{% stylesheet %}
+  .contact-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--spacing-gap-small);
+
+    & .option-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-block-start: var(--spacing-margin-small);
+    }
+
+    & .option-wrapper {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+    }
+
+    & md-filled-button {
+      justify-self: end;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "class": "tile tile--medium",
+  "settings": [
+    {
+      "type": "text",
+      "id": "opt_in_email",
+      "label": "Opt-in Email Copy",
+      "default": "I want to receive updates about Collage Spa, like new services, new products, and sales."
+    },
+    {
+      "type": "text",
+      "id": "opt_in_outreach",
+      "label": "Opt-in Outreach Copy",
+      "default": "I want more info on Collage Community Outreach and how I can help."
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Contact Form",
+      "settings": {},
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

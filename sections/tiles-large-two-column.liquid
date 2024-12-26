@@ -3,7 +3,12 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'headline-left' %}
-          <h2 class="display--medium">{{ block.settings.headline }}</h2>
+          {% case block.settings.style %}
+            {% when 'display' %}
+              <h2 class="display--medium">{{ block.settings.headline }}</h2>
+            {% when 'headline' %}
+              <h2 class="headline--large">{{ block.settings.headline }}</h2>      
+          {% endcase %}  
         {% when 'copy-left' %}
           <div class="copy">
             {{ block.settings.copy }}
@@ -17,7 +22,12 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'headline-right' %}
-          <h2 class="display--medium">{{ block.settings.headline }}</h2>
+          {% case block.settings.style %}
+            {% when 'display' %}
+              <h2 class="display--medium">{{ block.settings.headline }}</h2>
+            {% when 'headline' %}
+              <h2 class="headline--large">{{ block.settings.headline }}</h2>      
+          {% endcase %}  
         {% when 'copy-right' %}
           <div class="copy">
             {{ block.settings.copy }}
@@ -49,9 +59,13 @@
     }
   }
 
-  @container tile-large (max-width: 1000px) {
-    .tile-large {
+  @container tile-large (max-width: 900px) {
+    .two-column {
       flex-direction: column;
+  
+      & .tile__track {
+        position: initial;
+      }
     }
   }
 {% endstylesheet %}
@@ -70,6 +84,21 @@
           "type": "text",
           "id": "headline",
           "label": "Headline"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "display",
+              "label": "Display"
+            },
+            {
+              "value": "headline",
+              "label": "Headline"
+            }
+          ]
         }
       ]
     },
@@ -103,6 +132,21 @@
           "type": "text",
           "id": "headline",
           "label": "Headline"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "display",
+              "label": "Display"
+            },
+            {
+              "value": "headline",
+              "label": "Headline"
+            }
+          ]
         }
       ]
     },
