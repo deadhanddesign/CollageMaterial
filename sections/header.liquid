@@ -1,9 +1,9 @@
 <div class="tile__track">
   {% if section.settings.show_overline %}
     {% if product.type %}
-      <div class="hero__overline label--large">— {{ product.type | capitalize }}</div>
+      <div class="hero__overline label--large">— {{ product.type | upcase  }}</div>
     {% else %}
-      <div class="hero__overline label--large">— {{ section.settings.overline | capitalize }}</div>
+      <div class="hero__overline label--large">— {{ section.settings.overline | upcase  }}</div>
     {% endif %}
   {% endif %}
 

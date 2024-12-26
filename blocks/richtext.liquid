@@ -1,0 +1,21 @@
+<div>
+  {{ block.settings.copy }}
+</div>
+
+{% schema %}
+{
+  "name": "Rich Text",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text"
+    }
+  ]
+}
+{% endschema %}

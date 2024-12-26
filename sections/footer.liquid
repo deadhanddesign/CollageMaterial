@@ -2,98 +2,95 @@
   <div class="footer__section">
     {% comment %} TODO: Refactor these to pull from a Locations Metaobject {% endcomment %}
     <h2 class="display--medium">Locations</h2>
-    <md-list class="footer__list">
-      <md-list-item aria-label="Fredericksburg">
-        <div class="body--xlarge" slot="headline">Fredericksburg</div>
-        <div slot="supporting-text">
-          456 Main Street
-          <br>
-          Fredericksburg, VA 22701
-          <br>
-          540-555-5555
-        </div>
-      </md-list-item>
-      <md-list-item aria-label="Culpepper">
-        <div class="body--xlarge" slot="headline">Culpepper</div>
-        <div slot="supporting-text">
-          456 Main Street
-          <br>
-          Culpepper, VA 22701
-          <br>
-          540-555-5555
-        </div>
-      </md-list-item>
-      <md-list-item aria-label="Market">
-        <div class="body--xlarge" slot="headline">Market</div>
-        <div slot="supporting-text">
-          789 Main Street
-          <br>
-          Market, VA 22901
-          <br>
-          540-555-5555
-        </div>
-      </md-list-item>
-    </md-list>
+    <div class="footer__list">
+      {% assign locations = shop.metaobjects.locations.values %}
+      {% assign locations = locations | sort: 'display_order' %}
+        {% for location in locations %}
+          <div class="footer__location-container">
+          <div class="footer__address">
+          <div class="footer__location-name">{{ location.name }}</div>
+            {{ location.address_line_1 }}<br>
+             {% if location.address != blank %} {{ location.address_line_2 }}<br> {% endif %}
+             {{ location.city }}, {{ location.state }} {{ location.zip }}<br>
+             {{ location.phone }}<br>
+          </div>
+          <div class="footer__hours">
+            <strong>{{ location.open_hours_days }}<br></strong>
+            {{ location.open_hours_hours }}<br>
+            <strong>{% if location.open_hours_days_02 != blank %}{{ location.open_hours_days_02 }}<br>{% endif %}</strong>
+            {% if location.open_hours_hours_02 != blank %}{{ location.open_hours_hours_02 }}<br>{% endif %}
+            <strong>{% if location.open_hours_days_03 != blank %}{{ location.open_hours_days_03 }}<br>{% endif %}</strong>
+            {% if location.open_hours_hours_03 != blank %}{{ location.open_hours_hours_03 }}<br>{% endif %}
+           </div>
+           <a href="*" aria-label="Learn More about {{ location.name }}">Tour Inside</a>
+           <a href="{{ location.booking_link }}" aria-label="Book an appointment at {{ location.name }}">Book Now</a>
+         </div>
+       {% endfor %}
+      </div>
   </div>
   <div class="footer__section">
+    <md-divider></md-divider>
     <h2 class="display--medium">Navigation</h2>
     <div class="footer__list" id="footer-nav">
       {%- for link in linklists['main-menu'].links -%}
-        <md-list>
-          <md-list-item
-            role="button"
-            href="{{ link.url }}"
+      <div>
+          <a
+            class="footer-nav__menu-title"
             {% if link.active %}
               aria-current="page"
             {% endif %}
             aria-label="{{ link.title }}"
-          >
-            <div slot="headline">{{ link.title }}</div>
-          </md-list-item>
+            href="{{ link.url }}"
+          >{{ link.title }}
+          </a>
           {%- if link.links != blank -%}
+            <ul>
             {%- for child_link in link.links -%}
-              <md-list-item
-                role="button"
-                href="{{ child_link.url }}"
+              <li
                 {% if link.active %}
                   aria-current="page"
                 {% endif %}
                 aria-label="{{ child_link.title }}"
               >
-                <div slot="headline">{{ child_link.title }}</div>
-              </md-list-item>
+                <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+              </li>
               {%- if child_link.links != blank -%}
+                <ul>
                 {%- for grandchild_link in child_link.links -%}
-                  <md-list-item
-                    role="button"
-                    href="{{ grandchild_link.url }}"
+                  <li
                     {% if link.active %}
                       aria-current="page"
                     {% endif %}
                     aria-label="{{ grandchild_link.title }}"
                   >
-                    <div slot="headline">{{ grandchild_link.title }}</div>
-                  </md-list-item>
+                    <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                  </li>
                 {%- endfor -%}
+                </ul>
               {%- endif -%}
             {%- endfor -%}
+            </ul>
           {%- endif -%}
-        </md-list>
+      </div>
       {%- endfor -%}
     </div>
   </div>
   <div class="footer__section footer__fine-print">
     <md-divider></md-divider>
-    <md-list class="footer__list">
+    <div class="footer__list">
       {% for link in linklists['policy-menu'].links %}
-        <md-list-item type="button" href="{{ link.url }}" aria-label="{{ link.title }}">
+        <a href="{{ link.url }}" aria-label="{{ link.title }}">
           {{- link.title -}}
-        </md-list-item>
+        </a>
       {% endfor %}
-    </md-list>
+    </div>
+  </div>
+  <div class="footer__section">
     <p>
-      &copy; {{ 'now' | date: '%Y' }}
-      {{ shop.name }}. All rights reserved.
+      <i>
+        &copy; {{ 'now' | date: '%Y' }}
+        {{ shop.name }}. All rights reserved.
+      </i>
     </p>
   </div>
 </div>
@@ -111,9 +108,42 @@
 
   .footer__list {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--spacing-gap-medium);
+    gap: 2rem;
+    margin-top: 1rem;
+
+    & ul {
+
+    }
+  }
+
+  .footer-nav__menu-title {
+    font: var(--md-sys-typescale-headline-medium);
+  }
+  
+
+
+  .footer__location-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    margin: var(--spacing-margin-small);
+    gap: var(--spacing-gap-xsmall);
+  }
+
+  .footer__location-name {
+    font: var(--md-sys-typescale-headline-medium);
+  }
+
+  .footer__address,
+  .footer__hours {
+    grid-column: 1 / 3;
+    font: var(--md-sys-typescale-body-medium);
+  }
+
+  .footer__hours {
+    grid-column: 1 / 3;
   }
 
   #footer-nav {
@@ -127,6 +157,16 @@
   .footer__fine-print {
     --md-list-item-label-text-size: var(--md-sys-typescale-body-small-size);
     padding-bottom: 2rem;
+  }
+
+  @container tile-large (max-width: 1000px) {
+    .footer__list {
+      flex-direction: column;
+    }
+    
+    #footer-nav {
+      gap: 0;
+    }
   }
 {% endstylesheet %}
 

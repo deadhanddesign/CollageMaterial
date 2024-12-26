@@ -1,0 +1,82 @@
+<{{ block.settings.size }}
+  {% case block.settings.size %}
+    {% when 'h2' %}
+      {% case block.settings.style %}
+        {% when 'display' %}
+          class="display--medium"
+        {% when 'headline' %}
+          class="headline--large"
+      {% endcase %}
+
+    {% when 'h3' %}
+      {% case block.settings.style %}
+        {% when 'display' %}
+          class="display--small"
+        {% when 'headline' %}
+          class="headline--medium"
+      {% endcase %}
+
+    {% else %}
+      {% case block.settings.style %}
+        {% when 'display' %}
+          class="display--xsmall"
+        {% when 'headline' %}
+          class="headline--small"
+      {% endcase %}
+  {% endcase %}
+>
+  {{ block.settings.heading }}
+</{{ block.settings.size }}>
+
+{% schema %}
+{
+  "name": "Heading",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "display",
+          "label": "Display"
+        },
+        {
+          "value": "headline",
+          "label": "Headline"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Copy"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Headline"
+    }
+  ]
+}
+{% endschema %}

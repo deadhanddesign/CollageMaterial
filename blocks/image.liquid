@@ -1,0 +1,45 @@
+{% if block.settings.image.alt == blank %}
+  {% if block.settings.theme_image %}
+    {{
+      block.settings.image.src
+      | image_url: width: 1000
+      | image_tag: loading: 'eager', id: 'theme-image', alt: ' ', role: 'presentation'
+    }}
+  {% else %}
+    {{
+      block.settings.image.src
+      | image_url: width: 1000
+      | image_tag: loading: 'lazy', id: 'theme-image', alt: ' ', role: 'presentation'
+    }}
+  {% endif %}
+{% else %}
+  {% if block.settings.theme_image %}
+    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', id: 'theme-image' }}
+  {% else %}
+    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "theme_image",
+      "label": "Theme Image",
+      "info": "Will this image determine the page's color theme?"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image"
+    }
+  ]
+}
+{% endschema %}
