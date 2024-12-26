@@ -1,7 +1,7 @@
 <nav>
   <div class="nav__container">
     {% assign main_menu = linklists['main-menu'].links %}
-    {% assign main_menu_first_half = main_menu.size / 2 |  round %}
+    {% assign main_menu_first_half = main_menu.size | divided_by: 2 | round %}
     {% assign main_menu_second_half = main_menu.size | minus: main_menu_first_half %}
 
     {%- for link in main_menu limit: main_menu_first_half -%}
