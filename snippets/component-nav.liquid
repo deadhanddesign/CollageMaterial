@@ -1,8 +1,8 @@
 <nav>
   <div class="nav__container">
     {% assign main_menu = linklists['main-menu'].links %}
-    {% assign main_menu_first_half = main_menu.size | divided_by: 2 | ceil %}
-    {% assign main_menu_second_half = main_menu.size | minus: main_menu_first_half %}
+    {% assign main_menu_float = main_menu.size | times: 1.0 %}
+    {% assign main_menu_first_half = main_menu_float | divided_by: 2 | ceil %}
 
     {%- for link in main_menu limit: main_menu_first_half -%}
       <span>
@@ -74,7 +74,7 @@
       </svg>
     </md-icon-button>
 
-    {%- for link in main_menu offset: main_menu_second_half -%}
+    {%- for link in main_menu offset: main_menu_first_half -%}
       <span>
         <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon aria-label="{{ link.title }}">
           {{ link.title }}
