@@ -1,6 +1,10 @@
 <nav>
   <div class="nav__container">
-    {%- for link in linklists['main-menu'].links limit: 2 -%}
+    {% assign main_menu = linklists['main-menu'].links %}
+    {% assign main_menu_first_half = main_menu.size / 2 |  round %}
+    {% assign main_menu_second_half = main_menu.size | minus: main_menu_first_half %}
+
+    {%- for link in main_menu limit: main_menu_first_half -%}
       <span>
         <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon aria-label="{{ link.title }}">
           {{ link.title }}
@@ -70,7 +74,7 @@
       </svg>
     </md-icon-button>
 
-    {%- for link in linklists['main-menu'].links offset: 2 -%}
+    {%- for link in main_menu offset: main_menu_second_half -%}
       <span>
         <md-text-button id="nav-{{ link.title | downcase }}-button" trailing-icon aria-label="{{ link.title }}">
           {{ link.title }}
@@ -157,8 +161,6 @@
 </nav>
 
 {% style %}
-  /* TODO: Fix Logo Button.  It's not centered in the div.  Might be related to settings for logo on home page */
-
   md-menu-item {
     white-space: nowrap;
   }

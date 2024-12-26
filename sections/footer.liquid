@@ -5,35 +5,62 @@
     <div class="footer__list">
       {% assign locations = shop.metaobjects.locations.values %}
       {% assign locations = locations | sort: 'display_order' %}
-        {% for location in locations %}
-          <div class="footer__location-container">
+      {% for location in locations %}
+        <div class="footer__location-container">
           <div class="footer__address">
-          <div class="footer__location-name">{{ location.name }}</div>
-            {{ location.address_line_1 }}<br>
-             {% if location.address != blank %} {{ location.address_line_2 }}<br> {% endif %}
-             {{ location.city }}, {{ location.state }} {{ location.zip }}<br>
-             {{ location.phone }}<br>
+            <div class="footer__location-name">{{ location.name }}</div>
+            {{ location.address_line_1 -}}
+            <br>
+            {% if location.address != blank %}
+              {{ location.address_line_2 -}}
+              <br>
+            {% endif %}
+            {{ location.city }}, {{ location.state }}
+            {{ location.zip -}}
+            <br>
+            {{ location.phone -}}
+            <br>
           </div>
           <div class="footer__hours">
-            <strong>{{ location.open_hours_days }}<br></strong>
-            {{ location.open_hours_hours }}<br>
-            <strong>{% if location.open_hours_days_02 != blank %}{{ location.open_hours_days_02 }}<br>{% endif %}</strong>
-            {% if location.open_hours_hours_02 != blank %}{{ location.open_hours_hours_02 }}<br>{% endif %}
-            <strong>{% if location.open_hours_days_03 != blank %}{{ location.open_hours_days_03 }}<br>{% endif %}</strong>
-            {% if location.open_hours_hours_03 != blank %}{{ location.open_hours_hours_03 }}<br>{% endif %}
-           </div>
-           <a href="*" aria-label="Learn More about {{ location.name }}">Tour Inside</a>
-           <a href="{{ location.booking_link }}" aria-label="Book an appointment at {{ location.name }}">Book Now</a>
-         </div>
-       {% endfor %}
-      </div>
+            <strong>
+              {{- location.open_hours_days -}}
+              <br>
+            </strong>
+            {{ location.open_hours_hours -}}
+            <br>
+            <strong>
+              {%- if location.open_hours_days_02 != blank -%}
+                {{- location.open_hours_days_02 -}}
+                <br>
+              {% endif -%}
+            ></strong>
+            {% if location.open_hours_hours_02 != blank -%}
+              {{- location.open_hours_hours_02 -}}
+              <br>
+            {% endif %}
+            <strong>
+              {%- if location.open_hours_days_03 != blank -%}
+                {{- location.open_hours_days_03 -}}
+                <br>
+              {% endif -%}
+            ></strong>
+            {% if location.open_hours_hours_03 != blank -%}
+              {{- location.open_hours_hours_03 -}}
+              <br>
+            {% endif %}
+          </div>
+          <a href="*" aria-label="Learn More about {{ location.name }}">Tour Inside</a>
+          <a href="{{ location.booking_link }}" aria-label="Book an appointment at {{ location.name }}">Book Now</a>
+        </div>
+      {% endfor %}
+    </div>
   </div>
   <div class="footer__section">
     <md-divider></md-divider>
     <h2 class="display--medium">Navigation</h2>
     <div class="footer__list" id="footer-nav">
       {%- for link in linklists['main-menu'].links -%}
-      <div>
+        <div>
           <a
             class="footer-nav__menu-title"
             {% if link.active %}
@@ -41,37 +68,38 @@
             {% endif %}
             aria-label="{{ link.title }}"
             href="{{ link.url }}"
-          >{{ link.title }}
+          >
+            {{- link.title }}
           </a>
           {%- if link.links != blank -%}
             <ul>
-            {%- for child_link in link.links -%}
-              <li
-                {% if link.active %}
-                  aria-current="page"
-                {% endif %}
-                aria-label="{{ child_link.title }}"
-              >
-                <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-              </li>
-              {%- if child_link.links != blank -%}
-                <ul>
-                {%- for grandchild_link in child_link.links -%}
-                  <li
-                    {% if link.active %}
-                      aria-current="page"
-                    {% endif %}
-                    aria-label="{{ grandchild_link.title }}"
-                  >
-                    <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                  </li>
-                {%- endfor -%}
-                </ul>
-              {%- endif -%}
-            {%- endfor -%}
+              {%- for child_link in link.links -%}
+                <li
+                  {% if link.active %}
+                    aria-current="page"
+                  {% endif %}
+                  aria-label="{{ child_link.title }}"
+                >
+                  <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                </li>
+                {%- if child_link.links != blank -%}
+                  <ul>
+                    {%- for grandchild_link in child_link.links -%}
+                      <li
+                        {% if link.active %}
+                          aria-current="page"
+                        {% endif %}
+                        aria-label="{{ grandchild_link.title }}"
+                      >
+                        <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              {%- endfor -%}
             </ul>
           {%- endif -%}
-      </div>
+        </div>
       {%- endfor -%}
     </div>
   </div>
@@ -113,15 +141,12 @@
     margin-top: 1rem;
 
     & ul {
-
     }
   }
 
   .footer-nav__menu-title {
     font: var(--md-sys-typescale-headline-medium);
   }
-  
-
 
   .footer__location-container {
     display: grid;
@@ -163,7 +188,7 @@
     .footer__list {
       flex-direction: column;
     }
-    
+
     #footer-nav {
       gap: 0;
     }
@@ -179,7 +204,6 @@
   "presets": [
     {
       "name": "Page Footer",
-      "category": "tiles",
       "settings": {}
     }
   ]
