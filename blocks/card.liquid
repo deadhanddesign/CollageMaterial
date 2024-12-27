@@ -1,0 +1,72 @@
+{% content_for 'blocks' %}
+
+{% style %}
+  .card {
+    flex: 1;
+    display: grid;
+    grid-template-rows: minmax(30ch, 100%) auto;
+
+    gap: var(--spacing-gap-medium);
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    padding: var(--spacing-padding-medium);
+    border-radius: var(--border-radius-medium);
+
+    & * {
+      margin-block-start: var(--spacing-margin-xsmall);
+    }
+
+    & img {
+      border-radius: var(--border-radius-small);
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      outline: var(--md-sys-color-surface) solid 0.2rem;
+      outline-offset: -0.4rem;
+    }
+
+    & h4 {
+      font-size: var(--md-sys-typescale-title-small-size);
+      font-family: var(--md-sys-typescale-title-small-font);
+      font-weight: var(--md-sys-typescale-title-small-weight);
+    }
+
+    & .card__content {
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+    }
+
+    & .card__navigation {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-gap-small);
+
+      & .price {
+        flex: 1;
+      }
+    }
+
+    &:is(h2) {
+      display: block;
+      background: inherit;
+      color: inherit;
+      border: inherit;
+      /* min-width: 10ch; */
+      grid-column: 1 / -1;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Card",
+  "class": "card",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [],
+  "presets": [
+    {
+      "name": "Card"
+    }
+  ]
+}
+{% endschema %}

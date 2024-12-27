@@ -1,33 +1,121 @@
 <div
-  {% case section.settings.tile_size %}
-    {% when 'large' %}
-      class="tile__track tile--large-test"
-    {% when 'medium' %}
-      class="tile__track tile--medium-test"
-    {% when 'small' %}
-      class="tile__track tile--small-test"
-  {% endcase %}
+  class="
+    tile__track
+    {% case section.settings.tile_size %}{% when 'small' %}tile--s{% when 'medium' %}tile--m{% when 'large' %}tile--l{% endcase %}
+    {% if section.settings.tile_type != 'default' %}{% case section.settings.tile_type %}{% when 'primary' %}tile--primary{% when 'secondary' %}tile--secondary{% when 'tertiary' %}tile--tertiary{% when 'image' %}tile--images{% endcase %}{% endif %}
+  "
 >
   {% content_for 'blocks' %}
 </div>
 
-{% comment %} TODO: refactor ALL tiles into this one master tile using the above example {% endcomment %}
+{% comment %} TODO: refactor ALL GENERIC tiles into this one master tile using the above example. {% endcomment %}
+{% comment %} TODO: refactor ALL SPECIALTY tiles accordingly {% endcomment %}
 
 {% stylesheet %}
-  .tile:has(.tile--large-test) {
-    width: min(100dvw, 1920px);
-    container-type: inline-size;
-    container-name: tile-large;
+  /* Standard Tile and Tile Track Styles are in .assets/style.css.liquid as they're required for Tile Components.
+     Only specific styles for this Tile Blocks should be added here.
+  */
+  .tile {
+    &:has(.tile--s) {
+      width: min(30dvw, 640px);
+      flex: 1 1 auto;
+    }
+
+    &:has(.tile--m) {
+      width: min(50dvw, 1280px);
+      flex: 1 1 auto;
+    }
+
+    &:has(.tile--l) {
+      width: min(100dvw, 1920px);
+      container-type: inline-size;
+      container-name: tile-large;
+    }
+
+    &:has(.tile--primary) {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+    }
+
+    &:has(.tile--secondary) {
+      background: var(--md-sys-color-secondary);
+      color: var(--md-sys-color-on-secondary);
+      --md-sys-color-primary: var(--md-sys-color-secondary);
+      --md-sys-color-on-primary: var(--md-sys-color-on-secondary);
+      --md-sys-color-primary-container: var(--md-sys-color-secondary-container);
+      --md-sys-color-on-primary-container: var(--md-sys-color-on-secondary-container);
+      --md-sys-color-primary-fixed: var(--md-sys-color-secondary-fixed);
+      --md-sys-color-primary-fixed-dim: var(--md-sys-color-secondary-fixed-dim);
+      --md-sys-color-on-primary-fixed: var(--md-sys-color-on-secondary-fixed);
+      --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-secondary-fixed-variant);
+    }
+
+    &:has(.tile--tertiary) {
+      background: var(--md-sys-color-tertiary-container);
+      color: var(--md-sys-color-on-tertiary-container);
+      --md-sys-color-primary: var(--md-sys-color-tertiary);
+      --md-sys-color-on-primary: var(--md-sys-color-on-tertiary);
+      --md-sys-color-primary-container: var(--md-sys-color-tertiary-container);
+      --md-sys-color-on-primary-container: var(--md-sys-color-on-tertiary-container);
+      --md-sys-color-primary-fixed: var(--md-sys-color-tertiary-fixed);
+      --md-sys-color-primary-fixed-dim: var(--md-sys-color-tertiary-fixed-dim);
+      --md-sys-color-on-primary-fixed: var(--md-sys-color-on-tertiary-fixed);
+      --md-sys-color-on-primary-fixed-variant: var(--md-sys-color-on-tertiary-fixed-variant);
+    }
+
+    &:has(.tile--hero) {
+    }
+
+    &:has(.tile--images) {
+      background: none;
+      padding: 0;
+
+      .tile__track {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-gap-medium);
+        width: auto;
+      }
+
+      & img {
+        flex: 1 1 auto;
+
+        border-radius: var(--border-radius-large);
+      }
+    }
   }
 
-  .tile:has(.tile--medium-test) {
-    width: min(50dvw, 1280px);
-    flex: 1 1 auto;
+  .tile__track {
+    &:has(.image--accent) {
+      height: calc(100dvh - (var(--spacing-padding-xlarge) * 2));
+    }
+
+    &:has(.columns) {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      gap: var(--spacing-gap-medium);
+    }
+
+    &:has(.columns):has(> :nth-child(3)) {
+      flex-wrap: wrap;
+
+      .columns {
+        position: initial;
+      }
+    }
   }
 
-  .tile:has(.tile--small-test) {
-    width: min(30dvw, 640px);
-    flex: 1 1 auto;
+  @media (max-width: 900px) {
+    .tile__track {
+      &:has(.image--accent) {
+        height: calc(40dvh - (var(--spacing-padding-xlarge) * 2));
+      }
+      &:has(.columns) {
+        flex-direction: column;
+      }
+    }
   }
 {% endstylesheet %}
 
@@ -41,10 +129,24 @@
       "type": "select",
       "id": "tile_size",
       "label": "Tile Size",
+      "info": "Select the width of the tile.",
       "options": [
-        { "value": "large", "label": "Large" },
+        { "value": "small", "label": "Small" },
         { "value": "medium", "label": "Medium" },
-        { "value": "small", "label": "Small" }
+        { "value": "large", "label": "Large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "tile_type",
+      "label": "Tile Type",
+      "info": "Leave as 'Default' unless the tile warrants a specific type.",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" },
+        { "value": "tertiary", "label": "Tertiary" },
+        { "value": "image", "label": "Image" }
       ]
     }
   ],

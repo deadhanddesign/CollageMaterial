@@ -7,7 +7,7 @@
       {% render 'component-collection', type: blog %}
 {% endcomment %}
 
-{% capture tile-content %}
+{% capture tile_content %}
 
     <div class="component-collection-container">
       {% render 'component-collection-filter', type: type, object: object %}
@@ -16,7 +16,7 @@
 
 {% endcapture %}
 
-{% render 'component-tile', tile-type: 'featured', tile-content: {{tile-content}} %}
+{% render 'component-tile', tile-type: 'featured', tile-content: {{tile_content}} %}
 
 {% style %}
   .component-collection-container {

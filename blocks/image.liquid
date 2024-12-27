@@ -1,28 +1,70 @@
+{% if block.settings.islink != blank %}
+  <a href="{{ block.settings.islink }}" aria-label="{{ block.settings.islinkdescription }}" class="image__link">
+{% endif %}
+
 {% if block.settings.image.alt == blank %}
-  {% if block.settings.theme_image %}
+  {% if block.settings.theme_image and block.settings.accent %}
+    {{
+      block.settings.image.src
+      | image_url: width: 1000
+      | image_tag: loading: 'eager', id: 'theme-image', class: 'image--accent', alt: ' ', role: 'presentation'
+    }}
+  {% elsif block.settings.theme_image %}
     {{
       block.settings.image.src
       | image_url: width: 1000
       | image_tag: loading: 'eager', id: 'theme-image', alt: ' ', role: 'presentation'
     }}
-  {% else %}
+  {% elsif block.settings.accent %}
     {{
       block.settings.image.src
       | image_url: width: 1000
-      | image_tag: loading: 'lazy', id: 'theme-image', alt: ' ', role: 'presentation'
+      | image_tag: loading: 'eager', class: 'image--accent', alt: ' ', role: 'presentation'
     }}
+  {% else %}
+    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'lazy', alt: ' ', role: 'presentation' }}
   {% endif %}
 {% else %}
-  {% if block.settings.theme_image %}
+  {% if block.settings.theme_image and block.settings.accent %}
+    {{
+      block.settings.image.src
+      | image_url: width: 1000
+      | image_tag: loading: 'eager', id: 'theme-image', class: 'image--accent'
+    }}
+  {% elsif block.settings.theme_image %}
     {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', id: 'theme-image' }}
+  {% elsif block.settings.accent %}
+    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', class: 'image--accent' }}
   {% else %}
     {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'lazy' }}
   {% endif %}
 {% endif %}
 
+{% if block.settings.islink %}
+  </a>
+{% endif %}
+
+{% stylesheet %}
+  .image__wrapper {
+    display: flex;
+    width: 100%;
+
+    &:has(.image__link) {
+      height: 100%;
+    }
+  }
+  .image__link {
+    /* max-width: 33%; */
+    img {
+      border-radius: initial;
+    }
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "Image",
+  "class": "image__wrapper",
   "settings": [
     {
       "type": "image_picker",
@@ -34,6 +76,24 @@
       "id": "theme_image",
       "label": "Theme Image",
       "info": "Will this image determine the page's color theme?"
+    },
+    {
+      "type": "checkbox",
+      "id": "accent",
+      "label": "Accent",
+      "info": "Will this image is an accent piece?  NOTE: It will be full height, so don't add more images to this tile."
+    },
+    {
+      "type": "text",
+      "id": "islink",
+      "label": "Link",
+      "info": "If this image should link to another page, add the URL here."
+    },
+    {
+      "type": "text",
+      "id": "islinkdescription",
+      "label": "Link Description",
+      "info": "What's the name of where the link is going?"
     }
   ],
   "presets": [
