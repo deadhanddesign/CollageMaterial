@@ -1,10 +1,53 @@
-{% content_for 'blocks' %}
+<div
+  {% case section.settings.tile_size %}
+    {% when 'large' %}
+      class="tile__track tile--large-test"
+    {% when 'medium' %}
+      class="tile__track tile--medium-test"
+    {% when 'small' %}
+      class="tile__track tile--small-test"
+  {% endcase %}
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% comment %} TODO: refactor ALL tiles into this one master tile using the above example {% endcomment %}
+
+{% stylesheet %}
+  .tile:has(.tile--large-test) {
+    width: min(100dvw, 1920px);
+    container-type: inline-size;
+    container-name: tile-large;
+  }
+
+  .tile:has(.tile--medium-test) {
+    width: min(50dvw, 1280px);
+    flex: 1 1 auto;
+  }
+
+  .tile:has(.tile--small-test) {
+    width: min(30dvw, 640px);
+    flex: 1 1 auto;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "Tile",
+  "class": "tile",
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
-  "settings": [],
+  "settings": [
+    {
+      "type": "select",
+      "id": "tile_size",
+      "label": "Tile Size",
+      "options": [
+        { "value": "large", "label": "Large" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "small", "label": "Small" }
+      ]
+    }
+  ],
   "presets": [{ "name": "Tile" }]
 }
 {% endschema %}
