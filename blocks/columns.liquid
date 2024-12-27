@@ -1,0 +1,43 @@
+{% content_for 'blocks' %}
+
+{% stylesheet %}
+  .columns {
+    /* width: 100%; */
+    /* flex: 1; */
+    position: sticky;
+    top: 5rem;
+
+    & img {
+      width: 100%;
+      border-radius: var(--border-radius-large);
+    }
+
+    &:has(.image__link) {
+      align-self: center;
+      max-width: 33%;
+    }
+
+    &:has(> :only-child):has(h2) {
+      width: 100%;
+    }
+  }
+
+  @container tile-large (max-width: 900px) {
+    .columns {
+      position: initial;
+    }
+  }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "Columns",
+  "class": "columns",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [],
+  "presets": [
+    {
+      "name": "Columns"
+    }
+  ]
+}
+{% endschema %}
