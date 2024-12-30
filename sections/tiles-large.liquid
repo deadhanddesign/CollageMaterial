@@ -57,7 +57,7 @@
 
 {% schema %}
 {
-  "name": "Tile - Large",
+  "name": "Tile - Special",
   "class": "tile tile--large",
   "settings": [
     {
@@ -92,8 +92,22 @@
   ],
   "presets": [
     {
-      "name": "Tile - Large",
-      "settings": {}
+      "name": "Tile - Page Content",
+      "settings": {
+        "tile_type": "content"
+      }
+    },
+    {
+      "name": "Tile - Collections",
+      "settings": {
+        "tile_type": "collections"
+      }
+    },
+    {
+      "name": "Tile - Vendors",
+      "settings": {
+        "tile_type": "vendors"
+      }
     }
   ]
 }

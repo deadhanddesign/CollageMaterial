@@ -51,6 +51,9 @@
 
       <md-filled-tonal-button aria-label="Update Cart" type="submit" name="update">Update</md-filled-tonal-button>
       <md-filled-button aria-label="Checkout" type="submit" name="checkout">Checkout</md-filled-button>
+      {% if additional_checkout_buttons %}
+        {{ content_for_additional_checkout_buttons }}
+      {% endif %}
     </div>
   {% endform %}
 

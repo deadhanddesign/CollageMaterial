@@ -1,0 +1,64 @@
+<dialog>
+  <div class="popup">
+    <md-icon-button
+      aria-label="Close"
+      id="close_popup"
+    >
+      <md-icon>close</md-icon>
+    </md-icon-button>
+
+    {% content_for 'blocks' %}
+  </div>
+</dialog>
+
+{% stylesheet %}
+  dialog {
+    border: none;
+    border-radius: var(--border-radius-large);
+  }
+
+  .popup {
+    max-width: 40ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-gap-medium);
+    padding: var(--spacing-padding-medium);
+  }
+
+  ::backdrop {
+    background: var(--md-sys-color-primary);
+    opacity: 0.5;
+  }
+
+  #close_popup {
+    position: absolute;
+    top: var(--spacing-padding-small);
+    right: var(--spacing-padding-small);
+    z-index: 9000;
+  }
+{% endstylesheet %}
+
+<script>
+  const dialog = document.querySelector('dialog');
+  const button = dialog.querySelector('#close_popup');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    dialog.showModal();
+  });
+  button.addEventListener('click', () => {
+    dialog.close();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Popup",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [],
+  "presets": [
+    {
+      "name": "Popup"
+    }
+  ]
+}
+{% endschema %}

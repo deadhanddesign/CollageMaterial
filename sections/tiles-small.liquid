@@ -1,4 +1,4 @@
-<div class="tile__track">
+<div class="tile__track{% if section.settings.tile_type == 'ingredients' %} tile--secondary{% endif %}">
   {% case section.settings.tile_type %}
     {% when 'ingredients' %}
       {% if product.metafields.custom.ingredients %}
@@ -82,7 +82,7 @@
 
 {% schema %}
 {
-  "name": "Tile - Small",
+  "name": "Tile - Special",
   "class": "tile tile--small",
   "settings": [
     {
@@ -179,10 +179,6 @@
     }
   ],
   "presets": [
-    {
-      "name": "Tile - Small",
-      "settings": {}
-    },
     {
       "name": "Tile - Ingredients",
       "settings": {
