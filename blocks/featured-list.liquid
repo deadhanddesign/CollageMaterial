@@ -1,0 +1,105 @@
+{% assign object_to_loop = block.settings.object_to_loop %}
+{% assign metaobjects = shop.metaobjects[object_to_loop].values %}
+{% assign has_featured_items = false %}
+{% paginate shop.metaobjects[object_to_loop].values by 100 %}
+  {% for item in metaobjects %}
+    {% if item.is_featured == true %}
+      {% assign has_featured_items = true %}
+      <div
+        class="
+          card
+          {% if block.settings.object_to_loop == 'vendors' %}
+            card--vendor
+          {% endif %}
+        "
+      >
+        {% if item.image %}
+          {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: ' ', role: 'presentation' }}
+        {% endif %}
+        <h3 class="display--small">{{ item.name }}</h3>
+        <div class="card__content">
+          <div class="card__navigation" style="justify-content: flex-end;">
+            {% case block.settings.object_to_loop %}
+              {% when 'vendors' %}
+                <md-filled-button
+                  type="button"
+                  href="/collections/vendors?q={{ item.name }}"
+                  aria-label="Learn More about {{ item.name }}"
+                >
+                  See Products
+                </md-filled-button>
+
+              {% else %}
+                <md-filled-button
+                  type="button"
+                  href="{{ item.url.value.url }}"
+                  aria-label="Learn More about {{ item.name }}"
+                >
+                  Learn More
+                </md-filled-button>
+            {% endcase %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endpaginate %}
+{% if has_featured_items == false %}
+  <p>There are no featured items listed.</p>
+{% endif %}
+
+{% style %}
+  .featured-list {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .card--vendor {
+    grid-template-rows: 1fr auto;
+
+    & img {
+      border-radius: 0;
+      aspect-ratio: auto;
+      object-fit: contain;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Featured List",
+  "class": "featured-list",
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "object_to_loop",
+      "label": "Metaobject to loop",
+      "options": [
+        {
+          "value": "vendors",
+          "label": "Vendors"
+        },
+        {
+          "value": "services",
+          "label": "Services"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured List"
+    }
+  ]
+}
+{% endschema %}

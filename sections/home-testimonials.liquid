@@ -4,7 +4,7 @@
   {{ section.settings.title }}
 </h2>
 
-{% for testimonial in testimonials %}
+{% for testimonial in testimonials limit: 5 %}
   <div class="tile tile--small hero-testimonials--tile">
     <div class="tile__track">
       <p class="body--medium">{{ testimonial.review }}</p>

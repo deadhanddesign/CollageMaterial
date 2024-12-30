@@ -20,7 +20,7 @@
 
 {% schema %}
 {
-  "name": "Tile - Medium",
+  "name": "Tile - Special",
   "class": "tile tile--medium",
   "settings": [
     {
@@ -54,8 +54,16 @@
   ],
   "presets": [
     {
-      "name": "Tile - Medium",
-      "settings": {}
+      "name": "Tile - Overview",
+      "settings": {
+        "tile_type": "overview"
+      }
+    },
+    {
+      "name": "Tile - Deep Dive",
+      "settings": {
+        "tile_type": "deep_dive"
+      }
     }
   ]
 }

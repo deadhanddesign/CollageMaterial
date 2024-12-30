@@ -3,6 +3,7 @@
     tile__track
     {% case section.settings.tile_size %}{% when 'small' %}tile--s{% when 'medium' %}tile--m{% when 'large' %}tile--l{% endcase %}
     {% if section.settings.tile_type != 'default' %}{% case section.settings.tile_type %}{% when 'primary' %}tile--primary{% when 'secondary' %}tile--secondary{% when 'tertiary' %}tile--tertiary{% when 'image' %}tile--images{% endcase %}{% endif %}
+    {% case section.settings.content_width %}{% when 'full' %}tile--content-full{% when 'left' %}tile--content-left{% when 'right' %}tile--content-right{% else %}{% endcase %}
   "
 >
   {% content_for 'blocks' %}
@@ -90,6 +91,18 @@
       height: calc(100dvh - (var(--spacing-padding-xlarge) * 2));
     }
 
+    &.tile--content-full {
+      width: 100%;
+    }
+
+    &.tile--content-left {
+      margin: 0 auto 0 0;
+    }
+
+    &.tile--content-right {
+      margin: 0 0 0 auto;
+    }
+
     &:has(.columns) {
       display: flex;
       flex-direction: row;
@@ -147,6 +160,16 @@
         { "value": "secondary", "label": "Secondary" },
         { "value": "tertiary", "label": "Tertiary" },
         { "value": "image", "label": "Image" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "Content Width",
+      "info": "Select the width of the content within the tile.",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "full", "label": "Full" }
       ]
     }
   ],
