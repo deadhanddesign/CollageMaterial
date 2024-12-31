@@ -18,8 +18,8 @@
         {% else %}
           {{ item.photo | image_url: width: 300 | image_tag: loading: 'lazy', alt: ' ', role: 'presentation' }}
         {% endif %}
-        {% if block.settings.object_to_loop != 'featured_vendors' %}
-          <h3 class="display--small">{{ item.name }}</h3>
+        {% if block.settings.object_to_loop == 'services' %}
+          <h3 class="display--small">{{ item.name_of_service }}</h3>
         {% endif %}
         <div class="card__content">
           <div class="card__navigation" style="justify-content: flex-end;">
