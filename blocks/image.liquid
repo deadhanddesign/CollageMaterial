@@ -1,51 +1,55 @@
 {% if block.settings.image == null %}
   <img src="../assets/placeholder-image.svg" alt="Placeholder Image" role="presentation" height="100%" width="100%">
-{% endif %}
-
-{% if block.settings.islink != blank %}
-  <a href="{{ block.settings.islink }}" aria-label="{{ block.settings.islinkdescription }}" class="image__link">
-{% endif %}
-
-{% if block.settings.image.alt == blank %}
-  {% if block.settings.theme_image and block.settings.accent %}
-    {{
-      block.settings.image.src
-      | image_url: width: 1000
-      | image_tag: loading: 'eager', id: 'theme-image', class: 'image--accent', alt: ' ', role: 'presentation'
-    }}
-  {% elsif block.settings.theme_image %}
-    {{
-      block.settings.image.src
-      | image_url: width: 1000
-      | image_tag: loading: 'eager', id: 'theme-image', alt: ' ', role: 'presentation'
-    }}
-  {% elsif block.settings.accent %}
-    {{
-      block.settings.image.src
-      | image_url: width: 1000
-      | image_tag: loading: 'eager', class: 'image--accent', alt: ' ', role: 'presentation'
-    }}
-  {% else %}
-    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'lazy', alt: ' ', role: 'presentation' }}
-  {% endif %}
 {% else %}
-  {% if block.settings.theme_image and block.settings.accent %}
-    {{
-      block.settings.image.src
-      | image_url: width: 1000
-      | image_tag: loading: 'eager', id: 'theme-image', class: 'image--accent'
-    }}
-  {% elsif block.settings.theme_image %}
-    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', id: 'theme-image' }}
-  {% elsif block.settings.accent %}
-    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', class: 'image--accent' }}
-  {% else %}
-    {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+  {% if block.settings.islink != blank %}
+    <a href="{{ block.settings.islink }}" aria-label="{{ block.settings.islinkdescription }}" class="image__link">
   {% endif %}
-{% endif %}
 
-{% if block.settings.islink %}
-  </a>
+  {% if block.settings.image.alt == blank %}
+    {% if block.settings.theme_image and block.settings.accent %}
+      {{
+        block.settings.image.src
+        | image_url: width: 1000
+        | image_tag: loading: 'eager', id: 'theme-image', class: 'image--accent', alt: ' ', role: 'presentation'
+      }}
+    {% elsif block.settings.theme_image %}
+      {{
+        block.settings.image.src
+        | image_url: width: 1000
+        | image_tag: loading: 'eager', id: 'theme-image', alt: ' ', role: 'presentation'
+      }}
+    {% elsif block.settings.accent %}
+      {{
+        block.settings.image.src
+        | image_url: width: 1000
+        | image_tag: loading: 'eager', class: 'image--accent', alt: ' ', role: 'presentation'
+      }}
+    {% else %}
+      {{
+        block.settings.image.src
+        | image_url: width: 1000
+        | image_tag: loading: 'lazy', alt: ' ', role: 'presentation'
+      }}
+    {% endif %}
+  {% else %}
+    {% if block.settings.theme_image and block.settings.accent %}
+      {{
+        block.settings.image.src
+        | image_url: width: 1000
+        | image_tag: loading: 'eager', id: 'theme-image', class: 'image--accent'
+      }}
+    {% elsif block.settings.theme_image %}
+      {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', id: 'theme-image' }}
+    {% elsif block.settings.accent %}
+      {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'eager', class: 'image--accent' }}
+    {% else %}
+      {{ block.settings.image.src | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+    {% endif %}
+  {% endif %}
+
+  {% if block.settings.islink %}
+    </a>
+  {% endif %}
 {% endif %}
 
 {% stylesheet %}
