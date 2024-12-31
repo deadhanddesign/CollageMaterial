@@ -1,9 +1,55 @@
-<div>{{ block.settings.copy }}</div>
+<div
+  {% case block.settings.size %}
+    {% when 'small' %}
+      class="body--small"
+    {% when 'medium' %}
+      class="body--medium"
+    {% when 'large' %}
+      class="body--large"
+    {% when 'xlarge' %}
+      class="body--xlarge"
+  {% endcase %}
+>
+  {{ block.settings.copy }}
+</div>
 
 {% schema %}
 {
   "name": "Text",
-  "settings": [{ "type": "text", "id": "copy", "label": "Copy" }],
+  "settings": [
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "info": "The size of the text is Medium site-wide by default.",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "xlarge",
+          "label": "Extra Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "text",
+      "id": "copy",
+      "label": "Copy",
+      "info": "Enter the text you want to display. Keep it short and sweet. For longer text, use the Rich Text block.",
+      "placeholder": "This is a simple text block. It's meant for short, simple text."
+    }
+  ],
   "presets": [{ "name": "Text" }]
 }
 {% endschema %}
