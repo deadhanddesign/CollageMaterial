@@ -1,0 +1,94 @@
+<div class="tile__track">
+  {%- if cart.item_count > 0 -%}
+    {% form 'cart', cart, id: 'cart' %}
+      <md-list>
+        {% for item in cart.items %}
+          <md-list-item type="button">
+            <md-icon-button slot="start" href="{{ item.url_to_remove }}" aria-label="Close"
+              ><md-icon>close</md-icon></md-icon-button
+            >
+            {{ item | image_url: height: '90dvh' | image_tag: loading: 'lazy', slot: 'start' }}
+            <div slot="headline">
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+            </div>
+            <div slot="supporting-text">from {{ item.vendor }}</div>
+            <div slot="supporting-text">
+              {%- for option in item.options_with_values -%}
+                {{ option.name -}}
+              {%- endfor -%}
+              : {{ item.variant.title }}
+            </div>
+            <div slot="supporting-text">Price: {{ item.price | money }}</div>
+            <div slot="trailing-supporting-text">
+              <md-outlined-text-field
+                label="Qty"
+                aria-label="Quantity"
+                type="number"
+                value="{{ item.quantity }}"
+                name="updates[]"
+              ></md-outlined-text-field>
+            </div>
+            <div slot="trailing-supporting-text">{{ item.final_line_price | money }}</div>
+          </md-list-item>
+        {% endfor %}
+        <md-divider></md-divider>
+        <md-list-item id="cart-subtotal">
+          <div slot="headline">Subtotal:</div>
+          <div slot="trailing-supporting-text">{{ cart.total_price | money }}</div>
+        </md-list-item>
+      </md-list>
+
+      <div>
+        {% comment %}
+          {% if settings.shipping_calc == true %}
+            <div class="cart__shippingCalculator">
+              {% render 'cart-shipping-calculator' %}
+            </div>
+          {% else %}
+            <p>Shipping is calculated at checkout.</p>
+          {% endif %}
+        {% endcomment %}
+
+        <md-filled-tonal-button aria-label="Update Cart" type="submit" name="update">Update</md-filled-tonal-button>
+        <md-filled-button aria-label="Checkout" type="submit" name="checkout">Checkout</md-filled-button>
+        {% if additional_checkout_buttons %}
+          {{ content_for_additional_checkout_buttons }}
+        {% endif %}
+      </div>
+    {% endform %}
+
+  {%- else -%}
+    <div class="message-container">
+      <h2 class="display--medium">Treasures Await!</h2>
+      <p class="body--large">
+        🛍️ Your cart is currently as tranquil as a spa room post-massage – empty and waiting for relaxation treasures!
+        Continue browsing to fill it with your favorite pampering picks. Your journey to serenity is just a
+        <a href="/collections/all">few clicks away</a>!
+      </p>
+    </div>
+  {%- endif -%}
+</div>
+
+{% style %}
+  .message-container {
+    width: fit-content;
+    margin: auto;
+
+    & h2 {
+      margin-block-end: var(--spacing-margin-small);
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Cart",
+  "class": "tile tile--large",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cart"
+    }
+  ]
+}
+{% endschema %}
