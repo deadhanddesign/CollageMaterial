@@ -4,13 +4,17 @@
 
   {% for location in locations %}
     <div class="home-hero__tile" aria-label="{{ location.name }}">
-      {{ location.hero_image | image_url: width: 1000 | image_tag: loading: 'eager', class: 'home-hero__background' }}
+      {% if location.hero_image %}
+        {{ location.hero_image | image_url: width: 1000 | image_tag: loading: 'eager', class: 'home-hero__background' }}
+      {% endif %}
       <div class="home-hero__content">
-        {{
-          location.location_logo
-          | image_url: width: 100
-          | image_tag: loading: 'eager', class: 'home-hero__location-logo'
-        }}
+        {% if location.location_logo %}
+          {{
+            location.location_logo
+            | image_url: width: 100
+            | image_tag: loading: 'eager', class: 'home-hero__location-logo'
+          }}
+        {% endif %}
         <div class="home-hero__info-container">
           <div class="home-hero__address">
             {{ location.address_line_1 -}}
