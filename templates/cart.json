@@ -1,0 +1,13 @@
+{
+	"sections": {
+		"header": {
+			"type": "home-hero",
+			"settings": {}
+		},
+		"footer": {
+			"type": "footer",
+			"settings": {}
+		}
+	},
+	"order": ["header", "footer"]
+}
