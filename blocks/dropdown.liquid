@@ -12,8 +12,8 @@
 <div class="details">
   <div class="contents">
     {{ block.settings.contents }}
+    {% content_for 'blocks' %}
   </div>
-  {% content_for 'blocks' %}
   <md-divider></md-divider>
 </div>
 
@@ -46,6 +46,7 @@
         padding-block: var(--spacing-padding-medium);
         opacity: 1;
         margin-bottom: var(--spacing-margin-medium);
+        gap: var(--spacing-gap-small);
 
         &.filter__options:is([data-type='price_range']) {
           overflow-y: hidden;
