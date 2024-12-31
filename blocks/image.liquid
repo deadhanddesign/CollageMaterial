@@ -1,5 +1,11 @@
 {% if block.settings.image == null %}
-  <img src="../assets/placeholder-image.svg" alt="Placeholder Image" role="presentation" height="100%" width="100%">
+  <img
+    src="{{ 'placeholder-image.svg' | asset_url }}"
+    alt="Placeholder Image"
+    role="presentation"
+    height="100%"
+    width="100%"
+  >
 {% else %}
   {% if block.settings.islink != blank %}
     <a href="{{ block.settings.islink }}" aria-label="{{ block.settings.islinkdescription }}" class="image__link">
