@@ -1,0 +1,39 @@
+<div class="tile__track">
+  {% if block.settings.page != null %}
+    {% if block.settings.page.content != blank %}
+      {{ block.settings.page.content }}
+
+    {% else %}
+      <h2 class="display--medium">Error</h2>
+      <h3 class="heading--small">There's no info in the page you're trying to display.</h3>
+      <p>Go to "Online Store", then "Pages". Select the page in question and add content there.</p>
+    {% endif %}
+
+  {% else %}
+    <h2 class="display--medium">Page Placeholer</h2>
+    <h3 class="heading--small">Select the page you wish to populate here.</h3>
+    <p>
+      This block is for adding the content from the Pages section under Online Store. Generally these should be used for
+      things like Terms and other Fine Print.
+    </p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "class": "tile",
+  "settings": [
+    {
+      "type": "page",
+      "id": "page",
+      "label": "Page"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page"
+    }
+  ]
+}
+{% endschema %}

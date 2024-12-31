@@ -125,17 +125,23 @@
     {
       "type": "text",
       "id": "summary",
-      "label": "Summary"
+      "label": "Summary",
+      "info": "The text that will be displayed in the dropdown summary. Think of it like the title of the dropdown.",
+      "default": "This is a dropdown"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "second_line",
-      "label": "Second Line"
+      "label": "Second Line",
+      "info": "A second line of text that will be displayed in the dropdown summary. Supports some limited styling. This is optional.",
+      "default": "<p>This is a second line, <b>delete it</b> if you don't need it.</p>"
     },
     {
       "type": "richtext",
       "id": "contents",
-      "label": "Contents"
+      "label": "Contents",
+      "info": "The contents of the dropdown. This is where you can put any content you want to be displayed when the dropdown is open.",
+      "default": "<p>This is the contents of the dropdown. You can put anything you want here.</p>"
     }
   ],
   "presets": [
