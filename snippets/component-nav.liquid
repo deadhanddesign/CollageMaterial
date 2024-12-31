@@ -115,10 +115,7 @@
     {%- endfor -%}
 
     <span>
-      <md-text-button id="nav-cart-button" has-icon>
-        {% comment %} <md-icon slot="icon">shopping_cart</md-icon> {% endcomment %}
-        Cart
-      </md-text-button>
+      <md-text-button id="nav-cart-button" has-icon> Cart </md-text-button>
       <md-menu id="nav-cart-menu" anchor="nav-cart-button">
         {%- if cart.item_count > 0 -%}
           {% form 'cart', cart, id: 'cart-nav' %}
