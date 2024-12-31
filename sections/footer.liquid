@@ -48,7 +48,7 @@
               <br>
             {% endif %}
           </div>
-          <a href="*" aria-label="Learn More about {{ location.name }}">Tour Inside</a>
+          {% comment %} <a href="/" aria-label="Learn More about {{ location.name }}">Tour Inside</a> {% endcomment %}
           <a href="{{ location.booking_link }}" aria-label="Book an appointment at {{ location.name }}">Book Now</a>
         </div>
       {% endfor %}
@@ -60,16 +60,11 @@
     <div class="footer__list" id="footer-nav">
       {%- for link in linklists['new-main-menu'].links -%}
         <div>
-          <a
+          <div
             class="footer-nav__menu-title"
-            {% if link.active %}
-              aria-current="page"
-            {% endif %}
-            aria-label="{{ link.title }}"
-            href="{{ link.url }}"
           >
             {{- link.title }}
-          </a>
+          </div>
           {%- if link.links != blank -%}
             <ul>
               {%- for child_link in link.links -%}
