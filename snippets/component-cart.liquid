@@ -1,5 +1,3 @@
-{% render 'component-header', title: 'cart' %}
-
 {% capture tile-content %}
 {%- if cart.item_count > 0 -%}
   {% form 'cart', cart, id: 'cart' %}
