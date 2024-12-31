@@ -12,8 +12,8 @@
 <div class="details">
   <div class="contents">
     {{ block.settings.contents }}
+    {% content_for 'blocks' %}
   </div>
-  {% content_for 'blocks' %}
   <md-divider></md-divider>
 </div>
 
