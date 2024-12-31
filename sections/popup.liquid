@@ -18,11 +18,26 @@
   }
 
   .popup {
-    /* max-width: 40ch; */
     display: flex;
     flex-direction: column;
     gap: var(--spacing-gap-medium);
     padding: var(--spacing-padding-medium);
+
+    &:has(.columns) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .columns {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: var(--spacing-gap-medium);
+
+      & img {
+        max-width: 400px;
+      }
+    }
   }
 
   ::backdrop {
