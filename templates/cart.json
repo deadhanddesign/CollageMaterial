@@ -1,8 +1,14 @@
 {
 	"sections": {
 		"header": {
-			"type": "home-hero",
-			"settings": {}
+			"type": "header",
+			"settings": {
+				"title": "Cart",
+				"overline": "",
+				"show_overline": false,
+				"byline": "",
+				"show_byline": false
+			}
 		},
 		"footer": {
 			"type": "footer",
