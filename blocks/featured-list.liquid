@@ -31,13 +31,13 @@
                   See Products
                 </md-filled-button>
 
-              {% else %}
+              {% when 'services' %}
                 <md-filled-button
                   type="button"
-                  href="{{ item.url.value.url }}"
+                  href="{{ item.book_now.value.url }}"
                   aria-label="Learn More about {{ item.name }}"
                 >
-                  Learn More
+                  Book Now
                 </md-filled-button>
             {% endcase %}
           </div>
