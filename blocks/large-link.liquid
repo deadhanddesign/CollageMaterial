@@ -1,9 +1,9 @@
-<a href="{{ block.settings.large_link_url }}" class="large_link">
+<a href="{{ block.settings.large_link_url }}" class="large-link">
   <h3 class="headline--large">{{ block.settings.large_link_text }}</h3>
 </a>
 
 {% stylesheet %}
-  .large_link {
+  .large-link {
     width: 100%;
   }
 {% endstylesheet %}
@@ -16,12 +16,16 @@
     {
       "type": "text",
       "id": "large_link_text",
-      "label": "Link Text"
+      "label": "Link Text",
+      "info": "The text that will be displayed in the link.",
+      "default": "Learn More"
     },
     {
       "type": "url",
       "id": "large_link_url",
-      "label": "Link URL"
+      "label": "Link URL",
+      "info": "The URL that the link will go to when clicked.",
+      "default": "/"
     }
   ],
   "presets": [

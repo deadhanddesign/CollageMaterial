@@ -1,0 +1,65 @@
+<md-{{ block.settings.button_type }}-button
+  aria-label="{{ block.settings.aria_label }}"
+  href="{{ block.settings.button_url }}"
+>
+  {{- block.settings.button_text -}}
+</md-{{ block.settings.button_type }}-button>
+
+{% schema %}
+{
+  "name": "Button",
+  "settings": [
+    {
+      "type": "select",
+      "id": "button_type",
+      "label": "Button Type",
+      "default": "filled",
+      "info": "Filled buttons have a background color and white text. Tonal buttons have a background color and colored text. Outlined buttons have a transparent background and colored text. Text buttons have no background and colored text.",
+      "options": [
+        {
+          "value": "filled",
+          "label": "Filled"
+        },
+        {
+          "value": "filled-tonal",
+          "label": "Tonal"
+        },
+        {
+          "value": "outlined",
+          "label": "Outlined"
+        },
+        {
+          "value": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "info": "The text that will be displayed on the button. One or two words is best.",
+      "default": "Click Me"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+      "info": "The URL that the button will go to when clicked.",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Aria Label",
+      "info": "In one sentence, describe the purpose of the button for screen readers.",
+      "default": "Click here to learn more about Acme Vanishing Cream!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Button"
+    }
+  ]
+}
+{% endschema %}
