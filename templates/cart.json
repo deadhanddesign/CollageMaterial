@@ -10,10 +10,14 @@
 				"show_byline": false
 			}
 		},
+		"cart": {
+			"type": "cart",
+			"settings": {}
+		},
 		"footer": {
 			"type": "footer",
 			"settings": {}
 		}
 	},
-	"order": ["header", "footer"]
+	"order": ["header", "cart", "footer"]
 }
