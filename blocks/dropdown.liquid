@@ -11,7 +11,6 @@
 </details>
 <div class="details">
   <div class="contents">
-    {{ block.settings.contents }}
     {% content_for 'blocks' %}
   </div>
   <md-divider></md-divider>
@@ -138,15 +137,7 @@
       "type": "inline_richtext",
       "id": "second_line",
       "label": "Second Line",
-      "info": "A second line of text that will be displayed in the dropdown summary. Supports some limited styling. This is optional.",
-      "default": "This is a second line, <b>delete it</b> if you don't need it."
-    },
-    {
-      "type": "richtext",
-      "id": "contents",
-      "label": "Contents",
-      "info": "The contents of the dropdown. This is where you can put any content you want to be displayed when the dropdown is open.",
-      "default": "<p>This is the contents of the dropdown. You can put anything you want here.</p>"
+      "info": "A second line of text that will be displayed in the dropdown summary. Supports some limited styling. This is optional."
     }
   ],
   "presets": [
