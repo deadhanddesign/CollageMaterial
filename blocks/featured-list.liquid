@@ -14,13 +14,15 @@
         "
       >
         {% if item.image %}
-          {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: ' ', role: 'presentation' }}
+          {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '{{ item.name }}'}}
         {% endif %}
-        <h3 class="display--small">{{ item.name }}</h3>
+        {% if block.settings.object_to_loop != 'featured_vendors' %}
+          <h3 class="display--small">{{ item.name }}</h3>
+        {% endif %}
         <div class="card__content">
           <div class="card__navigation" style="justify-content: flex-end;">
             {% case block.settings.object_to_loop %}
-              {% when 'vendors' %}
+              {% when 'featured_vendors' %}
                 <md-filled-button
                   type="button"
                   href="/collections/vendors?q={{ item.name }}"
@@ -71,14 +73,6 @@
 {
   "name": "Featured List",
   "class": "featured-list",
-  "blocks": [
-    {
-      "type": "@theme"
-    },
-    {
-      "type": "@app"
-    }
-  ],
   "settings": [
     {
       "type": "select",
