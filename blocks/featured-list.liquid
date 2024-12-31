@@ -14,7 +14,7 @@
         "
       >
         {% if item.image %}
-          {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '{{ item.name }}'}}
+          {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: ' ', role: 'presentation' }}
         {% endif %}
         {% if block.settings.object_to_loop != 'featured_vendors' %}
           <h3 class="display--small">{{ item.name }}</h3>
