@@ -10,9 +10,9 @@
 {% if product.metafields.custom.ingredients %}
   {% capture tile-content--ingredients %}
       <h2 class="display--small">What's Inside</h2>
-      <md-list>
+      <md-list role="list">
         {% for ingredient in product.metafields.custom.ingredients.value %}
-          <md-list-item aria-label="{{ ingredient }}">
+          <md-list-item aria-label="{{ ingredient }}" role="listitem">
             <div slot="headline"><span style="font-weight: 1000">•</span> {{ ingredient }}</div>
           </md-list-item>
         {% endfor %}

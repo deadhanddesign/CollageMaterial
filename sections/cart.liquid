@@ -1,9 +1,9 @@
 <div class="tile__track">
   {%- if cart.item_count > 0 -%}
     {% form 'cart', cart, id: 'cart' %}
-      <md-list>
+      <md-list role="list">
         {% for item in cart.items %}
-          <md-list-item type="button">
+          <md-list-item type="button" role="listitem">
             <md-icon-button slot="start" href="{{ item.url_to_remove }}" aria-label="Close"
               ><md-icon>close</md-icon></md-icon-button
             >
@@ -32,7 +32,7 @@
           </md-list-item>
         {% endfor %}
         <md-divider></md-divider>
-        <md-list-item id="cart-subtotal">
+        <md-list-item id="cart-subtotal" role="listitem">
           <div slot="headline">Subtotal:</div>
           <div slot="trailing-supporting-text">{{ cart.total_price | money }}</div>
         </md-list-item>
