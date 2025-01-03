@@ -46,31 +46,54 @@
 	font-display: swap;
 }
 
-@font-face {
+/* @font-face {
 	font-family: 'Grand Hotel';
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
 	src: url("https://fonts.gstatic.com/s/grandhotel/v19/7Au7p_IgjDKdCRWuR1azplQEGFw-0g.woff2") format('woff2');
 	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
+} */
 
 @font-face {
+	font-family: "Grand Hotel";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("{{ 'GrandHotel-Regular' | file_url }}") format("woff2");
+  }
+
+/* @font-face {
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
   src: url("https://fonts.gstatic.com/s/raleway/v34/1Ptug8zYS_SKggPNyCMIT5lu.woff2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;	
-}
+} */
 
-@font-face {
+/* @font-face {
 	font-family: 'Raleway';
 	font-style: italic;
 	font-weight: 100 900;
 	font-display: swap;
 	src: url("https://fonts.gstatic.com/s/raleway/v34/1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2") format('woff2');
 	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  } */
+
+  @font-face {
+	font-family: "Raleway";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("{{ 'Raleway-VariableFont_wght' | file_url }}") format("ttf");
+  }
+  @font-face {
+	font-family: "Raleway";
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("{{ 'Raleway-Italic-VariableFont_wght' | file_url }}") format("ttf");
   }
 
 /* 
