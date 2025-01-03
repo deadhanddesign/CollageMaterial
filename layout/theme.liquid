@@ -17,9 +17,7 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    <link rel="canonical" href="{{ canonical_url }}">
-
-    <link rel="alternate" hreflang="en" href="fakertons.myshopify.com">
+    <link rel="canonical" hreflang="en" href="{{ canonical_url }}">
 
     {{ content_for_header }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
